@@ -1,0 +1,155 @@
+2025-12-29 18:55:34,204 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 18:55:34,256 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 18:55:34,262 - __main__ - INFO - ============================================================
+2025-12-29 18:55:34,263 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 18:55:34,263 - __main__ - INFO - Data Separation: PERSONAL in SQLite, MEDICAL in Firebase
+2025-12-29 18:55:34,264 - __main__ - INFO - ============================================================
+2025-12-29 18:55:34,302 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-29 18:55:34,310 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-29 18:55:34,324 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-12-29 18:55:35,880 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 18:55:35,932 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 18:55:35,936 - __main__ - INFO - ============================================================
+2025-12-29 18:55:35,937 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 18:55:35,937 - __main__ - INFO - Data Separation: PERSONAL in SQLite, MEDICAL in Firebase
+2025-12-29 18:55:35,937 - __main__ - INFO - ============================================================
+2025-12-29 18:55:35,956 - werkzeug - WARNING -  * Debugger is active!
+2025-12-29 18:55:35,961 - werkzeug - INFO -  * Debugger PIN: 133-537-793
+2025-12-29 18:55:52,704 - __main__ - INFO - Dashboard loaded with 1 patients (personal data only)
+2025-12-29 18:55:52,822 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:55:52] "GET / HTTP/1.1" 200 -
+2025-12-29 18:55:52,956 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:55:52] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-12-29 18:55:52,960 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:55:52] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-12-29 18:56:18,931 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:56:18] "GET /add-patient HTTP/1.1" 200 -
+2025-12-29 18:56:18,945 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:56:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 18:56:18,946 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:56:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 18:57:16,260 - __main__ - INFO - Generated UUID for new patient: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 18:57:16,280 - __main__ - INFO - Personal data stored in SQLite for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 18:57:16,282 - __main__ - INFO -   - Name: Fotsop Luca
+2025-12-29 18:57:16,283 - __main__ - INFO -   - Phone: 66666666666666666
+2025-12-29 18:57:16,283 - __main__ - INFO -   - Email: jane@gmail.com
+2025-12-29 18:57:18,608 - __main__ - INFO -   - Age: 20
+2025-12-29 18:57:18,608 - __main__ - INFO -   - Height: 200
+2025-12-29 18:57:18,608 - __main__ - INFO -   - NO personal identifiers in Firebase
+2025-12-29 18:57:18,610 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:57:18] "[32mPOST /add-patient HTTP/1.1[0m" 302 -
+2025-12-29 18:57:18,620 - __main__ - INFO - Dashboard loaded with 2 patients (personal data only)
+2025-12-29 18:57:18,621 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:57:18] "GET / HTTP/1.1" 200 -
+2025-12-29 18:57:18,640 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:57:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 18:57:18,641 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 18:57:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:00:03,294 - __main__ - INFO - Loading personal data from SQLite for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 19:00:03,621 - __main__ - INFO - Loaded anonymous medical data from Firebase for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 19:00:03,676 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:00:03] "GET /patient/0aac70b9-b6a1-4bf3-92e3-6fc3aa046495 HTTP/1.1" 200 -
+2025-12-29 19:00:03,696 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:00:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:00:03,697 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:00:03] "GET /static/js/charts.js HTTP/1.1" 200 -
+2025-12-29 19:00:03,701 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:00:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:03:50,647 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:03:50,701 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:03:50,705 - __main__ - INFO - ============================================================
+2025-12-29 19:03:50,705 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:03:50,706 - __main__ - INFO - Data Separation: PERSONAL in SQLite, MEDICAL in Firebase
+2025-12-29 19:03:50,706 - __main__ - INFO - ============================================================
+2025-12-29 19:03:50,732 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-29 19:03:50,732 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-29 19:03:50,747 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-12-29 19:03:52,212 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:03:52,262 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:03:52,266 - __main__ - INFO - ============================================================
+2025-12-29 19:03:52,267 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:03:52,267 - __main__ - INFO - Data Separation: PERSONAL in SQLite, MEDICAL in Firebase
+2025-12-29 19:03:52,267 - __main__ - INFO - ============================================================
+2025-12-29 19:03:52,288 - werkzeug - WARNING -  * Debugger is active!
+2025-12-29 19:03:52,292 - werkzeug - INFO -  * Debugger PIN: 133-537-793
+2025-12-29 19:03:58,642 - __main__ - INFO - Dashboard loaded with 2 patients (personal data only)
+2025-12-29 19:03:58,679 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:03:58] "GET / HTTP/1.1" 200 -
+2025-12-29 19:03:58,837 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:03:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:03:58,842 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:03:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:04:23,723 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:23] "GET /edit/5f23a5f6-6b37-4da1-9fc7-7ff86305c609 HTTP/1.1" 200 -
+2025-12-29 19:04:24,293 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:24] "GET /edit/5f23a5f6-6b37-4da1-9fc7-7ff86305c609 HTTP/1.1" 200 -
+2025-12-29 19:04:24,316 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:04:24,318 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:04:32,274 - __main__ - INFO - Updated personal data in SQLite for UUID: 5f23a5f6-6b37-4da1-9fc7-7ff86305c609
+2025-12-29 19:04:32,591 - __main__ - ERROR - Firebase update error: 404 No document to update: projects/anonymous-d1db0/databases/(default)/documents/patients_medical/5f23a5f6-6b37-4da1-9fc7-7ff86305c609
+2025-12-29 19:04:32,592 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:32] "[32mPOST /edit/5f23a5f6-6b37-4da1-9fc7-7ff86305c609 HTTP/1.1[0m" 302 -
+2025-12-29 19:04:32,598 - __main__ - INFO - Loading personal data from SQLite for UUID: 5f23a5f6-6b37-4da1-9fc7-7ff86305c609
+2025-12-29 19:04:32,893 - __main__ - WARNING - No medical data found in Firebase for UUID: 5f23a5f6-6b37-4da1-9fc7-7ff86305c609
+2025-12-29 19:04:32,924 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:32] "GET /patient/5f23a5f6-6b37-4da1-9fc7-7ff86305c609 HTTP/1.1" 200 -
+2025-12-29 19:04:32,948 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:04:32,948 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:04:32,949 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:32] "[36mGET /static/js/charts.js HTTP/1.1[0m" 304 -
+2025-12-29 19:04:52,602 - __main__ - INFO - Dashboard loaded with 2 patients (personal data only)
+2025-12-29 19:04:52,604 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:52] "GET / HTTP/1.1" 200 -
+2025-12-29 19:04:52,621 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:04:52,622 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:04:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:05:00,073 - __main__ - INFO - Loading personal data from SQLite for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 19:05:00,393 - __main__ - INFO - Loaded anonymous medical data from Firebase for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 19:05:00,394 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:00] "GET /patient/0aac70b9-b6a1-4bf3-92e3-6fc3aa046495 HTTP/1.1" 200 -
+2025-12-29 19:05:00,405 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:05:00,409 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:05:00,411 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:00] "[36mGET /static/js/charts.js HTTP/1.1[0m" 304 -
+2025-12-29 19:05:09,780 - __main__ - INFO - Dashboard loaded with 2 patients (personal data only)
+2025-12-29 19:05:09,781 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:09] "GET / HTTP/1.1" 200 -
+2025-12-29 19:05:09,801 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:05:09,801 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:05:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:19:05,676 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:19:05,725 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:19:05,729 - __main__ - INFO - ============================================================
+2025-12-29 19:19:05,730 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:19:05,730 - __main__ - INFO - Data Display: MEDICAL DATA FROM FIREBASE ONLY
+2025-12-29 19:19:05,736 - __main__ - INFO - ============================================================
+2025-12-29 19:19:05,768 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-29 19:19:05,769 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-29 19:19:05,787 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-12-29 19:19:07,397 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:19:07,446 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:19:07,452 - __main__ - INFO - ============================================================
+2025-12-29 19:19:07,452 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:19:07,453 - __main__ - INFO - Data Display: MEDICAL DATA FROM FIREBASE ONLY
+2025-12-29 19:19:07,458 - __main__ - INFO - ============================================================
+2025-12-29 19:19:07,480 - werkzeug - WARNING -  * Debugger is active!
+2025-12-29 19:19:07,486 - werkzeug - INFO -  * Debugger PIN: 133-537-793
+2025-12-29 19:23:42,981 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:23:43,030 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:23:43,035 - __main__ - INFO - ============================================================
+2025-12-29 19:23:43,036 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:23:43,036 - __main__ - INFO - Data Display: MEDICAL DATA FROM FIREBASE ONLY
+2025-12-29 19:23:43,042 - __main__ - INFO - ============================================================
+2025-12-29 19:23:43,075 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-12-29 19:23:43,076 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-29 19:23:43,093 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-12-29 19:23:44,649 - __main__ - INFO - SQLite database initialized for personal data only
+2025-12-29 19:23:44,708 - __main__ - INFO - Firebase initialized successfully for anonymous medical data
+2025-12-29 19:23:44,714 - __main__ - INFO - ============================================================
+2025-12-29 19:23:44,715 - __main__ - INFO - Starting Medical Dashboard Application
+2025-12-29 19:23:44,716 - __main__ - INFO - Data Display: MEDICAL DATA FROM FIREBASE ONLY
+2025-12-29 19:23:44,722 - __main__ - INFO - ============================================================
+2025-12-29 19:23:44,746 - werkzeug - WARNING -  * Debugger is active!
+2025-12-29 19:23:44,752 - werkzeug - INFO -  * Debugger PIN: 133-537-793
+2025-12-29 19:24:02,361 - __main__ - INFO - Dashboard loaded with 1 anonymous medical records
+2025-12-29 19:24:02,467 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:02] "GET / HTTP/1.1" 200 -
+2025-12-29 19:24:02,587 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:24:02,591 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:24:18,351 - __main__ - INFO - Loaded anonymous medical data from Firebase for UUID: 0aac70b9-b6a1-4bf3-92e3-6fc3aa046495
+2025-12-29 19:24:18,421 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:18] "GET /patient/0aac70b9-b6a1-4bf3-92e3-6fc3aa046495 HTTP/1.1" 200 -
+2025-12-29 19:24:18,434 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:24:18,438 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:24:18,442 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:18] "[36mGET /static/js/charts.js HTTP/1.1[0m" 304 -
+2025-12-29 19:24:33,085 - __main__ - INFO - Dashboard loaded with 1 anonymous medical records
+2025-12-29 19:24:33,086 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:33] "GET / HTTP/1.1" 200 -
+2025-12-29 19:24:33,098 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:24:33,101 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:24:42,533 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:42] "GET /add-patient HTTP/1.1" 200 -
+2025-12-29 19:24:42,547 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:24:42,552 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:24:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-12-29 19:25:32,419 - __main__ - INFO - Generated UUID for new patient: 4e60fe16-d3d7-4201-aaf5-1f667fa718d7
+2025-12-29 19:25:32,426 - __main__ - INFO - Personal data stored in SQLite (not displayed) for UUID: 4e60fe16-d3d7-4201-aaf5-1f667fa718d7
+2025-12-29 19:25:32,966 - __main__ - INFO -   - Age: 55 (Displayed on website)
+2025-12-29 19:25:32,967 - __main__ - INFO -   - Height: 150 (Displayed on website)
+2025-12-29 19:25:32,967 - __main__ - INFO -   - NO personal identifiers in Firebase
+2025-12-29 19:25:32,968 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:25:32] "[32mPOST /add-patient HTTP/1.1[0m" 302 -
+2025-12-29 19:25:33,344 - __main__ - INFO - Dashboard loaded with 2 anonymous medical records
+2025-12-29 19:25:33,347 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:25:33] "GET / HTTP/1.1" 200 -
+2025-12-29 19:25:33,395 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:25:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-12-29 19:25:33,396 - werkzeug - INFO - 127.0.0.1 - - [29/Dec/2025 19:25:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
