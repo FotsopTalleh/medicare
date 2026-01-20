@@ -1,0 +1,1002 @@
+Timestamp,How tall was she(in centimetres)? ,"How old was she(in years)?
+",Has she given birth before? ,What was her gestational age(in weeks)?,Any previous cesarian section?,How many fetuses were present ?,Were there presence of maternal medical condition?,What was the fetal presentation?,Was there presence of placenta previa?,Was there presence of fetal distress?,Previous utherine surgery?,Were there any fetal abnormalities?,How did she give birth?
+2025/11/08 02:41:19 AM CET,140,41,No,38,No,1,Nothing ,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/09 09:18:44 PM CET,168cm,28,No,34,No,1,,Cephalic,Yes,No,No,No,Vaginal delivery
+2025/11/12 05:03:11 AM CET,165,30,Yes,36,Yes,2,None ,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/15 11:57:02 PM CET,159cm,16,No,36,No,1,None ,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/18 04:22:36 PM CET,152cm,12,No,38,No,1,,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/23 01:09:54 AM CET,156cm,15,No,37,No,1,Eclampsia ,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 07:45:10 PM CET,165cm,26,Yes,39 weeks,No,1,,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/04 06:32:48 AM CET,165,32,Yes,38,No,1,,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/08 10:14:27 PM CET,160cm,24,Yes,29,No,2,none,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/12 03:05:51 PM CET,1.6cm,20years,No,36weeks,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/19 11:49:08 AM CET,173,34,No,38,No,1,Diabetes,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/26 09:21:34 PM CET,135,28,Yes,38,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2026/01/03 05:44:59 AM CET,167,32,Yes,38 weeks,Yes,1,,Cephalic,No,No,Yes,No,Vaginal delivery
+2026/01/09 02:18:40 PM CET,1.62,23,Yes,42 weeks,No,1,Cervical distosia,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2026/01/15 08:57:26 PM CET,165,29,Yes,41,No,1,None ,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2026/01/22 11:06:11 AM CET,170,32,Yes,23,No,1,No,Breech,No,No,No,No,Cesarian section(cs)
+2026/01/29 06:33:45 PM CET,157cm,25,No,36weeks,No,1,Lower back pain,Breech,No,Yes,No,No,Vaginal delivery
+2026/02/05 01:42:18 AM CET,1.62,19,No,38weeks,No,2,Pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/02/12 10:19:53 PM CET,160cm,23,No,38weeks,No,1,Vaginal warts,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/02/18 04:56:07 PM CET,160,22,Yes,38,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/02/25 07:25:31 AM CET,178,34,Yes,37,No,1,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2026/03/04 12:11:42 PM CET,165,17,No,38,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/03/11 09:47:16 PM CET,1.58,21,Yes,38,Yes,2,No,Transverse ,No,No,Yes,No,Cesarian section(cs)
+2026/03/18 06:28:54 AM CET,1.75,33,Yes,37,No,1,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/03/25 03:59:08 PM CET,156,24,No,38,No,1,No,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2026/04/02 11:14:36 AM CET,160cm,18,No,41 weeks,No,One,No,Cephalic,No,Yes,No,No,Vaginal delivery
+2026/04/09 08:41:19 PM CET,160cm,31,Yes,29weeks,No,One,Lower abdominal pain ,Cephalic,No,No,No,No,Vaginal delivery
+2026/04/16 02:33:57 AM CET,161cm,26,No,37weeks,No,One,Diabetes,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2026/04/23 05:27:44 PM CET,153,18,No,38,No,1,None ,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2026/04/30 09:18:03 AM CET,158,24,Yes,38,Yes,1,Preeclampsia ,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2026/05/07 07:55:26 PM CET,155Cm,25yrs,Yes,39weeks,Yes,One,Previous scar,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2026/05/14 01:39:11 PM CET,1.70m,35,No,37 weeks ,No,1,,Cephalic,No,No,No,No,Vaginal delivery
+2026/05/21 10:46:52 AM CET,1.63,21,No,32,No,One,,Cephalic,No,No,No,No,Vaginal delivery
+2026/05/28 06:04:38 PM CET,1.67,28,No,40,No,1,Normal ,Breech,No,Yes,No,No,Cesarian section(cs)
+2026/06/04 11:22:59 PM CET,1.98cm,23,No,38,No,One ,Diabetes,Breech,No,Yes,No,No,Cesarian section(cs)
+2026/06/11 04:37:14 AM CET,1.98cm,23,No,38,No,One ,Diabetes,Breech,No,Yes,No,No,Cesarian section(cs)
+2026/06/18 09:15:06 PM CET,1.98cm,23,No,38,No,One ,Diabetes,Breech,No,Yes,No,No,Cesarian section(cs)
+2026/06/25 02:58:41 PM CET,170,35,Yes,33,Yes,1,No,Cephalic,Yes,Yes,No,No,Cesarian section(cs)
+2026/07/02 08:24:17 AM CET,150cm,33,Yes,40weeks,Yes,One,,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2026/07/09 06:49:53 PM CET,165,20,No,38,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/07/16 11:05:39 AM CET,170,23,Yes,37,No,1,,Cephalic,No,No,No,Yes,Vaginal delivery
+2026/07/23 03:44:12 PM CET,165,19,No,32,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/07/30 09:57:06 PM CET,157,21,Yes,36,No,1,,Cephalic,No,No,No,No,Vaginal delivery
+2026/08/06 01:31:49 AM CET,170,34,Yes,40,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/08/13 05:19:22 PM CET,168,27,No,37,No,1,Nil,Transverse,No,Yes,No,No,Cesarian section(cs)
+2026/08/20 10:46:33 AM CET,160,45,Yes,36,No,1,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/08/27 07:14:55 PM CET,167,19,No,35,No,1,No,Cephalic,No,No,No,No,Vaginal delivery
+2026/09/03 02:05:18 PM CET,162,30,Yes,36,No,1,,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2026/09/10 09:39:44 AM CET,173,28,No,38,No,1,,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2026/09/17 11:58:07 PM CET,178,33,Yes,39,No,1,,Cephalic,No,No,No,No,Vaginal delivery
+2026/09/24 04:16:51 AM CET,161,28,No,38,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2026/10/01 08:47:26 PM CET,1.5cm,16years,No,41,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2026/10/08 01:25:09 PM CET,167cm,29,Yes,37,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2026/10/15 10:04:53 AM CET,1.7cm,25yrs,No,37 weeks,No,1,Diabetes,Breech,No,No,Yes,No,Cesarian section(cs)
+2026/10/22 06:41:32 PM CET,160cm,37yrs,No,38,No,1,Malaria,Breech,No,No,No,No,Cesarian section(cs)
+2026/10/29 03:19:58 AM CET,1.7cm,30,No,38weeks,No,2,Normal,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/11/05 09:54:21 PM CET,1.74m,32yrs,No,36weeks,No,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/11/10 02:36:44 PM CET,1.58,23years,Yes,32,No,1,Vaginal warts,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2026/11/16 05:08:33 PM CET,1.72,23years,Yes,35,No,2,Pain,One cephalic and one breech,Yes,Yes,Yes,No,Cesarian section(cs)
+2025/11/10 05:14:50 PM CET,1.76m,24yrs,Yes,31,No,1,Diabetes,Transverse,Yes,Yes,No,No,Cesarian section(cs)
+2025/11/16 05:30:28 AM CET,1.8cm,33years,Yes,30,No,1,Nil,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/12 01:08:32 AM CET,168,33years,Yes,34weeks,No,1,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/27 06:52:44 AM CET,1.79,32,Yes,37 weeks,No,1,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/15 11:58:39 PM CET,162cm,12years,Yes,36weeks,No,1,Pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/21 07:10:25 PM CET,165cm,21,No,34weeks,No,1,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/25 06:04:41 AM CET,1.53m,35yrs,Yes,42weeks,Yes,1,Nil,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/22 07:05:47 AM CET,1.57m,33,Yes,32 weeks,No,1,none,One cephalic and one breech,No,No,Yes,No,Vaginal delivery
+2025/11/10 06:36:07 PM CET,1.55,26years,Yes,35,No,1,Preeclampsia,Transverse,No,No,No,No,Vaginal delivery
+2025/12/04 02:31:36 AM CET,1.5cm,21,No,35 weeks,No,One,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/01 05:28:52 AM CET,173cm,31,No,32,No,1,Vaginal warts,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/18 08:59:27 PM CET,1.89m,20yrs,Yes,39weeks,No,1,Oligohydramos,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/27 03:44:36 PM CET,1.83m,26,Yes,35 weeks,No,1,none,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 04:59:52 AM CET,161,27,No,41,No,1,Normal,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 05:30:03 AM CET,167,18,Yes,33,No,1,Oligohydramos,Transverse,No,No,No,No,Vaginal delivery
+2025/12/11 10:26:27 PM CET,1.5cm,20yrs,No,36,No,1,Previous scar,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/22 10:46:04 PM CET,1.7cm,12,Yes,35weeks,No,2,Nothing,Breech,No,Yes,Yes,Yes,Cesarian section(cs)
+2025/11/24 05:44:40 PM CET,1.5cm,18years,Yes,40weeks,No,1,none,Transverse,No,No,Yes,No,Vaginal delivery
+2025/11/11 03:02:26 AM CET,1.68m,24yrs,No,41,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/11/10 04:59:41 PM CET,176cm,21years,Yes,42,No,1,Normal,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/11/19 03:45:48 AM CET,1.51,32yrs,No,37,No,1,Oligohydramos,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/08 10:22:49 PM CET,171cm,38years,No,35 weeks,Yes,1,None,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/08 01:58:58 PM CET,157cm,26yrs,No,42,No,1,Nil,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/05 03:20:41 AM CET,1.6cm,38,No,38,No,1,Normal,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 05:55:50 AM CET,150cm,34,Yes,35,No,One,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/18 07:17:36 AM CET,156,30yrs,Yes,39weeks,No,1,None,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/23 12:19:30 PM CET,1.46,23years,Yes,38,No,1,Oligohydramos,Breech,No,No,No,No,Vaginal delivery
+2025/12/20 01:03:35 AM CET,1.46m,33,Yes,31,No,1,Malaria,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/22 05:21:45 PM CET,1.67,25yrs,No,41 weeks,No,1,Oligohydramos,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/12 08:19:16 PM CET,157cm,24,Yes,38,No,1,Nothing,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/27 01:07:46 AM CET,1.64m,25,No,38 weeks,No,1,Lower back pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/29 02:20:59 AM CET,1.8cm,28yrs,No,35weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/04 04:26:45 PM CET,171cm,33yrs,No,40 weeks,No,1,Eclampsia,Breech,No,No,No,No,Vaginal delivery
+2025/12/13 10:25:54 AM CET,1.4cm,25years,Yes,39 weeks,No,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/18 11:01:00 PM CET,1.70m,17years,No,38 weeks,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/16 08:12:08 PM CET,1.57,20,No,37weeks,No,One,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/22 07:49:31 PM CET,1.79m,25,Yes,38weeks,No,1,Cervical distosia,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/02 08:22:04 PM CET,1.6cm,35yrs,Yes,37,Yes,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/09 08:23:20 AM CET,1.52,32years,No,37weeks,No,1,Normal,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/14 04:44:38 PM CET,171,37yrs,Yes,42,No,1,Preeclampsia,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/20 03:28:32 AM CET,1.5cm,39,Yes,32,Yes,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/02 11:47:16 AM CET,182,22years,No,32,No,1,Cervical distosia,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 02:12:38 PM CET,153cm,36yrs,No,32weeks,No,1,None,Transverse,Yes,Yes,Yes,No,Cesarian section(cs)
+2025/11/13 03:49:59 PM CET,149cm,32yrs,No,35weeks,No,1,Cervical distosia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/03 11:20:47 AM CET,1.6cm,20,Yes,38,Yes,1,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/19 03:06:08 AM CET,1.67,23years,Yes,31 weeks,No,1,Normal,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/20 07:13:00 PM CET,1.86m,22,Yes,36,Yes,1,none,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/20 01:44:22 AM CET,163,24,Yes,32,No,1,No,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 02:47:46 PM CET,1.74m,30years,No,38weeks,No,1,Cervical distosia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/01 02:50:20 AM CET,1.8cm,29years,Yes,36 weeks,No,1,none,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 08:02:59 PM CET,153,17,Yes,35,No,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/29 05:12:19 PM CET,1.48,12,Yes,37 weeks,No,1,None,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/05 09:24:32 AM CET,162,20,No,28 weeks,No,2,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/08 02:41:19 AM CET,1.59,23,No,37weeks,No,1,Nothing,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/09 09:18:44 PM CET,1.63m,38years,No,38,No,1,Lower back pain,Breech,No,No,No,Yes,Cesarian section(cs)
+2025/11/12 05:03:11 AM CET,1.5cm,19,Yes,37,No,1,Previous scar,Breech,No,No,No,No,Vaginal delivery
+2025/11/15 11:57:02 PM CET,1.5cm,22years,No,34weeks,No,1,None,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/18 04:22:36 PM CET,1.72,32yrs,Yes,40weeks,No,2,Vaginal warts,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/23 01:09:54 AM CET,1.7cm,21,No,35,No,1,none,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 07:45:10 PM CET,1.6cm,24years,No,40,No,1,Cervical distosia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/04 06:32:48 AM CET,1.48,21yrs,No,34 weeks,No,1,Vaginal warts,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/12/08 10:14:27 PM CET,173cm,15,Yes,41weeks,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/12 03:05:51 PM CET,1.50m,27years,No,39weeks,No,1,Previous scar,Transverse,No,No,No,No,Vaginal delivery
+2025/12/19 11:49:08 AM CET,161,34yrs,Yes,30weeks,Yes,2,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/26 09:21:34 PM CET,170,12yrs,Yes,36weeks,No,One,Preeclampsia,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2026/01/03 05:44:59 AM CET,1.63m,23years,Yes,35,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/01/09 02:18:40 PM CET,163cm,33yrs,No,38,No,1,Malaria,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2026/01/15 08:57:26 PM CET,1.5cm,25,No,36,No,1,Oligohydramos,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2026/01/22 11:06:11 AM CET,177cm,40years,Yes,32,Yes,1,Normal,Transverse,No,Yes,No,No,Cesarian section(cs)
+2026/01/29 06:33:45 PM CET,175,20yrs,No,37weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/02/05 01:42:18 AM CET,156,32years,No,42,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2026/02/12 10:19:53 PM CET,1.9cm,20,No,40 weeks,No,1,None,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/02/18 04:56:07 PM CET,1.7cm,25yrs,No,38,No,1,none,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/02/25 07:25:31 AM CET,1.71,27yrs,Yes,39 weeks,No,1,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2026/03/04 12:11:42 PM CET,162,30yrs,No,37weeks,No,2,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2026/03/11 09:47:16 PM CET,1.53,26,Yes,41 weeks,No,1,Hipertension,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2026/03/18 06:28:54 AM CET,158cm,12years,No,38 weeks,No,2,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2026/03/25 03:59:08 PM CET,1.76m,26years,No,37weeks,No,1,Lower back pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/04/02 11:14:36 AM CET,1.70m,30,No,42weeks,Yes,1,Diabetes,Breech,No,No,No,No,Cesarian section(cs)
+2026/04/09 08:41:19 PM CET,1.7cm,25yrs,No,35weeks,No,1,Oligohydramos,Transverse,No,Yes,No,No,Vaginal delivery
+2026/04/16 02:33:57 AM CET,1.69,32yrs,No,35,No,1,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2026/04/23 05:27:44 PM CET,155,27yrs,No,40,No,2,Normal,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2026/04/30 09:18:03 AM CET,1.8cm,32yrs,Yes,39,No,One,No,Breech,No,Yes,No,No,Cesarian section(cs)
+2026/05/07 07:55:26 PM CET,166cm,32years,Yes,36weeks,No,1,Normal,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2026/05/14 01:39:11 PM CET,147,24,No,35 weeks,No,1,None,Breech,No,No,No,No,Cesarian section(cs)
+2026/05/21 10:46:52 AM CET,1.7cm,21,Yes,42weeks,No,1,Oligohydramos,Transverse,No,Yes,No,No,Vaginal delivery
+2026/05/28 06:04:38 PM CET,1.7cm,31years,No,42weeks,No,2,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/06/04 11:22:59 PM CET,1.79m,18yrs,Yes,39weeks,No,1,Malaria,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2026/06/11 04:37:14 AM CET,1.73m,16yrs,Yes,37 weeks,No,One,Cervical distosia,Transverse,No,Yes,No,Yes,Vaginal delivery
+2026/06/18 09:15:06 PM CET,165,17,No,34,No,2,Nil,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/06/25 02:58:41 PM CET,159,12years,Yes,32 weeks,No,1,Vaginal warts,Transverse,Yes,No,No,No,Cesarian section(cs)
+2026/07/02 08:24:17 AM CET,1.82,32years,Yes,34,No,1,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2026/07/09 06:49:53 PM CET,1.91m,25yrs,Yes,38weeks,No,Two,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2026/07/16 11:05:39 AM CET,181,28yrs,No,35weeks,No,1,Diabetes,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2026/07/23 03:44:12 PM CET,150,31,No,32,Yes,1,Vaginal warts,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2026/07/30 09:57:06 PM CET,1.7,23yrs,Yes,34weeks,No,2,Vaginal warts,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2026/08/06 01:31:49 AM CET,177cm,26,Yes,38,No,1,Oligohydramos,Transverse,No,No,Yes,No,Cesarian section(cs)
+2026/08/13 05:19:22 PM CET,1.76m,26years,No,37 weeks,No,1,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2026/08/20 10:46:33 AM CET,143,27yrs,Yes,42weeks,No,2,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2026/08/27 07:14:55 PM CET,166,30,Yes,35 weeks,No,2,Malaria,One cephalic and one breech,Yes,Yes,No,No,Cesarian section(cs)
+2026/09/03 02:05:18 PM CET,152cm,45,No,37 weeks,No,1,Malaria,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2026/09/10 09:39:44 AM CET,1.65,30,No,35,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2026/09/17 11:58:07 PM CET,1.61,35yrs,No,34 weeks,No,1,Normal,Breech,No,No,No,No,Cesarian section(cs)
+2026/09/24 04:16:51 AM CET,1.7cm,35,No,39weeks,No,1,No,Transverse,No,No,No,No,Vaginal delivery
+2026/10/01 08:47:26 PM CET,1.76m,20yrs,No,39weeks,No,2,Nil,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2026/10/08 01:25:09 PM CET,1.7cm,18yrs,No,34weeks,No,1,Eclampsia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2026/10/15 10:04:53 AM CET,1.57,34,Yes,36weeks,No,2,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/10/22 06:41:32 PM CET,1.63m,30years,No,38weeks,No,1,Lower back pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2026/10/29 03:19:58 AM CET,153cm,33,Yes,34weeks,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2026/11/05 09:54:21 PM CET,1.73m,28yrs,No,35,No,1,Diabetes,Breech,No,No,No,No,Cesarian section(cs)
+2026/11/10 02:36:44 PM CET,162cm,17years,Yes,30,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2026/11/16 05:08:33 PM CET,1.8cm,17years,No,31,No,1,Pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/28 04:46:46 PM CET,1.65,25yrs,Yes,36,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/25 10:38:56 AM CET,1.82,12,No,31weeks,No,1,Nil,Transverse,Yes,Yes,No,Yes,Vaginal delivery
+2025/12/21 03:38:20 PM CET,1.8cm,24,No,36weeks,No,1,Vaginal warts,Transverse,No,No,Yes,No,Vaginal delivery
+2025/12/22 03:30:00 AM CET,1.6cm,23years,No,32weeks,No,1,Malaria,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/14 01:39:05 AM CET,1.6cm,33years,Yes,28 weeks,No,1,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 04:34:07 AM CET,168,23yrs,Yes,38 weeks,No,2,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/24 05:18:39 AM CET,155cm,14years,Yes,33weeks,Yes,1,Nothing,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/07 11:39:52 PM CET,161cm,25yrs,Yes,34,Yes,2,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/21 04:18:52 AM CET,1.7cm,15yrs,No,30 weeks,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/18 09:58:29 AM CET,1.54,30,No,38,Yes,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/26 06:40:08 AM CET,1.57m,22yrs,No,39,No,2,Eclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/26 02:45:13 PM CET,1.70m,31years,Yes,42weeks,No,1,Eclampsia,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 10:37:37 AM CET,1.52,31years,No,39 weeks,No,1,No,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/23 06:34:39 AM CET,1.74,27,No,42weeks,No,1,Cervical distosia,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/11/30 04:21:44 AM CET,152cm,24yrs,Yes,39 weeks,Yes,2,Diabetes,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/11 07:50:42 PM CET,1.73m,26yrs,Yes,36,No,Two,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/09 01:35:43 AM CET,1.6cm,36years,No,36,No,1,None,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/07 04:15:47 AM CET,1.74,23,Yes,38,No,1,Cervical distosia,Cephalic,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/14 01:25:39 PM CET,1.68,36,No,33 weeks,No,1,Nil,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/12 09:47:25 AM CET,161cm,24years,Yes,30weeks,No,2,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/29 02:06:32 AM CET,1.62m,22years,No,41weeks,No,2,Nil,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2025/11/13 09:52:47 PM CET,1.62,13yrs,No,34weeks,No,1,Cervical distosia,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/17 02:22:31 AM CET,1.53,30,Yes,39 weeks,No,2,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/13 11:21:38 AM CET,1.7cm,23years,No,38,No,1,Preeclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 07:21:13 PM CET,1.72m,20years,No,34weeks,No,1,none,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 08:20:43 PM CET,1.65m,29yrs,No,42 weeks,No,1,Malaria,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/26 08:03:44 PM CET,1.7,35yrs,No,37,Yes,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/10 03:53:59 AM CET,175cm,26yrs,Yes,38 weeks,No,1,Previous scar,Breech,No,No,No,No,Vaginal delivery
+2025/11/07 03:03:36 PM CET,1.69,19years,Yes,36weeks,No,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/17 04:06:43 PM CET,1.43m,23,Yes,40,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/12 05:24:16 AM CET,1.7cm,29,Yes,36 weeks,No,2,No,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 07:08:08 PM CET,182cm,32,No,42,No,1,Normal,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/16 12:10:41 PM CET,1.59,25yrs,Yes,41 weeks,No,1,No,Cephalic,No,Yes,Yes,No,Vaginal delivery
+2025/12/21 06:10:19 PM CET,170,33yrs,No,35,No,1,None,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/08 06:08:00 AM CET,168,25years,No,38weeks,No,1,Nothing,Transverse,No,No,No,No,Vaginal delivery
+2025/12/17 04:50:47 PM CET,1.48m,15,No,36,No,1,Previous scar,Transverse,No,Yes,Yes,No,Vaginal delivery
+2025/12/13 12:01:34 AM CET,1.42,23yrs,No,33 weeks,No,2,Pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/08 08:09:17 AM CET,162,20years,Yes,34weeks,No,1,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/13 02:37:01 PM CET,1.5,25years,No,42,No,1,Hipertension,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/24 06:55:46 PM CET,152,24yrs,Yes,42 weeks,No,2,Hipertension,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/20 08:50:08 AM CET,168,23,No,37,No,1,Lower back pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 11:39:54 AM CET,1.64,37yrs,No,35 weeks,No,1,Malaria,Transverse,No,No,Yes,No,Vaginal delivery
+2025/11/22 10:50:23 AM CET,1.79,13years,No,40,No,1,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/07 09:36:08 PM CET,1.71,29years,Yes,32weeks,No,1,Eclampsia,Transverse,Yes,Yes,No,No,Cesarian section(cs)
+2025/11/12 08:46:36 PM CET,1.87,36years,Yes,36 weeks,No,1,Malaria,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 11:12:06 AM CET,1.55m,12,No,40,No,2,Nothing,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/18 12:56:17 AM CET,1.67m,20,Yes,37weeks,No,2,Previous scar,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/09 10:31:23 AM CET,1.59,33,No,42 weeks,No,One,Eclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/19 04:15:33 PM CET,141cm,31,No,37,Yes,One,Normal,Transverse,No,No,No,Yes,Cesarian section(cs)
+2025/12/08 05:25:23 PM CET,1.53,31years,No,36weeks,No,1,No,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/13 11:24:20 AM CET,1.6cm,19,Yes,34weeks,No,1,Normal,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/28 07:27:43 PM CET,1.58m,22yrs,Yes,32,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/09 01:30:30 PM CET,1.65m,37,No,31,Yes,1,Malaria,Transverse,No,No,No,No,Vaginal delivery
+2025/12/04 05:25:27 AM CET,157,23years,Yes,36,Yes,2,Eclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/22 08:26:57 PM CET,1.44m,25yrs,No,36weeks,No,1,Normal,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/16 05:30:46 AM CET,1.45,12yrs,No,34,No,2,Cervical distosia,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/12/01 04:45:17 AM CET,161cm,23yrs,Yes,37weeks,No,1,Diabetes,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/16 06:51:45 AM CET,161cm,32yrs,Yes,31weeks,No,1,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/14 10:12:51 AM CET,1.4cm,37yrs,No,38 weeks,No,1,Malaria,Transverse,No,No,No,No,Vaginal delivery
+2025/12/26 04:12:08 PM CET,193,22yrs,No,39weeks,No,1,Preeclampsia,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/02 04:40:13 AM CET,1.43,19,No,35,No,1,Hipertension,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/23 02:04:11 PM CET,160cm,15yrs,No,38weeks,Yes,One,Previous scar,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/17 01:38:07 AM CET,1.83m,15,Yes,36weeks,No,2,Pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 03:58:17 PM CET,1.8cm,29,No,34weeks,Yes,1,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/11 03:17:57 PM CET,1.46,27years,Yes,32,No,2,Nil,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/15 08:58:42 AM CET,164,26,Yes,42 weeks,No,1,Oligohydramos,Breech,No,No,No,No,Vaginal delivery
+2025/12/15 10:36:03 AM CET,1.47,21years,No,36weeks,No,1,Nil,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/23 05:59:45 AM CET,152,26yrs,Yes,35 weeks,No,2,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/28 02:47:12 AM CET,1.4cm,17yrs,No,41weeks,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/11/07 11:51:03 AM CET,1.62m,21years,No,39,No,1,Vaginal warts,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/26 04:21:33 PM CET,163,27yrs,No,35 weeks,No,1,Eclampsia,Transverse,No,Yes,Yes,Yes,Cesarian section(cs)
+2025/11/13 12:19:05 PM CET,1.7,36,Yes,36weeks,No,2,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 07:43:38 PM CET,2.0cm,35yrs,Yes,42 weeks,No,1,Malaria,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/02 03:59:32 PM CET,1.63m,26,No,36weeks,No,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/22 08:17:10 PM CET,160cm,14,No,39 weeks,No,1,Hipertension,Breech,Yes,No,Yes,No,Cesarian section(cs)
+2025/11/08 03:06:00 AM CET,1.7cm,18,Yes,40,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/14 12:54:27 PM CET,1.7cm,32,Yes,35 weeks,No,2,Nothing,Transverse,No,No,No,Yes,Cesarian section(cs)
+2025/11/30 09:50:08 PM CET,169,20,Yes,36,No,1,None,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/25 06:43:12 AM CET,1.6cm,24,Yes,33,No,1,Preeclampsia,Transverse,No,No,Yes,Yes,Cesarian section(cs)
+2025/12/14 07:49:59 PM CET,153,25years,No,40,No,1,none,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/07 12:28:54 PM CET,155,25yrs,No,31weeks,No,1,Pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/12 01:39:48 AM CET,1.6cm,21years,Yes,35 weeks,No,1,Previous scar,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/10 08:11:51 PM CET,1.8cm,25,Yes,40 weeks,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/08 09:45:16 PM CET,152cm,25yrs,No,39weeks,No,1,Oligohydramos,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2025/11/20 04:17:26 PM CET,155,18yrs,Yes,38,No,1,Nothing,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/19 07:11:51 AM CET,157cm,18years,No,41weeks,No,1,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/18 01:48:19 AM CET,1.59m,38,No,34,No,1,None,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/19 08:46:34 AM CET,1.6cm,33years,No,36,No,1,None,Transverse,No,No,No,Yes,Vaginal delivery
+2025/12/09 05:46:51 AM CET,173,38,Yes,42 weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/17 07:28:05 AM CET,1.50m,16yrs,Yes,35weeks,Yes,1,Malaria,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/14 09:08:45 PM CET,1.6cm,36years,Yes,39,No,1,Hipertension,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/25 03:44:03 AM CET,1.81,33yrs,Yes,42weeks,No,1,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/25 10:02:10 AM CET,158,34,No,33weeks,No,1,Normal,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/14 09:18:35 PM CET,1.5cm,26yrs,No,36,No,1,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/10 01:42:04 PM CET,165cm,40,No,35 weeks,No,1,Pain,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/11/13 12:32:27 PM CET,1.53m,26years,No,35,No,1,No,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/24 04:15:26 AM CET,1.59m,29years,Yes,36 weeks,No,1,none,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/14 09:10:31 PM CET,166cm,27,No,35weeks,No,1,Diabetes,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/21 12:58:32 PM CET,180cm,19,No,39weeks,No,1,Vaginal warts,Breech,No,No,No,No,Vaginal delivery
+2025/12/21 08:30:07 PM CET,172cm,33,No,38weeks,No,1,Nothing,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/11 11:25:00 PM CET,1.6cm,26yrs,Yes,34,No,1,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/23 06:33:21 AM CET,1.45,21,Yes,33weeks,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/18 04:00:06 PM CET,173,23years,Yes,38 weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/13 04:25:32 PM CET,1.59m,12years,No,31 weeks,No,1,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 03:24:37 PM CET,1.4cm,21,Yes,29weeks,Yes,1,Nothing,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/07 12:17:38 AM CET,158,17years,Yes,34 weeks,No,1,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/01 04:53:51 PM CET,156cm,22years,No,35,No,1,Cervical distosia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/04 02:53:58 AM CET,170,33years,Yes,34 weeks,No,Two,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 02:38:47 AM CET,168,15yrs,No,37weeks,No,1,None,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/07 12:42:17 PM CET,1.7cm,22years,No,39weeks,No,1,none,Transverse,No,No,Yes,Yes,Cesarian section(cs)
+2025/12/21 02:58:50 PM CET,1.72,26,Yes,40,Yes,1,Diabetes,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2025/11/17 09:25:26 AM CET,160,25yrs,No,33 weeks,No,2,Preeclampsia,Breech,No,No,No,Yes,Cesarian section(cs)
+2025/11/20 11:03:18 PM CET,153cm,42years,No,35 weeks,No,1,Pain,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/17 07:35:21 PM CET,1.71m,22years,Yes,28 weeks,Yes,1,No,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 05:55:04 PM CET,1.7cm,36yrs,Yes,36,No,1,Hipertension,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/01 04:33:05 PM CET,1.6cm,23,No,36,Yes,1,Oligohydramos,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/24 05:22:23 AM CET,1.84m,16,Yes,34weeks,No,1,Preeclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/12 06:00:01 AM CET,169,16,No,36 weeks,Yes,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/05 05:26:21 PM CET,1.50m,34yrs,No,39,No,1,Nothing,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/26 09:32:23 AM CET,1.71,29,Yes,41weeks,No,1,Eclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/13 10:04:55 PM CET,1.7cm,30years,No,32 weeks,No,Two,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/24 12:53:27 AM CET,1.78,28,Yes,37 weeks,No,1,Malaria,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/14 05:45:58 AM CET,1.65m,28yrs,No,40 weeks,No,1,Lower abdominal pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/03 02:57:12 PM CET,1.8cm,18years,Yes,32 weeks,Yes,1,Nil,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/12 05:28:40 PM CET,1.71m,21yrs,No,33,No,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/25 06:58:02 PM CET,1.62m,16,No,39,No,1,Normal,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/26 05:23:55 AM CET,173,28yrs,No,30weeks,No,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/25 03:21:40 AM CET,1.72m,15yrs,Yes,35,Yes,1,Nil,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 10:13:19 AM CET,1.7,23yrs,No,41weeks,No,1,Normal,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/07 07:57:04 PM CET,1.79,23,No,36 weeks,No,1,Eclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/10 04:08:40 AM CET,1.50m,26yrs,No,36,No,1,Nothing,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/12/12 11:21:33 PM CET,1.7cm,20years,No,37,Yes,1,Eclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 09:19:55 PM CET,153cm,32years,Yes,40 weeks,No,1,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2025/11/17 10:11:19 AM CET,1.63m,24yrs,Yes,42,Yes,1,None,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/25 09:23:08 PM CET,141cm,22yrs,No,37weeks,No,1,Lower back pain,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/27 09:00:40 PM CET,1.51,26,No,29 weeks,No,1,none,Transverse,No,No,No,No,Vaginal delivery
+2025/12/11 07:54:13 AM CET,1.7cm,28,No,41weeks,No,1,No,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/15 07:32:12 PM CET,1.64,25,No,30,No,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/13 10:38:06 PM CET,153,26yrs,Yes,35,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/07 12:53:56 AM CET,161,28yrs,Yes,40weeks,No,1,Diabetes,Cephalic,No,Yes,Yes,No,Vaginal delivery
+2025/12/20 08:05:56 AM CET,1.8cm,29,No,38weeks,No,1,Eclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/18 11:58:19 PM CET,180cm,31,Yes,36 weeks,Yes,1,Cervical distosia,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/06 09:52:05 AM CET,1.73,21yrs,No,34,No,Two,Oligohydramos,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/10 02:06:19 PM CET,164cm,19years,Yes,40 weeks,No,1,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/20 12:45:12 PM CET,154cm,27,No,34,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/09 02:53:23 AM CET,1.6cm,26,Yes,42,No,1,Malaria,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 06:32:06 PM CET,1.68,13yrs,No,37 weeks,No,1,Cervical distosia,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2025/12/16 11:17:15 AM CET,172,22yrs,Yes,35 weeks,No,1,None,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/14 04:30:12 AM CET,1.6cm,20,Yes,31weeks,No,1,Oligohydramos,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 08:42:55 AM CET,1.9cm,43,No,35weeks,Yes,1,Malaria,Cephalic,No,No,Yes,No,Vaginal delivery
+2025/12/24 08:34:03 AM CET,1.5cm,31,No,32 weeks,No,1,Normal,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/11/21 10:47:48 AM CET,1.4cm,38years,No,32 weeks,No,1,Oligohydramos,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/26 06:37:44 PM CET,161,24years,No,41 weeks,No,2,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/24 05:42:15 AM CET,169cm,35yrs,Yes,39weeks,No,2,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/11/22 01:42:30 PM CET,173cm,32yrs,Yes,36weeks,Yes,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/16 07:57:12 AM CET,159,16,Yes,35weeks,Yes,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/18 02:06:18 AM CET,1.67m,17years,No,34weeks,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/18 09:25:17 PM CET,1.67,20yrs,No,39weeks,No,1,Previous scar,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/26 01:42:03 AM CET,1.55,24yrs,Yes,31weeks,No,1,Lower abdominal pain,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/08 09:26:31 PM CET,159cm,33yrs,Yes,41 weeks,Yes,1,Nothing,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/15 02:20:58 PM CET,165,35,No,39 weeks,Yes,1,Nil,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/27 12:31:37 AM CET,1.69m,26yrs,No,41weeks,No,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/19 11:40:15 PM CET,1.77,20years,No,38,No,1,Cervical distosia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/10 07:57:46 PM CET,154cm,34years,No,35 weeks,No,1,None,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/19 08:12:28 PM CET,162,18years,Yes,36weeks,No,1,Preeclampsia,Breech,No,Yes,No,No,Vaginal delivery
+2025/11/28 04:31:50 AM CET,165,18years,No,37,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/25 12:15:42 AM CET,1.5cm,12,Yes,36weeks,Yes,1,Lower back pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/20 02:55:52 PM CET,178,30yrs,No,33weeks,No,2,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 02:39:32 PM CET,1.46m,15,No,33,Yes,1,Nil,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/09 06:29:51 PM CET,171cm,24,No,35weeks,Yes,1,Lower back pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/28 04:02:20 AM CET,1.6cm,33years,No,37 weeks,No,1,Diabetes,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/21 05:12:05 AM CET,1.67,27years,Yes,33,No,1,Pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 04:03:40 PM CET,177,25years,No,38,No,2,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/19 06:18:57 PM CET,1.65m,25yrs,No,34 weeks,No,1,none,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/21 03:09:34 AM CET,168,13years,Yes,37 weeks,No,1,Previous scar,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/02 11:21:56 AM CET,1.44m,26yrs,Yes,36,No,1,Nil,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/23 04:42:20 PM CET,173,32,No,39 weeks,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/21 02:59:48 AM CET,1.7cm,24years,No,37weeks,No,1,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/14 11:14:51 PM CET,1.4cm,24years,Yes,36weeks,No,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/21 07:37:32 PM CET,1.62,15years,Yes,37,No,1,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/05 08:12:59 PM CET,1.5cm,45yrs,Yes,38weeks,No,2,none,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/19 06:15:24 AM CET,161,28,Yes,35weeks,No,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/16 04:35:35 AM CET,1.7cm,28yrs,Yes,38,No,1,Preeclampsia,Cephalic,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/08 01:23:03 AM CET,149,31years,No,29weeks,Yes,1,Oligohydramos,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/19 12:15:50 AM CET,1.8cm,34years,No,41weeks,Yes,1,Normal,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/22 10:09:48 AM CET,1.6cm,33,Yes,39,No,1,Lower back pain,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/08 05:55:54 PM CET,173cm,23yrs,No,33 weeks,No,1,Previous scar,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/26 01:44:42 PM CET,1.7cm,20yrs,Yes,36,Yes,1,Lower back pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/15 06:12:05 AM CET,1.54,31years,No,37weeks,No,1,Diabetes,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/08 11:46:10 PM CET,146cm,38,No,42,No,1,None,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/10 06:37:58 AM CET,1.8cm,31years,No,36weeks,No,1,Lower back pain,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/11/14 09:02:40 AM CET,1.47,18,Yes,40,No,One,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/26 04:01:06 AM CET,164,29years,Yes,34weeks,No,2,None,Breech,No,No,Yes,No,Vaginal delivery
+2025/11/22 03:54:15 PM CET,151cm,30,No,36weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/09 06:05:11 PM CET,160cm,33yrs,Yes,37,No,1,Diabetes,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/12/07 12:27:44 AM CET,1.8cm,29,No,31 weeks,No,2,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/09 11:55:59 AM CET,1.6cm,23,No,34 weeks,Yes,1,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/19 01:13:42 AM CET,1.7cm,28,Yes,30,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/11/09 01:06:57 AM CET,1.8cm,36,Yes,40,No,1,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/16 01:36:38 PM CET,1.74m,18yrs,No,35,No,1,Previous scar,Breech,Yes,Yes,No,Yes,Cesarian section(cs)
+2025/12/18 07:27:28 AM CET,1.7cm,22,Yes,37,Yes,1,Diabetes,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/07 04:47:16 AM CET,1.60m,24,No,37weeks,Yes,1,No,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 11:15:04 AM CET,1.8cm,29,No,37 weeks,No,1,Nil,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/17 07:27:57 AM CET,155,23,Yes,38 weeks,No,2,Previous scar,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 05:44:12 PM CET,171,21years,Yes,42,No,1,Hipertension,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/09 05:29:23 AM CET,1.5cm,33,Yes,38,No,1,Preeclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/02 04:10:19 PM CET,169cm,17,No,37weeks,No,1,No,Transverse,No,No,No,No,Vaginal delivery
+2025/12/11 01:15:49 PM CET,172,21,No,37weeks,No,1,Pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/07 03:20:38 PM CET,1.8cm,35years,Yes,38,No,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/13 02:27:58 AM CET,1.5cm,29years,Yes,34weeks,No,1,none,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/19 10:54:49 PM CET,1.55,26yrs,No,39 weeks,No,1,Preeclampsia,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/24 03:13:03 PM CET,1.57m,34,No,37 weeks,No,1,None,Transverse,No,No,No,No,Vaginal delivery
+2025/11/13 11:56:40 AM CET,1.66m,24yrs,Yes,34,No,1,Lower back pain,Transverse,No,Yes,Yes,No,Vaginal delivery
+2025/12/10 09:51:26 AM CET,1.6cm,19years,Yes,41weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/05 09:09:57 AM CET,153,31,Yes,37weeks,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/09 08:26:47 PM CET,1.6cm,29,Yes,30 weeks,No,1,Pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/19 04:16:41 PM CET,173cm,20years,Yes,37 weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/29 10:37:04 AM CET,1.65,25yrs,No,41weeks,No,1,Normal,Breech,No,No,No,No,Vaginal delivery
+2025/11/18 10:55:35 AM CET,1.8,32yrs,Yes,33 weeks,Yes,2,Preeclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/26 10:30:56 PM CET,1.58,30yrs,No,42weeks,No,1,Vaginal warts,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/12/08 12:47:39 AM CET,1.57,38yrs,No,42weeks,No,1,None,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/12 11:52:23 PM CET,156cm,17,No,37weeks,No,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/22 03:35:54 PM CET,170,26years,Yes,39,No,1,Lower back pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/24 08:48:18 AM CET,1.6cm,14,Yes,33 weeks,No,Two,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/18 12:07:51 PM CET,1.73,28yrs,Yes,36,No,2,Lower back pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/14 04:05:52 PM CET,1.79m,25,No,42,No,1,Cervical distosia,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/15 09:12:54 AM CET,1.77,18yrs,No,38weeks,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/24 11:27:41 PM CET,161cm,33yrs,No,42,No,1,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/20 04:51:59 PM CET,1.5cm,16years,Yes,30 weeks,No,1,Malaria,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/12/06 10:26:14 AM CET,1.59m,17,No,35 weeks,No,1,Previous scar,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/17 09:32:42 PM CET,1.8cm,35,No,38 weeks,No,1,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/12 07:45:26 PM CET,1.67m,26years,No,37 weeks,No,1,Previous scar,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 02:25:18 PM CET,1.67,23yrs,No,39weeks,No,1,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/04 09:30:00 AM CET,182,35,No,38 weeks,No,2,Malaria,Transverse,No,Yes,Yes,Yes,Cesarian section(cs)
+2025/12/12 02:10:04 AM CET,1.4cm,35,No,39 weeks,No,1,None,Transverse,No,No,No,No,Vaginal delivery
+2025/12/17 01:46:17 PM CET,1.67,25,No,34 weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/13 02:51:52 AM CET,152cm,43years,Yes,31weeks,No,One,Malaria,One cephalic and one breech,No,No,Yes,No,Vaginal delivery
+2025/11/17 09:53:53 PM CET,1.48m,23yrs,No,37,Yes,1,Diabetes,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/11/26 07:21:03 PM CET,1.84m,16years,Yes,37 weeks,No,1,Eclampsia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/21 10:48:54 PM CET,1.7cm,12years,No,41 weeks,No,2,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/22 12:13:35 AM CET,1.8cm,19,No,42weeks,No,1,None,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/25 09:55:43 AM CET,1.49,32years,No,36,No,1,Lower abdominal pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/16 12:48:09 PM CET,152,35,No,31weeks,No,1,Lower back pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/18 06:06:24 PM CET,1.69m,16,No,34,No,1,Eclampsia,Transverse,No,No,No,No,Vaginal delivery
+2025/11/27 01:45:16 PM CET,1.78,27years,Yes,35weeks,No,2,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/21 01:52:45 AM CET,1.68m,41yrs,Yes,37weeks,No,1,Pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/30 04:42:10 AM CET,157,13years,No,37 weeks,No,1,Vaginal warts,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/11/08 01:59:00 PM CET,168cm,21,No,41,No,2,Vaginal warts,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/27 02:49:02 PM CET,1.45m,32yrs,Yes,42weeks,No,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/24 05:17:01 PM CET,165,26yrs,No,39 weeks,No,1,Lower abdominal pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/13 09:00:43 PM CET,1.6cm,24years,Yes,37,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/18 11:55:53 AM CET,1.67,20years,Yes,38 weeks,No,1,Cervical distosia,Breech,No,No,No,No,Vaginal delivery
+2025/12/01 11:02:21 AM CET,1.7cm,38yrs,Yes,39 weeks,No,1,Oligohydramos,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/18 07:17:29 PM CET,1.59,23yrs,Yes,40,No,1,Eclampsia,Cephalic,No,No,No,Yes,Cesarian section(cs)
+2025/12/16 04:08:05 AM CET,153,28,Yes,35weeks,Yes,1,Lower back pain,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/26 03:09:44 AM CET,1.72,12yrs,No,37 weeks,No,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/15 07:19:56 PM CET,1.8cm,24yrs,Yes,36weeks,No,1,Diabetes,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/06 12:14:32 PM CET,161cm,25years,Yes,36 weeks,No,One,Oligohydramos,Breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/12 01:44:58 AM CET,165,38years,Yes,37weeks,No,1,Eclampsia,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/08 06:17:16 AM CET,1.35m,23,No,40,Yes,1,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/10 09:18:32 AM CET,168cm,20years,No,40weeks,No,1,None,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/30 10:38:53 PM CET,1.8cm,26years,Yes,34 weeks,No,1,Previous scar,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/25 04:24:27 PM CET,1.8cm,25,Yes,40weeks,No,1,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/20 03:32:12 AM CET,1.62,21yrs,No,37weeks,No,1,Normal,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/04 05:13:35 PM CET,1.64,29yrs,Yes,36weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/22 12:27:11 PM CET,1.4cm,31,Yes,42weeks,No,2,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/09 12:49:50 AM CET,1.5cm,28,No,38,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/21 10:48:20 AM CET,165cm,26yrs,Yes,34,No,1,Nothing,Transverse,No,No,Yes,No,Vaginal delivery
+2025/11/28 09:30:38 PM CET,1.7cm,25yrs,Yes,37,Yes,1,Diabetes,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/06 09:42:40 PM CET,184,22,No,41 weeks,No,1,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/28 10:07:57 PM CET,1.74,25,Yes,32 weeks,No,1,Nil,Breech,No,No,No,No,Vaginal delivery
+2025/12/16 02:34:09 PM CET,1.43m,32years,No,40,No,1,Previous scar,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/10 10:01:09 PM CET,179cm,24years,Yes,40 weeks,No,1,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2025/11/08 09:39:09 PM CET,156cm,31years,Yes,41,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/06 07:22:40 PM CET,1.77m,25,Yes,41,Yes,1,Lower back pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/05 09:17:07 PM CET,173,15,Yes,27 weeks,No,1,Hipertension,Breech,No,No,No,No,Vaginal delivery
+2025/11/21 02:50:17 PM CET,1.8cm,12yrs,No,35weeks,No,1,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/28 07:12:59 PM CET,1.56,22yrs,Yes,35weeks,No,1,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/19 04:21:47 PM CET,1.5cm,30yrs,No,39weeks,No,1,Nothing,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/20 07:32:43 AM CET,1.66,28yrs,No,36,No,2,Eclampsia,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/11/11 03:57:01 PM CET,1.78m,28,Yes,38,No,1,Vaginal warts,Cephalic,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/07 10:18:21 AM CET,1.71m,32years,Yes,38,Yes,1,Cervical distosia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/12 12:05:16 PM CET,1.54m,37,No,40 weeks,No,1,None,Breech,No,Yes,No,No,Vaginal delivery
+2025/11/10 04:12:55 PM CET,162,26yrs,No,38weeks,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/08 04:54:01 PM CET,1.8cm,21yrs,Yes,35,No,1,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/18 10:40:46 AM CET,1.64,23,Yes,42,No,1,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/12 08:09:27 PM CET,1.69,27,No,42,Yes,2,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/23 08:45:21 PM CET,170cm,21years,Yes,33 weeks,No,1,Nil,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/14 04:30:13 AM CET,1.39m,32,No,33 weeks,No,1,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/27 07:52:10 PM CET,153cm,16years,No,39,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/20 10:38:55 AM CET,1.61,18yrs,Yes,32weeks,Yes,1,No,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/15 12:43:19 AM CET,155,30years,No,36 weeks,No,1,Nil,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/14 02:54:02 PM CET,1.7cm,18years,No,33 weeks,No,1,Normal,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/10 06:50:44 PM CET,192cm,20years,No,38 weeks,No,One,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/17 08:52:54 AM CET,1.56m,12,No,38weeks,Yes,1,Vaginal warts,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/12/11 09:28:02 PM CET,1.55m,28yrs,No,29,No,2,Normal,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/13 08:03:31 AM CET,153,39,No,37weeks,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/11 09:12:27 PM CET,1.70m,31yrs,Yes,34weeks,Yes,1,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 03:51:37 PM CET,1.50m,12yrs,No,32weeks,No,One,none,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/04 02:48:50 AM CET,155cm,12,No,42,No,One,No,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/09 11:32:22 AM CET,1.7cm,12years,No,36 weeks,No,1,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 09:34:17 PM CET,1.6cm,12years,Yes,32,No,1,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 09:44:48 AM CET,1.5cm,12yrs,No,36,No,1,Previous scar,Cephalic,Yes,No,No,No,Cesarian section(cs)
+2025/11/28 01:06:17 AM CET,1.55m,19,No,35,No,1,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/20 02:36:48 AM CET,1.5cm,19years,No,42,No,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/23 04:05:49 AM CET,1.8cm,15,No,37 weeks,No,1,Lower back pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/27 12:13:13 PM CET,1.7cm,22years,No,37,No,1,Vaginal warts,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/27 12:57:11 PM CET,1.6cm,22,No,32weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/07 02:14:18 PM CET,1.6cm,22yrs,Yes,32,No,1,Lower abdominal pain,Breech,No,No,No,No,Vaginal delivery
+2025/12/25 11:41:09 AM CET,1.6cm,24yrs,No,37,No,1,Nil,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/21 06:48:49 AM CET,1.7cm,16yrs,Yes,40,No,1,None,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/17 03:04:54 AM CET,1.6cm,25yrs,No,33,No,2,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/11 10:58:01 PM CET,189cm,29years,No,37,No,1,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/30 10:04:00 PM CET,1.6cm,28yrs,Yes,37weeks,No,1,None,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/27 02:11:03 PM CET,1.35,15yrs,No,36weeks,No,1,Normal,Cephalic,Yes,No,No,No,Vaginal delivery
+2025/11/17 05:03:26 PM CET,170cm,30years,No,35,No,1,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/26 12:01:43 PM CET,1.7cm,28years,No,39,No,1,Malaria,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/22 03:46:48 AM CET,1.76,39years,No,36 weeks,Yes,1,Diabetes,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/22 12:02:19 PM CET,176cm,16years,Yes,36,No,1,none,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/10 12:29:38 PM CET,151,31,Yes,35weeks,Yes,1,Malaria,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/16 08:43:45 AM CET,151cm,12yrs,No,41weeks,No,1,Previous scar,Breech,No,No,No,No,Vaginal delivery
+2025/12/25 06:55:13 PM CET,1.64,31,Yes,42,No,1,Nil,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/11/14 09:41:32 PM CET,1.56,34years,Yes,33weeks,No,2,Hipertension,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/23 10:34:07 PM CET,196cm,27yrs,No,41weeks,No,1,none,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/17 09:36:03 AM CET,1.6cm,29years,Yes,38weeks,No,1,Hipertension,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/11/26 09:32:16 AM CET,1.53m,31yrs,No,40 weeks,Yes,Two,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/18 09:16:06 AM CET,178cm,37yrs,Yes,38 weeks,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/29 04:53:30 PM CET,182,41yrs,Yes,41 weeks,No,1,No,Breech,No,No,No,No,Vaginal delivery
+2025/12/10 05:39:56 PM CET,1.59m,18yrs,Yes,32weeks,No,1,No,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/11/14 01:55:50 AM CET,160,25years,No,34,Yes,2,none,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/23 01:14:50 PM CET,1.50m,31yrs,No,38weeks,Yes,1,Cervical distosia,Transverse,Yes,No,Yes,No,Cesarian section(cs)
+2025/11/18 12:43:14 AM CET,1.8,20yrs,No,42,No,1,Lower abdominal pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/23 09:09:56 PM CET,168,20yrs,Yes,33,No,1,Nil,Cephalic,Yes,No,No,No,Cesarian section(cs)
+2025/11/19 08:25:57 PM CET,1.67,19years,No,37 weeks,No,1,Nothing,Cephalic,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/07 12:01:02 AM CET,1.8cm,31years,No,38,Yes,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/20 02:26:38 PM CET,1.69m,19,No,33weeks,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/21 07:06:28 AM CET,167cm,36years,Yes,39 weeks,No,1,Normal,Breech,No,No,No,Yes,Vaginal delivery
+2025/12/18 03:22:00 AM CET,178cm,17years,No,32weeks,No,1,none,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/30 11:47:58 PM CET,147,25yrs,No,32 weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/03 04:30:20 AM CET,166,16yrs,No,35,Yes,Two,Malaria,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 01:13:08 AM CET,154cm,27years,No,39,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/02 08:29:47 AM CET,175,16,No,32,No,1,Oligohydramos,Transverse,No,No,No,No,Vaginal delivery
+2025/12/19 03:35:57 PM CET,1.55,31yrs,Yes,33,No,1,Vaginal warts,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/26 02:39:38 PM CET,179cm,31,No,39weeks,No,1,Diabetes,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/23 05:35:55 AM CET,160,25yrs,Yes,37 weeks,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/22 03:14:31 PM CET,1.61,30,Yes,36,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/23 10:50:24 PM CET,149cm,31,No,33weeks,No,1,Malaria,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/11/11 06:31:20 PM CET,1.7cm,16,Yes,36 weeks,No,1,none,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 01:45:38 AM CET,1.62m,25yrs,Yes,37weeks,Yes,1,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/01 06:50:42 PM CET,1.7cm,22yrs,Yes,34weeks,No,1,Nil,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/24 02:32:30 AM CET,183cm,18,No,39,No,1,Eclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/18 10:05:37 AM CET,139,38years,Yes,40weeks,No,1,Nil,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/16 05:51:21 AM CET,1.6cm,30,Yes,40 weeks,No,1,Oligohydramos,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/23 09:30:31 PM CET,149cm,28yrs,No,38weeks,No,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/15 03:55:47 PM CET,1.5cm,22years,Yes,38,No,1,None,Breech,No,No,No,Yes,Vaginal delivery
+2025/12/15 06:00:16 AM CET,148cm,34years,Yes,34,No,1,Lower back pain,Transverse,No,Yes,No,Yes,Vaginal delivery
+2025/12/22 04:16:39 PM CET,1.58m,34yrs,Yes,41weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/25 06:54:23 PM CET,1.8cm,21years,Yes,38 weeks,No,1,Nothing,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/23 09:40:14 AM CET,174cm,24yrs,Yes,34 weeks,No,1,Nothing,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/07 04:39:06 PM CET,169,25yrs,Yes,41 weeks,No,1,Previous scar,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/21 11:55:24 PM CET,1.55m,12yrs,Yes,33 weeks,No,1,None,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/17 07:06:36 AM CET,1.6cm,17,No,36 weeks,No,1,Cervical distosia,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/20 08:09:12 AM CET,174cm,15yrs,Yes,35,No,1,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/14 03:33:54 PM CET,1.70m,23years,Yes,34 weeks,No,1,Cervical distosia,Breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/15 02:35:43 PM CET,1.9cm,32,Yes,32weeks,No,2,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/20 12:16:46 PM CET,158,29years,No,34 weeks,No,2,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/12 01:16:53 PM CET,1.76m,12years,No,39 weeks,No,1,Oligohydramos,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/05 04:03:19 AM CET,166cm,29yrs,Yes,38,No,2,Eclampsia,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/25 11:56:13 AM CET,160,13yrs,No,38,No,One,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/20 01:51:27 AM CET,1.58m,13years,Yes,34,No,1,Lower back pain,Breech,No,No,No,No,Vaginal delivery
+2025/11/24 06:09:17 PM CET,1.56,16,Yes,35 weeks,No,1,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/21 11:34:08 PM CET,1.73m,32,No,38 weeks,No,1,Lower back pain,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/19 04:15:29 AM CET,174,12years,No,35weeks,No,1,No,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/10 08:28:19 AM CET,181cm,35yrs,Yes,34weeks,No,1,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/03 09:30:55 PM CET,1.55,18years,No,36,Yes,1,No,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/02 07:13:40 AM CET,1.70m,32years,Yes,41,No,1,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/14 06:36:32 PM CET,140cm,29,Yes,37,Yes,1,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 11:29:39 PM CET,164cm,22yrs,Yes,36weeks,Yes,1,Previous scar,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/21 02:31:22 AM CET,1.73,36years,No,40 weeks,No,One,No,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 06:05:59 AM CET,178cm,40,No,31weeks,No,Two,Previous scar,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/24 12:43:53 AM CET,1.77m,14yrs,Yes,33weeks,No,1,None,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/17 08:08:14 AM CET,139,27,No,38weeks,No,2,Preeclampsia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/12 09:21:04 AM CET,162cm,34yrs,Yes,38weeks,No,1,Eclampsia,Breech,No,No,Yes,No,Vaginal delivery
+2025/11/21 01:22:42 PM CET,1.63,25years,Yes,36 weeks,Yes,1,Hipertension,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/30 08:43:38 AM CET,1.5cm,33years,Yes,42,No,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/21 05:22:52 PM CET,1.53m,28,No,35 weeks,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/22 03:34:47 PM CET,174cm,13years,Yes,32weeks,No,1,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2025/11/29 02:42:54 PM CET,155cm,30,No,33,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/23 10:10:07 PM CET,145cm,35,No,37,No,2,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/05 01:20:11 AM CET,1.39m,32yrs,Yes,40weeks,No,1,Pain,Breech,No,No,No,No,Vaginal delivery
+2025/11/13 12:40:03 AM CET,166,23,No,34 weeks,Yes,1,Nothing,Breech,No,No,No,No,Vaginal delivery
+2025/11/30 01:57:57 PM CET,1.7cm,26,No,34weeks,No,1,Normal,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2025/11/17 12:24:30 AM CET,152,29yrs,Yes,36 weeks,No,1,Oligohydramos,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 07:27:05 PM CET,1.68m,22years,No,39weeks,No,1,Lower abdominal pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/06 08:42:52 PM CET,1.65m,21yrs,No,33,No,1,No,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 07:28:58 AM CET,149,26years,Yes,38 weeks,No,1,Nothing,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/08 10:07:29 AM CET,1.51m,12years,Yes,36 weeks,No,1,Oligohydramos,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/28 05:20:56 AM CET,168cm,31years,Yes,35weeks,No,1,None,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/23 07:23:27 PM CET,163cm,26,No,35 weeks,No,1,Previous scar,Transverse,No,No,No,No,Vaginal delivery
+2025/11/24 04:34:44 PM CET,148,21years,Yes,36,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 09:51:14 AM CET,1.63,24years,Yes,38weeks,No,1,Lower abdominal pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/11/11 12:55:22 PM CET,1.77,27,Yes,38weeks,No,1,none,Transverse,No,No,No,No,Vaginal delivery
+2025/12/12 02:56:56 PM CET,1.74,40,Yes,36weeks,No,1,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/14 07:26:56 PM CET,1.57m,31years,No,32,No,2,None,Transverse,No,No,No,No,Vaginal delivery
+2025/12/18 07:03:47 PM CET,166cm,27,No,39,No,2,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/25 10:34:40 AM CET,152,21,Yes,30,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/13 10:39:27 PM CET,1.7cm,25,No,37,No,1,Cervical distosia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/04 06:48:16 AM CET,1.72m,45,Yes,33weeks,Yes,1,Lower abdominal pain,Breech,Yes,Yes,No,No,Vaginal delivery
+2025/12/17 02:00:34 PM CET,157cm,12years,No,38,No,One,Vaginal warts,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 04:49:52 AM CET,1.46m,36years,Yes,35weeks,No,2,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/18 11:53:29 PM CET,1.69m,22yrs,No,37 weeks,No,1,Malaria,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/19 04:44:54 AM CET,1.8cm,28years,No,36weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/29 08:31:37 PM CET,163cm,36,No,34 weeks,No,1,Malaria,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/20 10:52:41 AM CET,1.7cm,30years,Yes,32 weeks,No,2,Oligohydramos,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/21 05:31:18 PM CET,190cm,28,No,42 weeks,No,1,Hipertension,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/12 09:57:26 PM CET,163,34years,No,33weeks,No,1,Normal,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/11/30 11:46:17 PM CET,1.8cm,24years,No,39,No,1,Eclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 11:50:32 AM CET,1.6cm,34,No,36 weeks,No,One,Diabetes,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/28 03:44:54 PM CET,188cm,37yrs,No,37 weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/27 06:06:32 AM CET,1.84,13yrs,Yes,33 weeks,No,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/15 07:37:08 AM CET,150,17years,No,35,Yes,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/09 12:50:55 AM CET,181cm,22yrs,Yes,37,No,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/07 10:32:45 PM CET,177cm,31yrs,Yes,37weeks,No,1,Previous scar,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 01:28:20 PM CET,1.75m,29,No,41 weeks,Yes,One,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/08 04:31:39 AM CET,180,28,Yes,42 weeks,No,1,Diabetes,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/20 12:31:52 PM CET,1.66m,26yrs,No,37,No,2,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/03 04:27:42 PM CET,1.68,28,Yes,39 weeks,No,1,Previous scar,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/26 04:29:33 AM CET,164,34,No,42 weeks,No,1,None,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/10 07:59:50 AM CET,1.64,20years,No,33 weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/22 10:43:01 PM CET,1.96m,28yrs,No,33 weeks,No,2,Vaginal warts,One cephalic and one breech,No,Yes,No,Yes,Cesarian section(cs)
+2025/11/25 08:55:22 AM CET,1.9cm,18,Yes,32weeks,Yes,1,Previous scar,Breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/20 02:33:50 AM CET,158cm,33,No,34weeks,No,1,Normal,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/11/17 05:26:30 PM CET,1.7,45years,No,37weeks,No,1,Cervical distosia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/07 08:15:10 AM CET,1.59m,13,No,42,No,1,Lower back pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 08:52:50 PM CET,157cm,21yrs,Yes,36weeks,No,2,None,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/18 03:01:36 PM CET,145cm,19yrs,Yes,36weeks,Yes,1,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/10 01:43:19 AM CET,1.8cm,27,Yes,34weeks,No,1,Nil,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/11/26 02:45:43 AM CET,1.69m,21,No,36weeks,No,1,Eclampsia,Transverse,No,No,No,Yes,Vaginal delivery
+2025/12/24 05:32:28 PM CET,1.63m,30,No,33weeks,No,1,Oligohydramos,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/14 06:41:36 AM CET,1.83m,15yrs,No,34weeks,No,One,Lower abdominal pain,Transverse,No,No,No,Yes,Cesarian section(cs)
+2025/12/19 10:09:28 AM CET,1.85,25yrs,Yes,42 weeks,No,2,Preeclampsia,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/12 07:28:35 PM CET,1.66m,17yrs,Yes,39 weeks,Yes,1,Previous scar,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 12:49:17 AM CET,1.62,28,Yes,34,No,1,None,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/19 11:15:36 PM CET,160,24,Yes,33weeks,No,1,Diabetes,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/19 07:45:20 PM CET,162,30years,No,37,Yes,1,No,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/16 04:25:55 PM CET,1.81m,31,No,35weeks,No,2,No,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 07:55:53 AM CET,161cm,32years,Yes,39weeks,No,1,Nil,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/25 01:13:19 PM CET,1.5cm,28years,No,38weeks,No,1,Diabetes,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/18 11:26:48 PM CET,1.73,25,No,37weeks,No,1,Pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/09 09:17:09 AM CET,161,32years,Yes,33,No,1,Preeclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/26 09:46:03 PM CET,1.69,31yrs,No,38weeks,No,1,Lower back pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/16 07:00:56 AM CET,1.79m,21,No,38weeks,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/07 04:11:22 AM CET,1.72,31,No,35 weeks,Yes,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/11 12:10:54 PM CET,1.63m,20years,No,39,No,1,Malaria,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/12/27 06:46:01 PM CET,1.7,23years,No,33 weeks,No,1,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/26 11:06:11 PM CET,1.6,25yrs,Yes,34,Yes,2,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/30 04:16:02 AM CET,1.59,21years,No,41 weeks,Yes,One,Vaginal warts,Breech,No,No,No,No,Vaginal delivery
+2025/12/09 10:49:00 PM CET,1.85,23,No,35weeks,No,1,Vaginal warts,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2025/11/25 05:55:29 PM CET,1.72,20years,Yes,31weeks,No,1,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/15 09:29:10 AM CET,181cm,14years,No,34,No,1,Normal,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/15 11:20:37 PM CET,1.5cm,25,No,33,No,1,Eclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/02 12:52:30 AM CET,164cm,12yrs,Yes,42 weeks,No,2,Previous scar,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/28 04:42:42 AM CET,156,22,Yes,41 weeks,No,1,Lower back pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/27 04:01:01 PM CET,1.57,30years,Yes,33weeks,No,1,Lower back pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/23 11:28:46 PM CET,160cm,16yrs,Yes,36 weeks,No,One,Cervical distosia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/11/24 09:25:23 AM CET,1.55m,36years,Yes,36 weeks,No,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/05 07:24:30 AM CET,1.52,23yrs,Yes,37 weeks,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/24 10:10:23 PM CET,1.6cm,21years,No,34weeks,No,1,Lower back pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 11:36:02 AM CET,1.84m,22yrs,No,32weeks,No,2,Vaginal warts,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/23 04:37:22 PM CET,170cm,34,Yes,38 weeks,No,1,Normal,One cephalic and one breech,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/23 06:23:39 AM CET,1.7cm,29yrs,Yes,33,No,One,Cervical distosia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/23 05:24:45 AM CET,1.7cm,23yrs,No,40 weeks,No,1,Eclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/09 10:24:11 AM CET,168,20,Yes,34,No,1,none,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/18 07:58:54 PM CET,169cm,36yrs,Yes,34,No,1,Previous scar,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/10 12:14:17 PM CET,1.75,17,Yes,34 weeks,No,1,Pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 09:44:44 AM CET,1.68,35,Yes,38 weeks,No,1,Lower abdominal pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 10:44:43 AM CET,158cm,25years,Yes,36 weeks,Yes,1,Previous scar,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/20 09:43:23 AM CET,1.7cm,30years,Yes,41 weeks,No,1,Nil,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/24 05:13:28 AM CET,1.6cm,32years,No,38,Yes,1,Cervical distosia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/19 08:59:45 AM CET,1.7cm,25yrs,Yes,39,Yes,One,None,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/08 08:50:04 PM CET,140cm,24yrs,No,36,No,1,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/21 02:50:02 PM CET,1.44,23years,No,32 weeks,No,1,Nil,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/12 09:49:50 AM CET,1.5cm,26years,Yes,39,Yes,1,Previous scar,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/27 12:43:25 PM CET,1.77m,28years,Yes,37weeks,Yes,1,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/13 03:56:12 AM CET,1.8cm,17yrs,Yes,37 weeks,No,1,Cervical distosia,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/15 03:20:37 PM CET,1.61m,33,No,38weeks,No,2,None,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/09 03:16:24 PM CET,1.6cm,25,No,38 weeks,No,1,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/02 01:04:28 PM CET,1.51,27years,No,31,Yes,1,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/15 11:31:00 PM CET,1.7cm,29yrs,No,34weeks,No,1,none,Breech,No,No,No,No,Vaginal delivery
+2025/11/10 01:31:34 PM CET,1.74m,34,No,37 weeks,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/08 04:31:22 PM CET,169cm,23,Yes,35weeks,No,1,Cervical distosia,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/09 08:38:47 AM CET,1.83,16years,No,36 weeks,Yes,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/29 03:36:26 AM CET,1.5cm,27years,No,40,No,1,Pain,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/24 09:20:05 PM CET,169cm,30years,No,28 weeks,No,1,Nil,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 12:45:58 AM CET,1.8cm,33yrs,No,35 weeks,Yes,1,Previous scar,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/15 01:32:09 PM CET,1.7cm,30years,Yes,39,No,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/29 09:42:24 PM CET,1.6cm,19years,No,34 weeks,No,1,Normal,Transverse,No,Yes,No,Yes,Vaginal delivery
+2025/11/20 12:11:27 PM CET,168,26years,Yes,30 weeks,No,1,Previous scar,Transverse,No,No,Yes,No,Vaginal delivery
+2025/12/07 05:34:13 AM CET,1.71m,37yrs,No,40weeks,No,1,Lower abdominal pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/10 04:48:32 PM CET,1.8cm,12yrs,No,38 weeks,No,2,Nothing,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/08 05:29:05 AM CET,167,34years,No,35weeks,No,1,Eclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/17 12:00:34 AM CET,1.49m,23,No,32,No,1,Normal,Breech,No,No,No,No,Vaginal delivery
+2025/11/17 10:35:28 PM CET,1.62m,19yrs,Yes,33 weeks,No,1,Vaginal warts,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/11/15 11:45:33 PM CET,1.46m,14yrs,No,37 weeks,No,1,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/07 11:57:38 PM CET,1.68,18,No,29weeks,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/11 05:26:19 PM CET,156cm,26yrs,No,32,No,1,Pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/04 09:28:22 AM CET,167cm,21yrs,Yes,36 weeks,No,1,Hipertension,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/25 01:51:40 AM CET,164cm,25,Yes,35,No,2,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/20 03:46:33 PM CET,1.70m,32,No,37,Yes,2,Nothing,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/15 02:19:39 AM CET,147cm,32,No,34,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/11 10:46:46 AM CET,156cm,21years,No,35,No,One,Nil,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/22 02:57:00 PM CET,150,26yrs,Yes,34,No,Two,Pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/11 05:36:36 AM CET,1.62m,32,Yes,39 weeks,No,1,Eclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/23 05:55:29 PM CET,1.54m,16yrs,Yes,33,Yes,1,Hipertension,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/24 11:15:26 PM CET,1.42,29,No,38,No,1,Preeclampsia,Transverse,No,No,No,No,Vaginal delivery
+2025/11/10 11:41:53 PM CET,1.55m,23years,Yes,33weeks,No,1,Nothing,Breech,No,No,No,No,Vaginal delivery
+2025/11/24 02:48:25 AM CET,1.62m,17years,Yes,42 weeks,Yes,1,Preeclampsia,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/24 06:32:59 PM CET,175cm,21years,Yes,37,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/25 06:26:36 PM CET,166,24yrs,No,37 weeks,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/04 01:50:26 AM CET,179cm,14years,No,34weeks,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/10 11:39:58 PM CET,1.63m,20years,Yes,34 weeks,No,2,none,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/10 06:19:20 PM CET,1.43m,17,No,38weeks,Yes,1,Previous scar,Breech,Yes,Yes,No,No,Cesarian section(cs)
+2025/11/24 07:14:25 PM CET,163cm,19yrs,No,39,No,1,None,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/27 11:53:55 PM CET,150,38years,No,39,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 11:00:49 PM CET,1.82m,22yrs,Yes,41,No,1,None,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 06:01:44 PM CET,1.61m,21years,Yes,37,No,One,Pain,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 08:46:54 AM CET,1.4cm,26,No,40 weeks,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/29 01:56:03 PM CET,168cm,22,No,36weeks,Yes,1,Malaria,Cephalic,Yes,No,No,Yes,Vaginal delivery
+2025/12/26 11:26:17 PM CET,1.64,14years,No,31 weeks,No,1,Nothing,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/24 10:25:42 AM CET,1.6cm,25years,Yes,33,No,1,Malaria,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/22 04:44:21 PM CET,1.78,12yrs,Yes,34 weeks,No,1,Lower back pain,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/02 03:17:53 PM CET,1.65m,35,No,39 weeks,No,1,None,Breech,No,No,No,No,Vaginal delivery
+2025/12/21 05:06:10 PM CET,1.8,20,Yes,31weeks,No,1,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/25 03:45:10 AM CET,1.70m,20,Yes,36,No,1,Normal,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/08 11:10:55 AM CET,1.54m,12,No,38,Yes,1,Lower abdominal pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/10 02:29:28 AM CET,164,27,No,39,Yes,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/17 08:25:14 AM CET,1.69m,41years,Yes,38 weeks,No,1,Pain,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/21 11:06:05 AM CET,174,28years,No,31weeks,Yes,1,Hipertension,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/13 03:13:42 AM CET,1.7cm,26,No,34weeks,No,One,Oligohydramos,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/04 05:04:32 AM CET,159,27yrs,Yes,39 weeks,No,1,Pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 05:49:16 AM CET,164cm,27yrs,No,36weeks,No,1,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/15 02:30:02 PM CET,167cm,37yrs,No,41weeks,No,1,Cervical distosia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/22 10:16:33 AM CET,159,23yrs,No,37 weeks,No,1,No,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/20 11:33:05 AM CET,1.61m,12years,No,31,Yes,1,Nothing,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/23 08:10:06 PM CET,1.52m,30yrs,No,35 weeks,No,1,Vaginal warts,Cephalic,No,No,Yes,No,Cesarian section(cs)
+2025/12/22 12:09:27 AM CET,1.57m,37years,No,37 weeks,No,1,Cervical distosia,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 04:08:57 AM CET,1.7cm,29yrs,Yes,32 weeks,No,1,Oligohydramos,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/03 08:01:26 PM CET,159cm,23,Yes,39 weeks,No,1,None,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/16 03:29:04 AM CET,1.37m,20,Yes,38 weeks,Yes,2,Diabetes,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 06:08:06 AM CET,1.81m,26years,No,34 weeks,No,1,Normal,Transverse,No,No,No,No,Vaginal delivery
+2025/11/12 12:41:31 AM CET,151,16years,No,38,No,1,Lower back pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/24 04:16:03 PM CET,162cm,21yrs,No,40weeks,Yes,1,Cervical distosia,Cephalic,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/11 03:47:24 PM CET,169,19yrs,Yes,42weeks,No,1,Lower abdominal pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/21 11:56:24 AM CET,1.9cm,34yrs,Yes,33,No,2,Oligohydramos,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/13 12:28:05 AM CET,1.40m,26,Yes,40weeks,No,1,Pain,Transverse,No,No,Yes,Yes,Cesarian section(cs)
+2025/11/19 11:06:24 PM CET,178cm,26years,Yes,37weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/09 02:00:01 PM CET,1.66,20,No,33 weeks,No,One,Lower back pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/11 11:51:17 PM CET,1.47,23years,Yes,39 weeks,No,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/07 12:39:35 PM CET,1.67m,34,No,35weeks,Yes,1,Eclampsia,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/11/12 02:15:11 PM CET,170cm,30years,No,38 weeks,Yes,1,Pain,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/08 12:34:44 PM CET,177,34,Yes,36 weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/11 03:18:00 PM CET,154cm,32yrs,No,33,No,1,Eclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/28 04:38:13 PM CET,1.8cm,17yrs,No,38 weeks,No,1,Oligohydramos,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/24 09:35:46 AM CET,1.68m,28yrs,No,38weeks,No,1,Nil,Breech,No,No,No,No,Vaginal delivery
+2025/11/12 02:05:53 AM CET,172,31,Yes,36 weeks,No,1,Nil,Transverse,No,No,No,No,Vaginal delivery
+2025/12/23 01:36:32 PM CET,1.52,41,No,37,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/24 08:20:10 AM CET,1.61,29years,No,41,No,1,None,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/28 01:23:47 AM CET,154cm,18,No,41weeks,No,1,Eclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/27 11:07:39 AM CET,1.64m,22years,No,32,No,2,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/18 06:43:56 AM CET,1.73m,23years,Yes,37weeks,No,1,Oligohydramos,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/21 12:48:09 AM CET,1.7cm,19,No,35 weeks,No,1,Previous scar,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/20 06:43:58 AM CET,1.7cm,24years,Yes,36 weeks,Yes,1,None,Breech,No,No,No,No,Vaginal delivery
+2025/12/15 05:23:51 PM CET,1.81,26yrs,No,38 weeks,No,One,Diabetes,Breech,No,No,No,No,Vaginal delivery
+2025/12/11 09:30:34 AM CET,1.59,20yrs,No,36 weeks,No,2,none,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/14 01:33:28 PM CET,1.6cm,26years,No,30weeks,No,1,Lower back pain,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/07 02:38:40 PM CET,1.8cm,34years,Yes,39 weeks,No,1,No,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 04:17:45 PM CET,1.42,22years,No,33weeks,No,1,Preeclampsia,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/05 11:10:03 AM CET,1.8cm,26yrs,Yes,38weeks,No,One,Cervical distosia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/12 07:03:13 PM CET,1.8cm,29,Yes,41,No,2,none,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/10 05:45:50 AM CET,152,35years,No,35weeks,Yes,1,Lower back pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 04:40:31 PM CET,1.53m,20years,Yes,39weeks,No,1,Lower back pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/17 02:14:31 AM CET,173cm,22,No,35weeks,No,1,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2025/12/12 12:02:38 PM CET,169cm,37yrs,No,34weeks,No,Two,Pain,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/23 12:15:01 AM CET,1.73,31years,Yes,36,No,1,None,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/18 06:07:09 AM CET,162,30yrs,No,37weeks,No,2,Pain,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/27 06:57:51 PM CET,1.43,26years,Yes,36weeks,No,1,Nil,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/18 06:17:11 PM CET,1.59,36yrs,Yes,33,Yes,1,Diabetes,Cephalic,Yes,No,Yes,No,Cesarian section(cs)
+2025/12/20 10:44:58 AM CET,1.53,20years,No,34 weeks,No,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/25 07:30:57 AM CET,1.9cm,12years,No,31weeks,No,1,Preeclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/07 07:19:03 AM CET,174,29yrs,No,33,No,1,No,Transverse,No,No,No,No,Vaginal delivery
+2025/11/21 09:42:01 AM CET,1.52,18years,No,42weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/11 04:22:10 AM CET,1.7cm,32,No,37weeks,Yes,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/14 07:53:02 PM CET,1.6cm,23yrs,No,34,No,2,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/24 12:56:01 AM CET,159cm,24years,No,34weeks,No,1,Nil,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/11 07:43:31 PM CET,1.8cm,23yrs,Yes,36weeks,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/03 10:44:03 AM CET,1.74,25years,No,34 weeks,Yes,1,Lower back pain,Transverse,No,No,No,No,Vaginal delivery
+2025/11/28 05:47:33 PM CET,1.57,20years,No,39weeks,No,1,Lower back pain,Breech,No,No,No,No,Vaginal delivery
+2025/11/26 05:25:28 AM CET,167,25years,No,29,Yes,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/10 04:28:03 PM CET,1.69m,20,No,29 weeks,Yes,1,Lower abdominal pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/22 05:29:08 AM CET,165,26,No,36,No,1,Diabetes,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/12/16 04:24:36 AM CET,1.73,23yrs,Yes,36weeks,No,1,None,Breech,No,No,No,No,Vaginal delivery
+2025/11/12 01:47:30 AM CET,153cm,45yrs,No,34weeks,No,1,Previous scar,Breech,No,Yes,No,Yes,Cesarian section(cs)
+2025/11/24 12:01:33 AM CET,184,30yrs,Yes,31,Yes,1,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/28 01:30:48 AM CET,1.70m,24years,No,29,Yes,1,Diabetes,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/15 03:50:45 AM CET,162,37,No,40 weeks,No,2,Vaginal warts,Cephalic,No,Yes,No,Yes,Cesarian section(cs)
+2025/11/08 10:47:37 PM CET,1.76m,20years,Yes,37weeks,Yes,1,Lower back pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/16 05:13:06 AM CET,179cm,17years,No,35weeks,No,1,Pain,Cephalic,Yes,Yes,Yes,No,Cesarian section(cs)
+2025/11/20 12:04:08 PM CET,1.76,25yrs,No,36,No,1,Nothing,Transverse,No,No,No,No,Vaginal delivery
+2025/12/13 08:03:07 AM CET,1.66m,27yrs,No,38,Yes,1,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/11 12:05:54 PM CET,1.5cm,21yrs,No,32weeks,No,2,Hipertension,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/14 11:55:08 AM CET,1.5cm,25yrs,Yes,37 weeks,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/17 06:24:51 PM CET,1.90m,37,Yes,33,No,One,Vaginal warts,Breech,No,No,Yes,No,Vaginal delivery
+2025/11/07 06:23:05 PM CET,178cm,20,Yes,40,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 08:45:58 PM CET,1.6cm,23years,No,41weeks,No,1,Lower abdominal pain,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/07 08:43:08 PM CET,1.72m,20years,No,39weeks,No,1,Cervical distosia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/06 12:35:57 AM CET,1.6cm,27,Yes,39 weeks,No,1,Nil,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/24 07:27:21 AM CET,1.6cm,34years,No,33weeks,Yes,2,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/25 01:40:31 AM CET,1.56,19yrs,No,32weeks,No,1,Previous scar,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 11:18:17 PM CET,1.75m,37,No,31 weeks,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 11:46:36 PM CET,1.71,32,No,34weeks,No,1,None,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/22 03:08:00 AM CET,1.58,16yrs,Yes,42weeks,No,1,Nothing,Breech,No,No,No,No,Vaginal delivery
+2025/12/14 10:09:31 AM CET,172cm,16years,Yes,25weeks,No,1,Lower back pain,Breech,Yes,No,No,No,Cesarian section(cs)
+2025/11/30 02:17:41 AM CET,166cm,20,No,36,No,1,Pain,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/09 12:41:17 AM CET,1.5cm,20,Yes,42,No,1,Diabetes,Transverse,No,No,No,No,Vaginal delivery
+2025/11/26 04:55:42 AM CET,1.6cm,20years,No,39weeks,No,1,No,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/20 10:09:44 AM CET,1.7cm,35years,Yes,42weeks,No,2,Nothing,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/26 08:25:13 PM CET,167,34years,No,36 weeks,No,1,Eclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/12 05:52:52 PM CET,1.5cm,20yrs,Yes,36 weeks,No,1,Malaria,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/25 11:57:02 PM CET,1.35m,43years,Yes,39weeks,No,1,Cervical distosia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/11 12:47:31 PM CET,1.78m,43years,Yes,36weeks,Yes,1,Eclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/05 05:18:45 AM CET,1.6cm,23years,Yes,35weeks,No,1,Normal,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/05 02:14:47 AM CET,1.58m,20years,Yes,40weeks,Yes,1,Cervical distosia,Breech,No,No,No,Yes,Cesarian section(cs)
+2025/11/08 06:42:26 PM CET,166,13,No,33,Yes,1,Vaginal warts,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/12 04:08:15 PM CET,1.73,37,No,32,No,1,Diabetes,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/20 04:57:03 AM CET,1.5cm,19yrs,Yes,35,Yes,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/27 11:55:44 PM CET,160cm,43,Yes,37,Yes,2,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/22 12:27:53 AM CET,1.86,29,No,36 weeks,No,1,Hipertension,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/18 05:09:31 PM CET,1.72,22years,No,31weeks,No,1,Nil,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/24 11:00:51 AM CET,152,16yrs,No,33 weeks,No,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/04 05:35:11 AM CET,147cm,12yrs,Yes,38,No,1,Vaginal warts,One cephalic and one breech,No,No,No,Yes,Vaginal delivery
+2025/12/08 10:08:05 PM CET,1.6,22,No,35,No,1,No,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/13 05:17:20 PM CET,165cm,34,No,36weeks,No,1,Oligohydramos,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/10 06:19:46 PM CET,178,34,No,31weeks,No,1,Preeclampsia,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/11 06:36:34 AM CET,1.71,31years,No,37 weeks,No,1,None,Transverse,No,No,No,No,Vaginal delivery
+2025/12/27 02:16:52 AM CET,1.8cm,31yrs,Yes,36 weeks,No,1,Lower abdominal pain,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/16 02:07:15 PM CET,162cm,32years,No,39 weeks,No,1,Lower back pain,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/12 05:02:04 PM CET,162,15years,No,35,No,1,Oligohydramos,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 02:16:48 AM CET,1.66m,28,No,32weeks,No,1,None,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/04 02:55:18 PM CET,1.7cm,35,Yes,37weeks,Yes,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/11/29 07:09:31 AM CET,1.8cm,31yrs,No,42 weeks,No,1,Previous scar,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/23 01:31:12 AM CET,138cm,15,No,35,Yes,2,Oligohydramos,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/16 07:17:57 PM CET,1.71,23,Yes,33,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/05 10:46:09 PM CET,1.7cm,27,Yes,38,No,1,No,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/21 02:53:32 PM CET,1.67m,23,No,25,No,1,Lower abdominal pain,Transverse,No,No,No,No,Vaginal delivery
+2025/11/26 07:06:03 PM CET,1.64,30years,Yes,31,No,1,Cervical distosia,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/13 02:08:21 AM CET,150cm,23,Yes,39,No,1,No,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/20 05:34:44 PM CET,170,24,Yes,32 weeks,No,1,Previous scar,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/04 05:26:11 AM CET,156,24yrs,No,36weeks,No,1,Eclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/01 09:24:20 AM CET,1.7,23years,No,36,No,1,none,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/11 10:05:17 AM CET,1.6cm,34yrs,Yes,41,No,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/12 02:40:00 PM CET,1.7cm,26yrs,Yes,42weeks,No,1,Hipertension,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/23 12:34:51 PM CET,154,29yrs,No,37weeks,No,1,Pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/18 11:31:49 PM CET,182cm,34yrs,Yes,42 weeks,No,1,Nothing,Breech,Yes,No,No,No,Vaginal delivery
+2025/12/13 04:25:46 AM CET,1.6cm,35years,Yes,36 weeks,No,1,Preeclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/21 01:30:10 PM CET,170,25,No,35,Yes,1,Lower back pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/24 02:12:16 PM CET,1.6cm,20years,No,35 weeks,No,1,Cervical distosia,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/23 07:32:11 PM CET,179,33years,No,35,No,1,Hipertension,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/15 11:38:53 PM CET,1.64,25yrs,Yes,38weeks,Yes,1,Hipertension,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/20 03:18:06 AM CET,1.57,25yrs,No,33weeks,No,1,Nil,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/11 08:46:48 AM CET,1.56m,26,Yes,30,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/21 01:14:10 PM CET,154cm,29years,No,32weeks,No,1,none,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/10 02:05:34 AM CET,1.72m,18,Yes,38 weeks,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/14 12:05:44 PM CET,1.83m,20yrs,Yes,40weeks,No,2,None,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2025/11/10 02:13:58 PM CET,1.64m,28years,No,34 weeks,No,1,Diabetes,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/11 01:44:01 PM CET,154cm,33yrs,Yes,39 weeks,No,1,Cervical distosia,Breech,No,No,No,No,Vaginal delivery
+2025/11/12 11:20:23 PM CET,1.63,32years,Yes,33 weeks,Yes,One,none,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/19 01:42:34 AM CET,182,23,No,41,No,1,Preeclampsia,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/05 11:54:40 PM CET,1.8cm,19yrs,No,37,No,1,Lower abdominal pain,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/12/14 11:00:22 AM CET,1.7cm,22yrs,No,35,No,1,None,Transverse,No,Yes,Yes,No,Cesarian section(cs)
+2025/12/11 04:10:45 PM CET,1.65,27,Yes,40weeks,Yes,1,Malaria,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/20 10:34:31 AM CET,1.58,19yrs,No,41 weeks,No,1,None,Transverse,No,No,No,No,Vaginal delivery
+2025/11/18 11:46:06 AM CET,1.57,27,No,34weeks,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/25 12:35:31 AM CET,1.64m,12,No,32 weeks,No,2,Nil,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/27 02:18:03 PM CET,1.55,32yrs,No,37 weeks,Yes,1,Eclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/08 09:32:43 AM CET,1.58m,28yrs,Yes,33,No,1,Previous scar,Transverse,No,No,No,No,Vaginal delivery
+2025/12/16 06:56:33 PM CET,1.9cm,20yrs,No,38weeks,No,1,Previous scar,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/25 05:48:53 AM CET,164,21yrs,Yes,34weeks,No,1,Normal,Transverse,No,No,No,No,Vaginal delivery
+2025/12/22 10:14:56 PM CET,1.7cm,25years,No,35,No,1,Cervical distosia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/05 06:11:19 PM CET,1.4cm,27,No,34weeks,No,1,Pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/09 03:44:16 AM CET,1.47,24,Yes,36,No,2,Previous scar,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/22 05:44:20 PM CET,1.57m,28years,No,36,No,1,Pain,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/07 08:36:38 PM CET,1.57m,29,No,37weeks,No,1,Nil,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 09:08:23 PM CET,1.71,29years,No,33 weeks,No,1,Hipertension,Breech,No,No,No,No,Vaginal delivery
+2025/12/04 08:18:58 AM CET,1.58,23,No,35weeks,No,1,Cervical distosia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/11/29 08:59:26 AM CET,1.7cm,36yrs,No,36,No,1,Nil,One cephalic and one breech,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/22 12:56:04 AM CET,177,24years,Yes,36weeks,No,1,Oligohydramos,Breech,No,No,No,Yes,Vaginal delivery
+2025/11/30 04:32:54 PM CET,1.70m,28,Yes,36,No,1,Eclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/02 10:54:55 AM CET,1.78,21years,No,37,No,1,Pain,Breech,No,Yes,No,No,Vaginal delivery
+2025/11/17 08:14:39 AM CET,154,35years,No,36 weeks,No,One,Oligohydramos,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/15 11:11:01 PM CET,1.6cm,32years,Yes,40 weeks,No,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/18 07:41:13 AM CET,174,25,Yes,37 weeks,No,1,Previous scar,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/13 12:19:30 PM CET,1.51,18,No,36 weeks,No,1,Malaria,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/08 03:39:03 PM CET,1.61,24yrs,No,36,No,1,Diabetes,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/14 03:15:28 PM CET,166,28yrs,Yes,36 weeks,No,1,Previous scar,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/17 05:09:23 AM CET,1.68m,26yrs,Yes,41 weeks,No,1,Malaria,One cephalic and one breech,No,Yes,Yes,No,Vaginal delivery
+2025/12/03 06:58:21 AM CET,1.59,20yrs,No,37 weeks,No,1,Pain,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/03 04:27:51 AM CET,1.56m,35,No,36,Yes,1,Cervical distosia,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/09 01:32:28 AM CET,154,24,Yes,35 weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/12/06 12:18:34 AM CET,171,29,No,37weeks,No,2,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/05 07:51:12 PM CET,157cm,16years,Yes,40,No,1,Malaria,Transverse,No,No,No,No,Vaginal delivery
+2025/12/25 09:09:29 PM CET,1.72m,38years,Yes,33weeks,No,One,Vaginal warts,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/11/08 09:36:13 PM CET,1.58m,35yrs,No,35weeks,Yes,1,Cervical distosia,Breech,No,Yes,No,Yes,Cesarian section(cs)
+2025/11/25 12:44:08 AM CET,169cm,22years,Yes,33 weeks,No,1,Pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/12 07:38:38 AM CET,165cm,19yrs,Yes,33 weeks,No,2,Eclampsia,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/12 07:48:01 AM CET,1.84m,29years,No,33weeks,Yes,1,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 01:31:07 PM CET,138,16years,Yes,34,Yes,1,none,Cephalic,Yes,No,No,No,Vaginal delivery
+2025/11/27 08:31:46 PM CET,164,28,Yes,35weeks,No,1,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/29 08:12:42 PM CET,166,18,Yes,35weeks,No,1,Preeclampsia,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/01 12:31:31 AM CET,169,30yrs,Yes,31weeks,No,2,Oligohydramos,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/16 09:27:23 PM CET,1.6cm,12,No,37 weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/12/07 09:36:09 AM CET,1.5cm,37,Yes,35weeks,No,1,Preeclampsia,Breech,No,Yes,Yes,Yes,Cesarian section(cs)
+2025/11/27 10:25:11 AM CET,1.66m,26,Yes,35,No,1,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/11/09 08:10:02 AM CET,1.9cm,22yrs,Yes,39 weeks,No,One,Previous scar,Transverse,No,No,Yes,Yes,Vaginal delivery
+2025/11/13 03:07:58 PM CET,1.43m,24,No,36 weeks,No,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/25 04:27:17 AM CET,1.38,19yrs,Yes,41 weeks,No,1,Lower abdominal pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/01 03:09:22 PM CET,1.8cm,28yrs,Yes,28,Yes,2,Nil,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/21 09:18:10 PM CET,169cm,35yrs,Yes,31,Yes,2,Normal,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/05 10:52:16 PM CET,170,19,No,35 weeks,No,1,Hipertension,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/14 05:20:04 AM CET,1.70m,32years,Yes,29weeks,No,1,Preeclampsia,Transverse,Yes,Yes,Yes,No,Cesarian section(cs)
+2025/11/19 04:41:04 PM CET,159,15,No,36 weeks,No,1,Pain,Breech,No,Yes,No,No,Vaginal delivery
+2025/12/25 11:11:55 AM CET,145,26,No,36,Yes,1,Malaria,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/20 02:25:15 PM CET,1.7cm,30years,No,36,No,1,Cervical distosia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/04 12:38:25 PM CET,147,23years,Yes,38 weeks,Yes,1,Normal,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/08 11:30:11 PM CET,1.91,24,Yes,36weeks,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/19 01:32:53 AM CET,1.52m,26years,No,34 weeks,Yes,1,Previous scar,Breech,No,No,No,No,Vaginal delivery
+2025/12/05 07:37:26 PM CET,183cm,19yrs,No,35weeks,No,1,Preeclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 01:18:51 PM CET,159cm,28,Yes,42,Yes,1,Preeclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/08 06:29:13 AM CET,1.9cm,15yrs,Yes,40weeks,Yes,2,Hipertension,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/18 04:18:47 PM CET,1.61,31yrs,No,36 weeks,No,1,Lower abdominal pain,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/21 01:27:30 PM CET,156cm,27,No,41,No,One,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/23 01:08:06 PM CET,161,20yrs,No,35weeks,No,1,none,One cephalic and one breech,Yes,Yes,Yes,No,Cesarian section(cs)
+2025/11/16 09:39:04 AM CET,1.6cm,29yrs,Yes,37weeks,No,1,Malaria,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/15 01:59:32 PM CET,1.70m,20,No,34 weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/15 06:29:00 PM CET,161cm,25,No,32 weeks,Yes,1,Previous scar,Cephalic,No,Yes,No,No,Vaginal delivery
+2025/11/29 12:39:59 PM CET,1.74,24years,No,42weeks,No,1,Oligohydramos,Transverse,No,No,No,No,Vaginal delivery
+2025/11/13 03:34:28 PM CET,1.67m,25,Yes,37,No,1,Lower back pain,Transverse,Yes,No,No,No,Cesarian section(cs)
+2025/12/08 02:28:39 AM CET,1.6cm,27yrs,No,33 weeks,No,1,Nil,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/11 07:36:52 AM CET,1.53,24,Yes,36,Yes,1,Lower back pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 03:58:18 AM CET,171cm,25,Yes,38weeks,No,1,Lower back pain,Breech,No,No,No,No,Vaginal delivery
+2025/11/28 02:23:01 PM CET,1.53m,39yrs,No,36weeks,No,1,None,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/11/27 06:46:44 AM CET,160,24years,No,41 weeks,Yes,1,Nil,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/13 03:35:52 AM CET,1.56,37years,No,37,Yes,1,Normal,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/19 05:19:44 AM CET,1.5cm,32years,No,39weeks,No,1,No,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/19 10:02:11 AM CET,171,23,Yes,39weeks,Yes,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/22 02:55:31 AM CET,1.35m,32years,No,33 weeks,Yes,1,Preeclampsia,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/24 04:40:36 PM CET,1.52m,30,Yes,38,No,1,Cervical distosia,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/23 11:04:40 PM CET,155,16,Yes,37,No,1,Cervical distosia,Breech,No,No,No,No,Vaginal delivery
+2025/12/16 06:13:41 AM CET,173,26yrs,Yes,36 weeks,Yes,2,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/07 03:02:15 PM CET,166,32,Yes,37,No,1,Normal,Transverse,No,No,No,No,Vaginal delivery
+2025/12/19 02:12:34 AM CET,1.66m,25,Yes,42weeks,No,1,Preeclampsia,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 09:42:52 PM CET,185,26yrs,Yes,37 weeks,Yes,1,Eclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/19 12:47:29 PM CET,182cm,35yrs,No,40,No,1,Preeclampsia,Transverse,No,No,No,No,Vaginal delivery
+2025/12/25 06:51:34 PM CET,149,19years,Yes,34 weeks,No,1,Nil,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/10 09:20:53 AM CET,181,18,No,38 weeks,No,2,Hipertension,Transverse,No,No,No,No,Vaginal delivery
+2025/11/18 07:38:43 PM CET,161cm,28,No,38,No,1,Diabetes,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/29 12:21:52 PM CET,159cm,21,No,35weeks,No,2,Diabetes,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/02 10:27:40 AM CET,1.64,25years,Yes,37 weeks,No,1,Oligohydramos,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/22 10:14:58 PM CET,1.62m,26yrs,No,38 weeks,No,1,None,One cephalic and one breech,No,No,Yes,No,Vaginal delivery
+2025/12/23 05:36:23 AM CET,165cm,23,Yes,31,No,One,none,Breech,No,No,No,No,Vaginal delivery
+2025/11/07 01:28:31 AM CET,159cm,22years,Yes,34 weeks,No,1,Hipertension,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/19 12:07:27 AM CET,1.69,29yrs,No,41 weeks,No,1,Hipertension,Transverse,No,Yes,No,Yes,Cesarian section(cs)
+2025/12/22 01:52:04 AM CET,162cm,27years,Yes,42,No,1,Oligohydramos,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/11/11 11:08:02 AM CET,1.79m,30yrs,No,32weeks,No,1,none,Transverse,No,No,No,No,Vaginal delivery
+2025/12/03 10:16:29 AM CET,1.8cm,27,No,35 weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/12/07 08:44:03 AM CET,1.6cm,25years,No,31 weeks,No,1,Vaginal warts,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/14 04:23:10 PM CET,1.8cm,24,No,38 weeks,No,1,Pain,Transverse,No,No,No,No,Vaginal delivery
+2025/12/02 06:25:21 PM CET,1.75,17years,Yes,36weeks,No,2,Lower abdominal pain,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/12 12:20:38 AM CET,1.60m,23,No,37,No,1,Preeclampsia,Breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/15 12:11:21 AM CET,1.83m,26yrs,Yes,37weeks,No,1,None,Breech,No,No,No,No,Cesarian section(cs)
+2025/11/24 03:32:00 AM CET,1.58m,18yrs,No,37 weeks,No,1,Malaria,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/11 02:29:23 AM CET,176cm,28yrs,No,36weeks,No,1,Nothing,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/02 10:38:30 AM CET,157cm,39,No,40 weeks,Yes,1,Previous scar,Cephalic,No,No,No,No,Cesarian section(cs)
+2025/12/27 09:40:55 PM CET,1.57,42yrs,No,34 weeks,No,1,Vaginal warts,One cephalic and one breech,No,Yes,No,No,Vaginal delivery
+2025/12/02 11:05:13 AM CET,1.65,34,No,33,Yes,1,Diabetes,Transverse,No,No,No,Yes,Vaginal delivery
+2025/11/08 08:19:57 PM CET,145,19,Yes,41 weeks,No,1,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/12 10:02:45 AM CET,1.52,30years,Yes,35 weeks,No,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/13 09:59:36 PM CET,160,25,Yes,38,No,1,Hipertension,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/24 12:10:47 PM CET,1.87,21,No,39weeks,No,1,Nil,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/11/17 06:38:08 PM CET,156cm,13yrs,No,35weeks,No,1,Eclampsia,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/12 08:31:18 AM CET,165cm,28,No,39 weeks,Yes,2,Nothing,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/12 08:02:38 AM CET,1.76,18years,Yes,33 weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/11 09:43:49 PM CET,164cm,25yrs,Yes,33weeks,No,1,Vaginal warts,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/12/08 10:14:09 AM CET,1.48m,20,Yes,38,No,1,None,Cephalic,No,Yes,No,No,Cesarian section(cs)
+2025/12/16 01:23:34 AM CET,1.6cm,29yrs,No,39weeks,Yes,1,Pain,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/04 09:16:57 AM CET,1.62,16yrs,Yes,32weeks,No,1,Previous scar,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/23 07:11:46 AM CET,1.78m,12years,No,34 weeks,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/17 01:45:53 PM CET,1.7,23yrs,No,38weeks,No,1,none,Breech,Yes,No,No,No,Vaginal delivery
+2025/12/08 03:25:51 AM CET,1.7cm,22,No,39 weeks,No,2,none,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/11/18 05:19:11 AM CET,1.5cm,29,No,34,No,2,Eclampsia,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/11 06:29:15 AM CET,1.7,41,Yes,35 weeks,No,1,Lower back pain,Cephalic,No,No,No,No,Vaginal delivery
+2025/11/30 07:16:53 PM CET,186cm,22years,No,34,No,1,Nothing,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/22 11:48:20 PM CET,1.79m,22years,No,35 weeks,No,1,Previous scar,Breech,No,No,No,No,Cesarian section(cs)
+2025/12/08 01:28:17 AM CET,1.78,36yrs,Yes,35,No,1,Normal,Cephalic,No,No,No,No,Vaginal delivery
+2025/12/21 07:13:35 PM CET,1.77,30,Yes,36weeks,No,1,Cervical distosia,Transverse,No,No,No,No,Vaginal delivery
+2025/12/21 03:37:02 AM CET,1.76m,26,No,38weeks,No,2,Diabetes,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2025/12/04 10:46:25 AM CET,1.65m,12,No,32,No,1,Pain,Transverse,No,No,No,No,Cesarian section(cs)
+2025/12/12 03:03:30 AM CET,158,29yrs,Yes,35 weeks,No,1,Pain,Breech,No,Yes,No,No,Vaginal delivery
+2025/11/14 10:13:26 PM CET,157cm,26yrs,No,38weeks,No,1,Diabetes,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/28 10:21:34 PM CET,171,34years,No,33,No,1,Eclampsia,Transverse,No,No,No,No,Vaginal delivery
+2025/11/14 01:03:49 AM CET,170,45years,No,33weeks,No,1,Eclampsia,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/28 09:10:54 PM CET,146,38years,Yes,33weeks,No,One,Preeclampsia,Cephalic,No,No,No,Yes,Vaginal delivery
+2025/11/28 01:29:23 PM CET,1.63,37,Yes,37 weeks,No,2,None,One cephalic and one breech,No,No,Yes,No,Cesarian section(cs)
+2025/12/22 05:46:12 PM CET,1.4cm,29years,No,32weeks,No,1,Nil,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/06 11:08:15 AM CET,1.8cm,29years,Yes,34,No,2,Vaginal warts,One cephalic and one breech,No,Yes,No,No,Cesarian section(cs)
+2025/12/22 02:03:52 AM CET,1.65m,25,Yes,32 weeks,Yes,1,Preeclampsia,One cephalic and one breech,No,No,No,No,Cesarian section(cs)
+2025/12/06 09:53:43 AM CET,168,29years,Yes,33,No,1,none,Transverse,No,No,No,No,Cesarian section(cs)
+2025/11/16 06:10:35 AM CET,158,24years,No,32 weeks,No,Two,Normal,Transverse,No,Yes,No,No,Vaginal delivery
+2025/12/25 06:45:23 AM CET,1.7cm,23yrs,No,35,No,1,Oligohydramos,One cephalic and one breech,No,No,No,Yes,Vaginal delivery
+2025/11/15 03:01:03 PM CET,161cm,29,No,35,No,2,none,Transverse,No,No,Yes,No,Cesarian section(cs)
+2025/11/23 01:38:56 AM CET,1.7cm,30yrs,No,35weeks,No,1,Normal,One cephalic and one breech,No,No,No,No,Vaginal delivery
+2025/12/11 07:10:02 PM CET,1.55,33years,No,38weeks,No,1,Preeclampsia,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2025/12/24 03:03:02 PM CET,1.6cm,26yrs,Yes,42 weeks,Yes,1,None,Transverse,No,Yes,No,No,Cesarian section(cs)
+2025/12/01 11:07:37 AM CET,1.9cm,27years,Yes,40,No,Two,Cervical distosia,Breech,No,No,No,No,Vaginal delivery
+2025/12/08 12:33:56 PM CET,186cm,17,Yes,36weeks,No,1,Oligohydramos,One cephalic and one breech,Yes,No,No,No,Cesarian section(cs)
+2025/12/08 08:51:32 AM CET,1.69m,17years,No,35 weeks,No,1,Lower abdominal pain,Breech,No,No,No,No,Vaginal delivery
+2025/11/25 04:18:24 PM CET,1.4cm,29years,No,39,No,1,Vaginal warts,Transverse,No,No,No,No,Vaginal delivery
+2025/11/29 02:41:04 AM CET,1.78m,28years,No,37,No,1,Malaria,Cephalic,Yes,No,No,No,Cesarian section(cs)
+2025/11/10 03:17:58 PM CET,1.6cm,23,Yes,38weeks,No,2,Diabetes,One cephalic and one breech,No,No,No,Yes,Cesarian section(cs)
+2025/12/19 11:59:43 AM CET,1.72,36yrs,No,40 weeks,No,1,Normal,Transverse,No,Yes,No,No,Cesarian section(cs)
