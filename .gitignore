@@ -1,0 +1,45 @@
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+env/
+.env/
+.venv/
+
+# ── Secrets & credentials ─────────────────────────────────────────────────────
+# IMPORTANT: Never commit these
+firebase_key.json
+.env
+*.env
+
+# ── Local database ────────────────────────────────────────────────────────────
+# SQLite is local-only; on Render it lives on the persistent disk
+db_local.sqlite
+*.sqlite
+*.db
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+app.log
+*.log
+logs/
+
+# ── Utility / dev scripts ─────────────────────────────────────────────────────
+cleanup_records.py
+migrate_schema.py
+verify_seperation.py
+
+# ── OS / Editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: savethemommy-medicare
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --timeout 120 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true        # Render auto-generates a secure random value
+      - key: FIREBASE_KEY_JSON
+        sync: false                # Set this manually in the Render dashboard
+      - key: SQLITE_PATH
+        value: /data/db_local.sqlite   # Persistent disk mount path
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1                    # 1 GB persistent disk for SQLite (paid feature)

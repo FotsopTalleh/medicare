@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}Referral Messages{% endblock %}
+{% block page_title %}
+    <i class="fas fa-envelope-open-text me-2"></i>Referral Messages
+    {% if unread_count > 0 %}
+        <span class="badge bg-danger ms-2" style="font-size:.7rem;">{{ unread_count }} new</span>
+    {% endif %}
+{% endblock %}
+
+{% block head_extra %}
+<style>
+/* Override card hover lift for the messages layout */
+.messages-layout .card { animation: none; }
+.messages-layout .card:hover { transform: none; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Tab switcher -->
+<ul class="nav nav-pills mb-3" id="msgTabs">
+    <li class="nav-item">
+        <button class="nav-link active" id="tab-received" onclick="switchTab('received')">
+            <i class="fas fa-inbox me-2"></i>Received
+            {% if received|selectattr('is_read', 'equalto', 0)|list|length > 0 %}
+            <span class="badge bg-danger ms-1">{{ received|selectattr('is_read', 'equalto', 0)|list|length }}</span>
+            {% endif %}
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" id="tab-sent" onclick="switchTab('sent')">
+            <i class="fas fa-paper-plane me-2"></i>Sent
+        </button>
+    </li>
+</ul>
+
+<div class="messages-layout card">
+
+    <!-- LEFT: Message list -->
+    <div class="messages-sidebar">
+        <div class="messages-sidebar-header">
+            <h6 class="mb-1 fw-600" id="list-heading">Received Referrals</h6>
+            <small class="text-muted" id="list-count">
+                {{ received|length }} message{{ 's' if received|length != 1 else '' }}
+            </small>
+        </div>
+
+        <!-- RECEIVED list -->
+        <div class="messages-list" id="received-list">
+            {% if received %}
+                {% for msg in received %}
+                <div class="message-item {% if not msg.is_read %}unread{% endif %}"
+                     id="item-{{ msg.id }}"
+                     onclick="loadMessage({{ msg.id }}, 'received')">
+                    <div class="msg-avatar received">
+                        {{ msg.sender_name[0]|upper }}
+                    </div>
+                    <div class="msg-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="msg-sender">{{ msg.sender_name }}</span>
+                            <span class="msg-time">{{ msg.created_at[:10] if msg.created_at else '' }}</span>
+                        </div>
+                        <div class="msg-preview">
+                            <span class="badge bg-secondary" style="font-size:.65rem;">{{ msg.sender_role }}</span>
+                            Patient #{{ msg.patient_uuid[:8] }}…
+                        </div>
+                        {% if not msg.is_read %}
+                        <div class="unread-dot mt-1"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5 text-muted">
+                    <i class="fas fa-inbox fa-2x mb-3 d-block" style="opacity:.3;"></i>
+                    <small>No received referrals yet</small>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- SENT list (hidden by default) -->
+        <div class="messages-list d-none" id="sent-list">
+            {% if sent %}
+                {% for msg in sent %}
+                <div class="message-item"
+                     id="item-sent-{{ msg.id }}"
+                     onclick="loadMessage({{ msg.id }}, 'sent')">
+                    <div class="msg-avatar sent">
+                        {{ msg.recipient_name[0]|upper }}
+                    </div>
+                    <div class="msg-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="msg-sender">To: {{ msg.recipient_name }}</span>
+                            <span class="msg-time">{{ msg.created_at[:10] if msg.created_at else '' }}</span>
+                        </div>
+                        <div class="msg-preview">
+                            <span class="badge bg-secondary" style="font-size:.65rem;">{{ msg.recipient_role }}</span>
+                            Patient #{{ msg.patient_uuid[:8] }}…
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-5 text-muted">
+                    <i class="fas fa-paper-plane fa-2x mb-3 d-block" style="opacity:.3;"></i>
+                    <small>No sent referrals yet</small>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- RIGHT: Detail panel -->
+    <div class="message-detail" id="detail-panel">
+
+        <!-- Empty state -->
+        <div class="detail-empty" id="detail-empty">
+            <i class="fas fa-envelope-open"></i>
+            <p class="fw-600 mb-1">Select a referral to view details</p>
+            <small class="text-muted">Click any message on the left to open it</small>
+        </div>
+
+        <!-- Loaded state (hidden until a message is selected) -->
+        <div id="detail-content" class="d-none h-100 d-flex flex-column">
+
+            <div class="message-detail-header" id="detail-header">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="msg-avatar" id="detail-avatar" style="width:48px;height:48px;font-size:1.1rem;"></div>
+                    <div>
+                        <div class="fw-600" id="detail-from"></div>
+                        <small class="text-muted" id="detail-date"></small>
+                    </div>
+                    <a href="#" class="btn btn-sm btn-outline-primary ms-auto" id="detail-patient-link">
+                        <i class="fas fa-external-link-alt me-1"></i>View Patient
+                    </a>
+                </div>
+            </div>
+
+            <div class="message-detail-body flex-grow-1" id="detail-body">
+                <!-- Note -->
+                <div class="card mb-3 border-0" style="background:#f8f9fa;">
+                    <div class="card-body">
+                        <h6 class="fw-600 mb-2"><i class="fas fa-comment-medical me-2 text-primary"></i>Referral Note</h6>
+                        <p class="mb-0" id="detail-note" style="font-size:.9rem;"></p>
+                    </div>
+                </div>
+
+                <!-- Anonymous medical summary -->
+                <h6 class="fw-600 mb-3">
+                    <i class="fas fa-heartbeat me-2" style="color:#00c9a0;"></i>Anonymous Medical Summary
+                    <small class="text-muted fw-400" style="font-size:.75rem;"> — No personal identifiers</small>
+                </h6>
+                <div class="medical-data-grid" id="detail-medical-grid">
+                    <!-- Filled by JS -->
+                </div>
+
+                <!-- Patient ID -->
+                <div class="mt-3 p-3 rounded" style="background:#f0f4f8; font-size:.82rem;">
+                    <i class="fas fa-key me-2 text-muted"></i>
+                    <strong>Patient Ref:</strong> <code id="detail-uuid"></code>
+                    <br><small class="text-muted">Anonymous UUID — no personal data visible</small>
+                </div>
+            </div>
+
+            <!-- Download bar -->
+            <div class="download-bar">
+                <span class="text-muted me-2" style="font-size:.82rem;">
+                    <i class="fas fa-download me-1"></i>Export referral:
+                </span>
+                <a href="#" class="btn btn-sm btn-outline-danger" id="btn-pdf">
+                    <i class="fas fa-file-pdf me-1"></i>PDF
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-success" id="btn-csv">
+                    <i class="fas fa-file-csv me-1"></i>CSV
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- /.messages-layout -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentTab = 'received';
+
+function switchTab(tab) {
+    currentTab = tab;
+    const isReceived = tab === 'received';
+
+    document.getElementById('received-list').classList.toggle('d-none', !isReceived);
+    document.getElementById('sent-list').classList.toggle('d-none', isReceived);
+    document.getElementById('tab-received').classList.toggle('active', isReceived);
+    document.getElementById('tab-sent').classList.toggle('active', !isReceived);
+    document.getElementById('list-heading').textContent = isReceived ? 'Received Referrals' : 'Sent Referrals';
+
+    const count = isReceived
+        ? {{ received|length }}
+        : {{ sent|length }};
+    document.getElementById('list-count').textContent =
+        count + ' message' + (count !== 1 ? 's' : '');
+
+    // Reset detail panel
+    document.getElementById('detail-empty').classList.remove('d-none');
+    document.getElementById('detail-content').classList.add('d-none');
+    document.querySelectorAll('.message-item.active').forEach(el => el.classList.remove('active'));
+}
+
+function loadMessage(id, type) {
+    // Highlight selected
+    document.querySelectorAll('.message-item.active').forEach(el => el.classList.remove('active'));
+    const prefix = type === 'sent' ? 'item-sent-' : 'item-';
+    const item = document.getElementById(prefix + id);
+    if (item) {
+        item.classList.add('active');
+        item.classList.remove('unread');
+        const dot = item.querySelector('.unread-dot');
+        if (dot) dot.remove();
+    }
+
+    // Show loading
+    document.getElementById('detail-empty').classList.add('d-none');
+    document.getElementById('detail-content').classList.remove('d-none');
+    document.getElementById('detail-body').innerHTML =
+        '<div class="text-center py-5"><div class="spinner-border text-primary"></div><p class="mt-3 text-muted">Loading referral data…</p></div>';
+    document.getElementById('download-bar')?.classList.add('d-none');
+
+    fetch(`/messages/${id}`)
+        .then(r => {
+            if (!r.ok) throw new Error(`Server error: ${r.status}`);
+            return r.json();
+        })
+        .then(data => {
+            if (data.error) throw new Error(data.error);
+            renderDetail(data, type);
+        })
+        .catch(err => {
+            console.error('loadMessage error:', err);
+            document.getElementById('detail-body').innerHTML =
+                `<div class="alert alert-danger m-3"><i class="fas fa-exclamation-triangle me-2"></i>Failed to load referral: ${err.message}</div>`;
+        });
+}
+
+function renderDetail(data, type) {
+    const isReceived = type === 'received';
+    const med = data.medical_summary || {};
+
+    // Header
+    const avatar = document.getElementById('detail-avatar');
+    avatar.textContent = isReceived
+        ? (data.sender_name || '?')[0].toUpperCase()
+        : (data.recipient_name || '?')[0].toUpperCase();
+    avatar.className = `msg-avatar ${isReceived ? 'received' : 'sent'}`;
+    avatar.style.cssText = 'width:48px;height:48px;font-size:1.1rem;';
+
+    document.getElementById('detail-from').textContent =
+        isReceived
+            ? `From: ${data.sender_name} (${data.sender_role})`
+            : `To: ${data.recipient_name} (${data.recipient_role})`;
+    document.getElementById('detail-date').textContent = data.created_at || '';
+    document.getElementById('detail-patient-link').href = `/patient/${data.patient_uuid}`;
+
+    // Download links
+    document.getElementById('btn-pdf').href = `/download-referral/${data.id}/pdf`;
+    document.getElementById('btn-csv').href = `/download-referral/${data.id}/csv`;
+
+    // Build medical grid HTML as a string (avoids detached-DOM null reference)
+    const metrics = [
+        { key: 'age',          label: 'Age',            unit: 'years', icon: 'fa-birthday-cake', color: '#3498db' },
+        { key: 'height',       label: 'Height',         unit: 'cm',    icon: 'fa-ruler-vertical', color: '#9b59b6' },
+        { key: 'risk_score',   label: 'Risk Score',     unit: '%',     icon: 'fa-heartbeat',      color: '#e74c3c' },
+        { key: 'last_bp',      label: 'Blood Pressure', unit: '',      icon: 'fa-tint',           color: '#e67e22' },
+        { key: 'last_glucose', label: 'Glucose',        unit: 'mg/dL', icon: 'fa-flask',          color: '#27ae60' },
+    ];
+
+    let gridHTML = metrics.map(m => `
+        <div class="medical-data-card">
+            <i class="fas ${m.icon} mb-2" style="color:${m.color};font-size:1.3rem;"></i>
+            <div class="value">${med[m.key] !== null && med[m.key] !== undefined ? med[m.key] : '&mdash;'}</div>
+            <div class="label">${m.label}${m.unit ? ' (' + m.unit + ')' : ''}</div>
+        </div>
+    `).join('');
+
+    if (med.registered_by) {
+        gridHTML += `
+            <div class="medical-data-card">
+                <i class="fas fa-user-md mb-2" style="color:#2C3E50;font-size:1.3rem;"></i>
+                <div class="value" style="font-size:.9rem;">${med.registered_by}</div>
+                <div class="label">Registered By (${med.registered_by_role || ''})</div>
+            </div>
+        `;
+    }
+
+    // Rebuild body with everything in one go — no intermediate DOM writes needed
+    document.getElementById('detail-body').innerHTML = `
+        <div class="card mb-3 border-0" style="background:#f8f9fa;">
+            <div class="card-body">
+                <h6 class="fw-600 mb-2"><i class="fas fa-comment-medical me-2 text-primary"></i>Referral Note</h6>
+                <p class="mb-0" style="font-size:.9rem;">${data.note || '<em class="text-muted">No additional note was provided.</em>'}</p>
+            </div>
+        </div>
+        <h6 class="fw-600 mb-3">
+            <i class="fas fa-heartbeat me-2" style="color:#00c9a0;"></i>Anonymous Medical Summary
+            <small class="text-muted fw-400" style="font-size:.75rem;"> &mdash; No personal identifiers</small>
+        </h6>
+        <div class="medical-data-grid">${gridHTML}</div>
+        <div class="mt-3 p-3 rounded" style="background:#f0f4f8;font-size:.82rem;">
+            <i class="fas fa-key me-2 text-muted"></i>
+            <strong>Patient Ref:</strong> <code>${data.patient_uuid}</code><br>
+            <small class="text-muted">Anonymous UUID &mdash; no personal data visible</small>
+        </div>
+    `;
+}
+</script>
+{% endblock %}

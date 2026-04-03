@@ -46,89 +46,154 @@
                         <i class="fas fa-user-secret"></i>
                     </div>
                     <h4 class="mt-3">Anonymous Patient</h4>
-                    <small class="text-muted">ID: {{ patient_uuid[:12] }}...</small>
+                    <div class="mt-1">
+                        <span style="font-family:'Courier New',monospace;font-size:1.1rem;font-weight:700;
+                                     letter-spacing:2px;color:#00ffcc;background:#0d1117;
+                                     border:1.5px solid rgba(0,255,204,.4);border-radius:8px;
+                                     padding:4px 14px;display:inline-block;">
+                            {{ medical_code }}
+                        </span>
+                        <small class="d-block text-muted mt-1">Medical Code</small>
+                    </div>
                 </div>
                 
+                {% macro yn_badge(val) %}
+                    {% if val == true %}
+                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>Yes</span>
+                    {% elif val == false %}
+                        <span class="badge bg-danger"><i class="fas fa-times me-1"></i>No</span>
+                    {% else %}
+                        <span class="badge bg-secondary">—</span>
+                    {% endif %}
+                {% endmacro %}
+
                 {% if medical_data %}
-                <table class="table table-borderless">
-                    <tr>
-                        <th><i class="fas fa-birthday-cake me-2"></i>Age:</th>
-                        <td>
-                            {% if medical_data.age %}
-                                <strong>{{ medical_data.age }} years</strong>
-                            {% else %}
-                                <span class="text-muted">Not specified</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="fas fa-ruler-vertical me-2"></i>Height:</th>
-                        <td>
-                            {% if medical_data.height %}
-                                <strong>{{ medical_data.height }} cm</strong>
-                            {% else %}
-                                <span class="text-muted">Not specified</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><i class="fas fa-database me-2"></i>Data Source:</th>
-                        <td>
-                            <span class="badge bg-info">
-                                <i class="fas fa-cloud me-1"></i>Firebase Cloud
-                            </span>
-                            <small class="d-block text-muted">Anonymous medical data only</small>
-                        </td>
-                    </tr>
-                    {% if medical_data.created_at %}
-                    <tr>
-                        <th><i class="fas fa-calendar me-2"></i>Created:</th>
-                        <td>
-                            <small>{{ medical_data.created_at.strftime('%Y-%m-%d') if medical_data.created_at.timestamp else 'Unknown' }}</small>
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% if medical_data.last_updated %}
-                    <tr>
-                        <th><i class="fas fa-clock me-2"></i>Last Updated:</th>
-                        <td>
-                            <small>{{ medical_data.last_updated.strftime('%Y-%m-%d %H:%M') if medical_data.last_updated.timestamp else 'Unknown' }}</small>
-                        </td>
-                    </tr>
-                    {% endif %}
-                </table>
-                
-                <div class="alert alert-success">
+
+                <!-- Biometrics -->
+                <div class="mb-3">
+                    <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#6c757d;border-bottom:1px solid #f0f0f0;padding-bottom:4px;margin-bottom:10px;">
+                        <i class="fas fa-ruler me-1"></i>Biometrics
+                    </div>
+                    <div class="row g-2 text-center">
+                        <div class="col-6">
+                            <div class="bg-light rounded p-2">
+                                <div class="fw-700" style="font-size:1.2rem;color:#2c3e50;">
+                                    {{ medical_data.age ~ ' yrs' if medical_data.age else '—' }}
+                                </div>
+                                <small class="text-muted">Age</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="bg-light rounded p-2">
+                                <div class="fw-700" style="font-size:1.2rem;color:#2c3e50;">
+                                    {{ medical_data.height ~ ' cm' if medical_data.height else '—' }}
+                                </div>
+                                <small class="text-muted">Height</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="bg-light rounded p-2">
+                                <div class="fw-700" style="font-size:1.2rem;color:#2c3e50;">
+                                    {{ medical_data.gestational_weeks ~ ' wks' if medical_data.gestational_weeks else '—' }}
+                                </div>
+                                <small class="text-muted">Gestational Age</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="bg-light rounded p-2">
+                                <div class="fw-700" style="font-size:1.2rem;color:#2c3e50;">
+                                    {{ medical_data.fetus_count if medical_data.fetus_count else '—' }}
+                                </div>
+                                <small class="text-muted">Fetuses</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Obstetric History -->
+                <div class="mb-3">
+                    <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#6c757d;border-bottom:1px solid #f0f0f0;padding-bottom:4px;margin-bottom:10px;">
+                        <i class="fas fa-history me-1"></i>Obstetric History
+                    </div>
+                    <table class="table table-borderless table-sm mb-0" style="font-size:.83rem;">
+                        <tr>
+                            <td class="text-muted">Given birth before?</td>
+                            <td>{{ yn_badge(medical_data.given_birth_before) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Previous C-section?</td>
+                            <td>{{ yn_badge(medical_data.previous_cesarean) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Uterine surgery?</td>
+                            <td>{{ yn_badge(medical_data.previous_uterine_surgery) }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Current Pregnancy -->
+                <div class="mb-3">
+                    <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#6c757d;border-bottom:1px solid #f0f0f0;padding-bottom:4px;margin-bottom:10px;">
+                        <i class="fas fa-baby me-1"></i>Current Pregnancy
+                    </div>
+                    <table class="table table-borderless table-sm mb-0" style="font-size:.83rem;">
+                        <tr>
+                            <td class="text-muted">Fetal presentation</td>
+                            <td>
+                                {% if medical_data.fetal_presentation %}
+                                    {% for p in medical_data.fetal_presentation %}
+                                    <span class="badge bg-primary me-1" style="font-size:.72rem;">{{ p|capitalize }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="badge bg-secondary">—</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Maternal med. condition?</td>
+                            <td>{{ yn_badge(medical_data.maternal_medical_condition) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Placenta praevia?</td>
+                            <td>{{ yn_badge(medical_data.placenta_previa) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Fetal distress?</td>
+                            <td>{{ yn_badge(medical_data.fetal_distress) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Fetal abnormalities?</td>
+                            <td>{{ yn_badge(medical_data.fetal_abnormalities) }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="alert alert-success py-2 mb-0" style="font-size:.8rem;">
                     <i class="fas fa-shield-alt me-1"></i>
-                    <strong>Privacy Protected:</strong> No personal identifiers are displayed
+                    <strong>Privacy:</strong> No personal identifiers displayed.
                 </div>
-                
-                {% if medical_data.security_warning %}
-                <div class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <strong>Security Alert:</strong> {{ medical_data.security_warning }}
-                </div>
-                {% endif %}
-                
+
                 {% else %}
                 <div class="alert alert-warning">
                     <i class="fas fa-exclamation-triangle me-2"></i>
-                    Medical data not found in cloud database
+                    Clinical data not found in cloud database.
                 </div>
                 {% endif %}
-                
-                <div class="d-grid gap-2">
-                    <a href="{{ url_for('edit_patient', uuid=patient_uuid) }}" 
-                       class="btn btn-success">
-                        <i class="fas fa-edit me-2"></i>Edit Medical Data
+
+                <div class="d-grid gap-2 mt-3">
+                    <button type="button" class="btn btn-referral" data-bs-toggle="modal" data-bs-target="#referralModal">
+                        <i class="fas fa-share-square me-2"></i>Refer Patient
+                    </button>
+                    <a href="{{ url_for('edit_patient', uuid=patient_uuid) }}" class="btn btn-success">
+                        <i class="fas fa-edit me-2"></i>Edit Clinical Data
                     </a>
-                    <a href="{{ url_for('dashboard') }}" 
-                       class="btn btn-outline-secondary">
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
                     </a>
                 </div>
             </div>
         </div>
+
         
         <!-- Medical Metrics Summary -->
         <div class="card">
@@ -298,11 +363,11 @@
                 
                 <div class="text-center mt-3">
                     <div class="d-inline-block p-3 border rounded bg-light">
-                        <i class="fas fa-key fa-2x text-primary mb-2"></i>
-                        <h6>Anonymous Linkage</h6>
+                        <i class="fas fa-id-card fa-2x text-primary mb-2"></i>
+                        <h6>Patient Medical Code</h6>
                         <p class="mb-0 small">
-                            Linked by UUID: <code>{{ patient_uuid[:16] }}...</code><br>
-                            No personal data crosses between systems
+                            <code style="font-size:1rem;font-weight:700;letter-spacing:1px;">{{ medical_code }}</code><br>
+                            <span class="text-muted">Clinic identifier — no personal data visible</span>
                         </p>
                     </div>
                 </div>
@@ -336,6 +401,118 @@
         </div>
     </div>
 </div>
+
+<!-- ══ Referral Modal ══════════════════════════════════════════════════ -->
+<div class="modal fade" id="referralModal" tabindex="-1" aria-labelledby="referralModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius:16px;overflow:hidden;">
+
+            <!-- Modal header -->
+            <div class="modal-header" style="background:linear-gradient(135deg,#8e44ad,#3498db);color:white;">
+                <h5 class="modal-title" id="referralModalLabel">
+                    <i class="fas fa-share-square me-2"></i>Refer Patient to Specialist
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body p-4">
+
+                <!-- Privacy note -->
+                <div class="alert alert-info py-2 mb-4" style="font-size:.82rem;">
+                    <i class="fas fa-user-secret me-1"></i>
+                    <strong>Privacy:</strong> Only anonymous medical data (no name, phone, or email) will be shared.
+                </div>
+
+                <form method="POST" action="{{ url_for('send_referral') }}" id="referralForm">
+                    <input type="hidden" name="patient_uuid" value="{{ patient_uuid }}">
+
+                    <!-- Recipient with live doctor search -->
+                    <div class="mb-3">
+                        <label class="form-label fw-600" for="doctorSearch">
+                            <i class="fas fa-user-md me-1 text-muted"></i>Refer To
+                        </label>
+                        {% if all_users %}
+                        <div style="position:relative;">
+                            <input type="text" id="doctorSearch" class="form-control mb-2"
+                                   placeholder="Search by name or role…" autocomplete="off">
+                        </div>
+                        <div id="doctorList" style="max-height:200px;overflow-y:auto;border:1px solid #dee2e6;border-radius:8px;">
+                            {% for u in all_users %}
+                            <label class="d-flex align-items-center gap-3 px-3 py-2 doctor-option"
+                                   style="cursor:pointer;border-bottom:1px solid #f0f0f0;"
+                                   data-name="{{ u.name|lower }}" data-role="{{ u.role|lower }}">
+                                <input type="radio" name="recipient_id" value="{{ u.id }}" required
+                                       style="flex-shrink:0;">
+                                <div>
+                                    <div class="fw-600" style="font-size:.9rem;">{{ u.name }}</div>
+                                    <small class="text-muted">{{ u.role }}</small>
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <div id="noDoctorResult" class="text-center py-2 text-muted d-none" style="font-size:.85rem;">
+                            <i class="fas fa-search me-1"></i>No providers match your search.
+                        </div>
+                        {% else %}
+                        <div class="alert alert-warning py-2 mb-0" style="font-size:.82rem;">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            No other users registered yet. Ask colleagues to create accounts.
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Patient summary preview -->
+                    <div class="mb-3 p-3 rounded" style="background:#f8f9fa;font-size:.82rem;">
+                        <div class="fw-600 mb-2"><i class="fas fa-clipboard-list me-1"></i>Patient Summary (shared anonymously)</div>
+                        <div class="row text-center g-2">
+                            <div class="col-4">
+                                <div class="p-2 bg-white rounded border">
+                                    <div class="fw-700" style="font-size:1.1rem;color:#3498db;">{{ medical_data.age if medical_data and medical_data.age else '—' }}</div>
+                                    <small class="text-muted">Age</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 bg-white rounded border">
+                                    <div class="fw-700" style="font-size:1.1rem;color:#9b59b6;">{{ medical_data.height if medical_data and medical_data.height else '—' }}</div>
+                                    <small class="text-muted">Height cm</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 bg-white rounded border">
+                                    <div class="fw-700" style="font-size:1.1rem;color:#e74c3c;">
+                                        {% if medical_data and medical_data.risk_metrics and medical_data.risk_metrics.current_risk_score %}
+                                            {{ medical_data.risk_metrics.current_risk_score }}%
+                                        {% else %}—{% endif %}
+                                    </div>
+                                    <small class="text-muted">Risk Score</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note -->
+                    <div class="mb-3">
+                        <label class="form-label fw-600" for="referral_note">
+                            <i class="fas fa-pen-alt me-1 text-muted"></i>Note <span class="text-muted fw-400">(optional)</span>
+                        </label>
+                        <textarea class="form-control" name="note" id="referral_note" rows="3"
+                                  placeholder="Add any clinical observations or reason for referral…"></textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-referral py-2" {% if not all_users %}disabled{% endif %}>
+                            <i class="fas fa-paper-plane me-2"></i>Send Referral
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ══ /Referral Modal ════════════════════════════════════════════════ -->
+
 {% endblock %}
 
 {% block scripts %}
@@ -483,5 +660,65 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+</script>
+
+<script>
+// ── Doctor live-search in referral modal ────────────────────────────────────
+const doctorSearch = document.getElementById('doctorSearch');
+if (doctorSearch) {
+    doctorSearch.addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+        const options = document.querySelectorAll('.doctor-option');
+        let visible = 0;
+        options.forEach(opt => {
+            const name = opt.dataset.name || '';
+            const role = opt.dataset.role || '';
+            const match = !term || name.includes(term) || role.includes(term);
+            opt.style.display = match ? '' : 'none';
+            if (match) visible++;
+        });
+        const noResult = document.getElementById('noDoctorResult');
+        if (noResult) noResult.classList.toggle('d-none', visible > 0 || !term);
+    });
+}
+
+// Highlight selected doctor row
+document.querySelectorAll('.doctor-option input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+        document.querySelectorAll('.doctor-option').forEach(opt => {
+            opt.style.background = '';
+        });
+        if (this.checked) {
+            this.closest('.doctor-option').style.background = 'rgba(0,201,160,.12)';
+        }
+    });
+});
+
+// ── Referral sent animation ──────────────────────────────────────────────────
+const referralForm = document.getElementById('referralForm');
+if (referralForm) {
+    referralForm.addEventListener('submit', function (e) {
+        // Only run animation if form is valid
+        if (!referralForm.checkValidity()) return; // let browser handle validation
+
+        e.preventDefault(); // hold the submit
+
+        // Close the Bootstrap modal first so animation shows cleanly
+        const modalEl = document.getElementById('referralModal');
+        if (modalEl) {
+            const bsModal = bootstrap.Modal.getInstance(modalEl);
+            if (bsModal) bsModal.hide();
+        }
+
+        // Play animation, then submit for real
+        if (typeof playSentAnimation === 'function') {
+            playSentAnimation(function () {
+                referralForm.submit();
+            });
+        } else {
+            referralForm.submit();
+        }
+    });
+}
 </script>
 {% endblock %}

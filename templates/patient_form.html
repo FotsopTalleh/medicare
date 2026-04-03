@@ -1,279 +1,379 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {% if patient %}Edit Patient{% else %}Add New Patient{% endif %}
+    {% if patient_uuid %}Edit Clinical Data{% else %}Register Patient{% endif %}
 {% endblock %}
 
 {% block page_title %}
-    {% if patient %}
-        <i class="fas fa-user-edit me-2"></i>Edit Patient: {{ patient.full_name }}
+    {% if patient_uuid %}
+        <i class="fas fa-user-edit me-2"></i>Edit Clinical Data
     {% else %}
-        <i class="fas fa-user-plus me-2"></i>Add New Patient
+        <i class="fas fa-user-plus me-2"></i>Register New Patient
     {% endif %}
+{% endblock %}
+
+{% block head_extra %}
+<style>
+.code-preview {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem; font-weight: 700; letter-spacing: 2px;
+    color: #00c9a0; background: #0d1117;
+    border: 2px solid #00c9a0; border-radius: 10px;
+    padding: 12px 20px; text-align: center; min-height: 56px;
+    transition: all .3s;
+}
+.code-valid   { border-color: #00c9a0; color: #00c9a0; }
+.code-invalid { border-color: #e74c3c; color: #e74c3c; }
+.code-empty   { border-color: #444;    color: #555; }
+
+/* Yes/No radio groups */
+.yn-group { display: flex; gap: 8px; }
+.yn-group label {
+    flex: 1; text-align: center; padding: 8px 12px;
+    border: 1.5px solid #dee2e6; border-radius: 8px;
+    cursor: pointer; font-weight: 500; font-size: .85rem;
+    transition: all .2s; user-select: none;
+}
+.yn-group input[type=radio] { display: none; }
+.yn-group input[type=radio]:checked + label.yes-label { background:#d4edda; border-color:#28a745; color:#155724; }
+.yn-group input[type=radio]:checked + label.no-label  { background:#f8d7da; border-color:#dc3545; color:#721c24; }
+.yn-group label:hover { background: #f8f9fa; }
+
+/* Presentation checkboxes */
+.pres-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.pres-group input[type=checkbox] { display: none; }
+.pres-group label {
+    padding: 7px 16px; border: 1.5px solid #dee2e6; border-radius: 20px;
+    cursor: pointer; font-size: .85rem; font-weight: 500;
+    transition: all .2s; user-select: none;
+}
+.pres-group input[type=checkbox]:checked + label {
+    background: rgba(52,152,219,.12); border-color: #3498db; color: #2980b9;
+}
+.pres-group label:hover { background: #f0f4f8; }
+
+.section-title {
+    font-size: .78rem; font-weight: 600; letter-spacing: .8px;
+    text-transform: uppercase; color: #6c757d; margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-10">
-        <div class="card">
-            <div class="card-header" style="background-color: rgb(0, 255, 204);">
-                <h5 class="mb-0">
-                    <i class="fas fa-user-shield me-2"></i>
-                    Patient Registration Form
-                    <small class="d-block" style="font-size: 0.8rem;">Split Data Storage System</small>
-                </h5>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-info mb-4">
-                    <i class="fas fa-info-circle me-2"></i>
-                    <strong>Data Privacy Notice:</strong> This system uses split-database architecture. 
-                    Personal information is stored locally (SQLite), while medical data is anonymized and stored separately (Firebase). 
-                    The two datasets are linked only by a secure UUID.
-                </div>
-                
-                <form method="POST" action="{{ url_for('add_patient') if not patient else url_for('edit_patient', uuid=patient.uuid) }}" 
-                      id="patientForm" novalidate>
-                    
-                    <!-- Personal Information Section - STORED IN SQLITE -->
-                    <div class="card mb-4 border-success">
-                        <div class="card-header bg-success text-white">
-                            <h6 class="mb-0">
-                                <i class="fas fa-laptop-house me-2"></i>
-                                Personal Information
-                                <small class="d-block" style="font-size: 0.8rem;">Stored Locally in SQLite for Privacy</small>
-                            </h6>
-                        </div>
-                        <div class="alert alert-warning mb-4">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            <strong>Note:</strong> Personal information (name, phone, email) is stored locally and <strong>NOT displayed</strong> on the website. 
-                            Only medical data (age, height) from Firebase is displayed for anonymous analysis.
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="full_name" class="form-label">
-                                        <i class="fas fa-user me-1"></i>Full Name *
-                                    </label>
-                                    <input type="text" class="form-control" id="full_name" name="full_name" 
-                                           value="{{ patient.full_name if patient else '' }}" required
-                                           placeholder="Patient's full name">
-                                    <div class="invalid-feedback">
-                                        Please provide the patient's full name.
-                                    </div>
-                                    <div class="form-text">
-                                        <i class="fas fa-database text-success me-1"></i>
-                                        Stored in local SQLite database
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">
-                                        <i class="fas fa-phone me-1"></i>Phone Number *
-                                    </label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" 
-                                           value="{{ patient.phone if patient else '' }}" required
-                                           placeholder="e.g., 555-123-4567">
-                                    <div class="invalid-feedback">
-                                        Please provide a valid phone number.
-                                    </div>
-                                    <div class="form-text">
-                                        <i class="fas fa-database text-success me-1"></i>
-                                        Stored in local SQLite database
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="email" class="form-label">
-                                    <i class="fas fa-envelope me-1"></i>Email Address *
-                                </label>
-                                <input type="email" class="form-control" id="email" name="email" 
-                                       value="{{ patient.email if patient else '' }}" required
-                                       placeholder="patient@example.com">
-                                <div class="invalid-feedback">
-                                    Please provide a valid email address.
-                                </div>
-                                <div class="form-text">
-                                    <i class="fas fa-database text-success me-1"></i>
-                                    Stored in local SQLite database
-                                </div>
-                            </div>
-                            
-                            {% if patient %}
-                            <div class="alert alert-secondary">
-                                <i class="fas fa-key me-2"></i>
-                                <strong>Patient UUID:</strong> {{ patient.uuid }}
-                                <small class="d-block text-muted">This unique identifier links personal and medical data across databases</small>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <!-- Medical Information Section - STORED IN FIREBASE -->
-                    <div class="card mb-4 border-info">
-                        <div class="card-header bg-info text-white">
-                            <h6 class="mb-0">
-                                <i class="fas fa-cloud me-2"></i>
-                                Medical Information
-                                <small class="d-block" style="font-size: 0.8rem;">Stored Anonymously in Firebase Cloud</small>
-                            </h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="age" class="form-label">
-                                        <i class="fas fa-birthday-cake me-1"></i>Age
-                                    </label>
-                                    <input type="number" class="form-control" id="age" name="age" 
-                                           min="18" max="60" 
-                                           value="{{ medical_data.age if medical_data else '' }}"
-                                           placeholder="Age in years">
-                                    <div class="form-text">
-                                        <i class="fas fa-cloud text-info me-1"></i>
-                                        Stored anonymously in Firebase
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6 mb-3">
-                                    <label for="height" class="form-label">
-                                        <i class="fas fa-ruler-vertical me-1"></i>Height (cm)
-                                    </label>
-                                    <input type="number" class="form-control" id="height" name="height" 
-                                           min="140" max="200" step="0.1"
-                                           value="{{ medical_data.height if medical_data else '' }}"
-                                           placeholder="Height in centimeters">
-                                    <div class="form-text">
-                                        <i class="fas fa-cloud text-info me-1"></i>
-                                        Stored anonymously in Firebase
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="alert alert-warning">
-                                <i class="fas fa-cloud me-2"></i>
-                                <strong>Storage Location:</strong> This medical data will be stored anonymously in Firebase Firestore.
-                                No personal identifiers are included in the cloud database.
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Data Flow Diagram -->
-                    <div class="card mb-4">
-                        <div class="card-header bg-light">
-                            <h6 class="mb-0"><i class="fas fa-project-diagram me-2"></i>Data Flow Architecture</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-md-4">
-                                    <div class="p-3 border rounded">
-                                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
-                                             style="width: 50px; height: 50px;">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                        <h6>Personal Data</h6>
-                                        <small class="text-success">
-                                            <i class="fas fa-laptop-house me-1"></i>
-                                            SQLite (Local)
-                                        </small>
-                                        <ul class="list-unstyled small text-start mt-2">
-                                            <li><i class="fas fa-check text-success me-1"></i>Full Name</li>
-                                            <li><i class="fas fa-check text-success me-1"></i>Phone</li>
-                                            <li><i class="fas fa-check text-success me-1"></i>Email</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3">
-                                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
-                                             style="width: 50px; height: 50px;">
-                                            <i class="fas fa-key"></i>
-                                        </div>
-                                        <h6>UUID Link</h6>
-                                        <small>Secure Anonymous Identifier</small>
-                                        <div class="mt-2">
-                                            <code style="font-size: 0.7rem;">{{ patient.uuid[:16] if patient else 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' }}...</code>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 border rounded">
-                                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" 
-                                             style="width: 50px; height: 50px;">
-                                            <i class="fas fa-heartbeat"></i>
-                                        </div>
-                                        <h6>Medical Data</h6>
-                                        <small class="text-info">
-                                            <i class="fas fa-cloud me-1"></i>
-                                            Firebase (Cloud)
-                                        </small>
-                                        <ul class="list-unstyled small text-start mt-2">
-                                            <li><i class="fas fa-check text-info me-1"></i>Age</li>
-                                            <li><i class="fas fa-check text-info me-1"></i>Height</li>
-                                            <li><i class="fas fa-check text-info me-1"></i>Medical Metrics</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Form Actions -->
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary me-md-2">
-                            <i class="fas fa-times me-2"></i>Cancel
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            {% if patient %}
-                                <i class="fas fa-save me-2"></i>Update Patient
-                            {% else %}
-                                <i class="fas fa-user-plus me-2"></i>Add Patient
-                            {% endif %}
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="col-md-10">
+<div class="card">
+    <div class="card-header" style="background:linear-gradient(135deg,#00c9a0,#3498db);color:white;">
+        <h5 class="mb-0">
+            <i class="fas fa-user-shield me-2"></i>Patient Registration
+            <small class="d-block" style="font-size:.8rem;opacity:.85;">Clinical data — anonymous storage in Firebase</small>
+        </h5>
     </div>
+    <div class="card-body p-4">
+
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-shield-alt me-2"></i>
+            <strong>Privacy:</strong> Personal data stays local (SQLite). All clinical parameters are stored
+            anonymously in Firebase, linked only by internal UUID — never by name or code.
+        </div>
+
+        <form method="POST"
+              action="{{ url_for('add_patient') if not patient_uuid else url_for('edit_patient', uuid=patient_uuid) }}"
+              id="patientForm" novalidate>
+
+            <!-- ══ MEDICAL CODE ══════════════════════════════════════════════ -->
+            <div class="card mb-4 border-warning">
+                <div class="card-header" style="background:#fff8e1;">
+                    <h6 class="mb-0"><i class="fas fa-id-card me-2 text-warning"></i>Patient Medical Code <span class="badge bg-warning text-dark ms-1" style="font-size:.7rem;">Key Field</span></h6>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <label for="medical_code" class="form-label fw-600">
+                                Medical Code <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control form-control-lg text-uppercase"
+                                   id="medical_code" name="medical_code" maxlength="11"
+                                   value="{{ medical_code if medical_code else '' }}"
+                                   placeholder="123456ABC-D"
+                                   {% if patient_uuid %}readonly{% else %}required{% endif %}
+                                   autocomplete="off">
+                            <div class="invalid-feedback">Must be: 6 digits + 3 uppercase letters + hyphen + 1 uppercase letter</div>
+                            <div class="form-text mt-1">
+                                Format: <code>NNNNNNLLL-L</code> &nbsp;e.g. <code>123456ABC-D</code>
+                                {% if patient_uuid %}<br><i class="fas fa-lock text-warning me-1"></i>Locked after registration.{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-5 mt-3 mt-md-0">
+                            <div class="code-preview code-empty" id="codePreview">&nbsp;</div>
+                            <small class="text-muted d-block text-center mt-1" id="codeStatus">Enter code above</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ PERSONAL INFORMATION ══════════════════════════════════════ -->
+            <div class="card mb-4 border-success">
+                <div class="card-header bg-success text-white">
+                    <h6 class="mb-0"><i class="fas fa-lock me-2"></i>Personal Information <small class="opacity-75">(Local SQLite — never shown publicly)</small></h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="full_name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="full_name" name="full_name"
+                                   value="{{ full_name if full_name else '' }}" required
+                                   placeholder="Patient's full name">
+                            <div class="invalid-feedback">Name is required.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                   value="{{ phone if phone else '' }}" required
+                                   placeholder="+237 6XX XXX XXX">
+                            <div class="invalid-feedback">Valid phone required (min 10 digits).</div>
+                        </div>
+                    </div>
+                    <div class="mb-0">
+                        <label for="email" class="form-label">Email <span class="text-muted fw-400">(optional)</span></label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               value="{{ email if email else '' }}"
+                               placeholder="patient@example.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ CLINICAL PARAMETERS ═══════════════════════════════════════ -->
+            <div class="card mb-4 border-info">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0"><i class="fas fa-stethoscope me-2"></i>Clinical Parameters <small class="opacity-75">(Anonymous — stored in Firebase)</small></h6>
+                </div>
+                <div class="card-body">
+
+                    <!-- Row 1: Age, Height, Gestational weeks, Fetus count -->
+                    <div class="section-title"><i class="fas fa-ruler me-1"></i>Biometrics & Pregnancy Status</div>
+                    <div class="row mb-3">
+                        <div class="col-6 col-md-3 mb-3">
+                            <label for="age" class="form-label">Age (years)</label>
+                            <input type="number" class="form-control" id="age" name="age"
+                                   min="10" max="70"
+                                   value="{{ medical_data.age if medical_data and medical_data.age else '' }}"
+                                   placeholder="yrs">
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <label for="height" class="form-label">Height (cm)</label>
+                            <input type="number" class="form-control" id="height" name="height"
+                                   min="100" max="220" step="0.1"
+                                   value="{{ medical_data.height if medical_data and medical_data.height else '' }}"
+                                   placeholder="cm">
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <label for="gestational_weeks" class="form-label">Gestational Age (weeks)</label>
+                            <input type="number" class="form-control" id="gestational_weeks" name="gestational_weeks"
+                                   min="1" max="45"
+                                   value="{{ medical_data.gestational_weeks if medical_data and medical_data.gestational_weeks else '' }}"
+                                   placeholder="weeks">
+                        </div>
+                        <div class="col-6 col-md-3 mb-3">
+                            <label for="fetus_count" class="form-label">Number of Fetuses</label>
+                            <input type="number" class="form-control" id="fetus_count" name="fetus_count"
+                                   min="1" max="8"
+                                   value="{{ medical_data.fetus_count if medical_data and medical_data.fetus_count else '1' }}"
+                                   placeholder="1">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Yes/No obstetric history -->
+                    <div class="section-title mt-2"><i class="fas fa-history me-1"></i>Obstetric History</div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Has she given birth before?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="given_birth_before" id="gbf_yes" value="yes"
+                                       {% if medical_data and medical_data.given_birth_before == true %}checked{% endif %}>
+                                <label for="gbf_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="given_birth_before" id="gbf_no" value="no"
+                                       {% if medical_data and medical_data.given_birth_before == false %}checked{% endif %}>
+                                <label for="gbf_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Previous caesarean section?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="previous_cesarean" id="pc_yes" value="yes"
+                                       {% if medical_data and medical_data.previous_cesarean == true %}checked{% endif %}>
+                                <label for="pc_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="previous_cesarean" id="pc_no" value="no"
+                                       {% if medical_data and medical_data.previous_cesarean == false %}checked{% endif %}>
+                                <label for="pc_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Previous uterine surgery?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="previous_uterine_surgery" id="pus_yes" value="yes"
+                                       {% if medical_data and medical_data.previous_uterine_surgery == true %}checked{% endif %}>
+                                <label for="pus_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="previous_uterine_surgery" id="pus_no" value="no"
+                                       {% if medical_data and medical_data.previous_uterine_surgery == false %}checked{% endif %}>
+                                <label for="pus_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Current pregnancy status -->
+                    <div class="section-title mt-2"><i class="fas fa-baby me-1"></i>Current Pregnancy</div>
+                    <div class="row mb-3">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label d-block">Fetal Presentation</label>
+                            <div class="pres-group">
+                                {% set cur_pres = medical_data.fetal_presentation if medical_data and medical_data.fetal_presentation else [] %}
+                                <input type="checkbox" name="fetal_presentation" id="fp_ceph" value="cephalic"
+                                       {% if 'cephalic' in cur_pres %}checked{% endif %}>
+                                <label for="fp_ceph">Cephalic</label>
+                                <input type="checkbox" name="fetal_presentation" id="fp_breech" value="breech"
+                                       {% if 'breech' in cur_pres %}checked{% endif %}>
+                                <label for="fp_breech">Breech</label>
+                                <input type="checkbox" name="fetal_presentation" id="fp_transverse" value="transverse"
+                                       {% if 'transverse' in cur_pres %}checked{% endif %}>
+                                <label for="fp_transverse">Transverse</label>
+                            </div>
+                            <div class="form-text">Multiple selections allowed for multiple fetuses.</div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Maternal medical condition?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="maternal_medical_condition" id="mmc_yes" value="yes"
+                                       {% if medical_data and medical_data.maternal_medical_condition == true %}checked{% endif %}>
+                                <label for="mmc_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="maternal_medical_condition" id="mmc_no" value="no"
+                                       {% if medical_data and medical_data.maternal_medical_condition == false %}checked{% endif %}>
+                                <label for="mmc_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Placenta praevia?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="placenta_previa" id="pp_yes" value="yes"
+                                       {% if medical_data and medical_data.placenta_previa == true %}checked{% endif %}>
+                                <label for="pp_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="placenta_previa" id="pp_no" value="no"
+                                       {% if medical_data and medical_data.placenta_previa == false %}checked{% endif %}>
+                                <label for="pp_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Fetal distress?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="fetal_distress" id="fd_yes" value="yes"
+                                       {% if medical_data and medical_data.fetal_distress == true %}checked{% endif %}>
+                                <label for="fd_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="fetal_distress" id="fd_no" value="no"
+                                       {% if medical_data and medical_data.fetal_distress == false %}checked{% endif %}>
+                                <label for="fd_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label d-block">Fetal abnormalities?</label>
+                            <div class="yn-group">
+                                <input type="radio" name="fetal_abnormalities" id="fa_yes" value="yes"
+                                       {% if medical_data and medical_data.fetal_abnormalities == true %}checked{% endif %}>
+                                <label for="fa_yes" class="yes-label"><i class="fas fa-check me-1"></i>Yes</label>
+                                <input type="radio" name="fetal_abnormalities" id="fa_no" value="no"
+                                       {% if medical_data and medical_data.fetal_abnormalities == false %}checked{% endif %}>
+                                <label for="fa_no" class="no-label"><i class="fas fa-times me-1"></i>No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary me-md-2">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </a>
+                <button type="submit" class="btn btn-primary px-4">
+                    {% if patient_uuid %}
+                        <i class="fas fa-save me-2"></i>Save Changes
+                    {% else %}
+                        <i class="fas fa-user-plus me-2"></i>Register Patient
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-// Form validation
+// ── Medical code live preview ─────────────────────────────────────────────────
+const CODE_REGEX = /^\d{6}[A-Z]{3}-[A-Z]$/;
+const codeInput   = document.getElementById('medical_code');
+const codePreview = document.getElementById('codePreview');
+const codeStatus  = document.getElementById('codeStatus');
+
+function updateCodePreview() {
+    const val = codeInput.value.toUpperCase();
+    codeInput.value = val;
+    codePreview.textContent = val || '\u00a0';
+    if (!val) {
+        codePreview.className = 'code-preview code-empty';
+        codeStatus.textContent = 'Enter code above';
+        codeInput.setCustomValidity('Please enter the medical code.');
+    } else if (CODE_REGEX.test(val)) {
+        codePreview.className = 'code-preview code-valid';
+        codeStatus.innerHTML  = '<i class="fas fa-check-circle text-success me-1"></i>Valid format';
+        codeInput.setCustomValidity('');
+    } else {
+        codePreview.className = 'code-preview code-invalid';
+        codeStatus.innerHTML  = '<i class="fas fa-times-circle text-danger me-1"></i>6 digits + 3 letters + hyphen + 1 letter';
+        codeInput.setCustomValidity('Invalid medical code format.');
+    }
+}
+
+if (codeInput) {
+    if (!codeInput.readOnly) {
+        codeInput.addEventListener('input', updateCodePreview);
+        updateCodePreview();
+    } else {
+        codePreview.textContent = codeInput.value || '\u00a0';
+        codePreview.className   = CODE_REGEX.test(codeInput.value) ? 'code-preview code-valid' : 'code-preview code-empty';
+        codeStatus.textContent  = 'Code locked after registration';
+    }
+}
+
+// ── Form validation ─────────────────────────────────────────────────────────
 (function () {
-    'use strict'
-    
+    'use strict';
     const form = document.getElementById('patientForm');
-    
-    form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        
+    form.addEventListener('submit', function (e) {
+        if (!form.checkValidity()) { e.preventDefault(); e.stopPropagation(); }
         form.classList.add('was-validated');
     }, false);
-    
-    // Email validation
+
     const emailInput = document.getElementById('email');
-    emailInput.addEventListener('input', function() {
-        if (emailInput.validity.typeMismatch) {
-            emailInput.setCustomValidity('Please enter a valid email address');
-        } else {
-            emailInput.setCustomValidity('');
-        }
+    emailInput.addEventListener('input', function () {
+        emailInput.setCustomValidity(
+            emailInput.value && emailInput.validity.typeMismatch ? 'Please enter a valid email.' : ''
+        );
     });
-    
-    // Phone validation (simple)
+
     const phoneInput = document.getElementById('phone');
-    phoneInput.addEventListener('input', function() {
-        const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
-        if (!phoneRegex.test(phoneInput.value)) {
-            phoneInput.setCustomValidity('Please enter a valid phone number (minimum 10 digits)');
-        } else {
-            phoneInput.setCustomValidity('');
-        }
-    });
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function () {
+            phoneInput.setCustomValidity(
+                /^[\d\s\-\+\(\)]{10,}$/.test(phoneInput.value) ? '' : 'Minimum 10 digits.'
+            );
+        });
+    }
 })();
 </script>
 {% endblock %}

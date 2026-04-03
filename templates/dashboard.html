@@ -1,93 +1,88 @@
 {% extends "base.html" %}
 
 {% block title %}Medical Dashboard{% endblock %}
-{% block page_title %}Medical Data Dashboard{% endblock %}
+{% block page_title %}<i class="fas fa-heartbeat me-2"></i>Patient Dashboard{% endblock %}
+
+{% block head_extra %}
+<style>
+.search-wrap {
+    position: relative;
+}
+.search-wrap .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: #888; pointer-events: none;
+}
+.search-wrap input {
+    padding-left: 40px;
+}
+.code-badge {
+    font-family: 'Courier New', monospace;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    background: linear-gradient(135deg,#0d1117,#1a2332);
+    color: #00ffcc;
+    border: 1px solid rgba(0,255,204,.35);
+    padding: 3px 10px;
+    border-radius: 6px;
+    display: inline-block;
+}
+</style>
+{% endblock %}
 
 {% block content %}
-<!-- Medical Data Overview -->
-<div class="card mb-4">
-    <div class="card-header bg-info text-white">
-        <h5 class="mb-0">
-            <i class="fas fa-cloud me-2"></i>
-            Cloud Medical Data Overview
-            <small class="d-block" style="font-size: 0.8rem;">Anonymous medical data from Firebase</small>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card bg-light">
-                    <div class="card-body text-center">
-                        <h6 class="card-title">Total Patients</h6>
-                        <h2 class="display-6 text-primary">{{ patients|length }}</h2>
-                        <small class="text-muted">Anonymous medical records</small>
-                    </div>
-                </div>
+
+<!-- Stats row -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body py-3">
+                <h2 class="display-6 text-primary mb-0">{{ patients|length }}</h2>
+                <small class="text-muted">Total Patients</small>
             </div>
-            <div class="col-md-9">
-                <div class="alert alert-info">
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3 flex-wrap">
+                <div class="alert alert-info mb-0 flex-grow-1 py-2">
                     <i class="fas fa-user-secret me-2"></i>
-                    <strong>Privacy Protection:</strong> This dashboard displays anonymous medical data only. 
-                    Personal information is stored separately and not displayed here.
+                    <strong>Privacy:</strong> Dashboard shows anonymous medical data only.
+                    Patient codes are clinic identifiers — no personal data is displayed.
                 </div>
-                <div class="alert alert-success">
-                    <i class="fas fa-shield-alt me-2"></i>
-                    <strong>Data Architecture:</strong> 
-                    Personal data → SQLite (Local) | Medical data → Firebase (Cloud) | Linked by UUID only
-                </div>
+                <a href="{{ url_for('add_patient') }}" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Add New Patient
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Quick Actions -->
-<div class="row mb-3">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header" style="background-color: rgb(0, 255, 204);">
-                <h5 class="mb-0"><i class="fas fa-medkit me-2"></i>Medical Data Management</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-8">
-                        <a href="{{ url_for('add_patient') }}" class="btn btn-lg btn-primary mb-2">
-                            <i class="fas fa-user-plus me-2"></i>Add New Medical Record
-                        </a>
-                        <small class="d-block text-muted mt-1">
-                            Medical data stored anonymously in Firebase cloud
-                        </small>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <a href="/api/medical-data" class="btn btn-outline-secondary" target="_blank">
-                            <i class="fas fa-download me-2"></i>Export Medical Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Medical Data Table -->
+<!-- Patient table card -->
 <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center justify-content-between gap-3 flex-wrap">
         <h5 class="mb-0">
-            <i class="fas fa-heartbeat me-2"></i>Anonymous Medical Records
-            <small class="text-muted">(Data from Firebase Cloud)</small>
+            <i class="fas fa-list-alt me-2"></i>Anonymous Medical Records
         </h5>
+        <!-- Search bar -->
+        <div class="search-wrap" style="min-width:260px;">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="patientSearch" class="form-control form-control-sm"
+                   placeholder="Search by code, age, risk…" autocomplete="off">
+        </div>
     </div>
-    <div class="card-body">
+    <div class="card-body p-0">
         {% if patients %}
         <div class="table-responsive">
-            <table class="table table-hover" id="medicalTable">
-                <thead>
+            <table class="table table-hover mb-0" id="medicalTable">
+                <thead class="table-dark">
                     <tr>
-                        <th>Patient ID</th>
+                        <th>Medical Code</th>
                         <th>Age</th>
                         <th>Height</th>
                         <th>Risk Score</th>
-                        <th>Data Source</th>
-                        <th>Last Updated</th>
+                        <th>Source</th>
+                        <th>Registered</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -95,41 +90,32 @@
                     {% for patient in patients %}
                     <tr>
                         <td>
-                            <code>{{ patient.uuid[:12] }}...</code>
-                            <br>
-                            <small class="text-muted">Anonymous identifier</small>
+                            <span class="code-badge">{{ patient.medical_code }}</span>
                         </td>
                         <td>
                             {% if patient.age and patient.age != 'Not specified' %}
-                                {{ patient.age }} years
+                                {{ patient.age }} yrs
                             {% else %}
-                                <span class="text-muted">Not specified</span>
+                                <span class="text-muted">—</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if patient.height and patient.height != 'Not specified' %}
                                 {{ patient.height }} cm
                             {% else %}
-                                <span class="text-muted">Not specified</span>
+                                <span class="text-muted">—</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if patient.risk_score and patient.risk_score != 'N/A' %}
-                                <span class="badge 
-                                    {% if patient.risk_score < 30 %}bg-success
-                                    {% elif patient.risk_score < 60 %}bg-warning
-                                    {% else %}bg-danger{% endif %}">
+                                <span class="badge {% if patient.risk_score < 30 %}bg-success{% elif patient.risk_score < 60 %}bg-warning text-dark{% else %}bg-danger{% endif %}">
                                     {{ patient.risk_score }}%
                                 </span>
                             {% else %}
                                 <span class="badge bg-secondary">N/A</span>
                             {% endif %}
                         </td>
-                        <td>
-                            <span class="badge bg-info">
-                                <i class="fas fa-cloud me-1"></i>Firebase
-                            </span>
-                        </td>
+                        <td><span class="badge bg-info"><i class="fas fa-cloud me-1"></i>Firebase</span></td>
                         <td>
                             {% if patient.created_at %}
                                 <small>{{ patient.created_at.strftime('%Y-%m-%d') if patient.created_at.timestamp else 'Unknown' }}</small>
@@ -138,18 +124,19 @@
                             {% endif %}
                         </td>
                         <td>
-                            <div class="btn-group btn-group-sm" role="group">
-                                <a href="{{ url_for('patient_detail', uuid=patient.uuid) }}" 
-                                   class="btn btn-outline-primary" title="View Medical Details">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('patient_detail', uuid=patient.uuid) }}"
+                                   class="btn btn-outline-primary" title="View Details">
                                     <i class="fas fa-eye"></i> View
                                 </a>
-                                <a href="{{ url_for('edit_patient', uuid=patient.uuid) }}" 
-                                   class="btn btn-outline-success" title="Edit Medical Data">
+                                <a href="{{ url_for('edit_patient', uuid=patient.uuid) }}"
+                                   class="btn btn-outline-success" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <button class="btn btn-outline-danger delete-patient" 
-                                        data-uuid="{{ patient.uuid }}" 
-                                        title="Delete Medical Record">
+                                <button class="btn btn-outline-danger delete-patient"
+                                        data-uuid="{{ patient.uuid }}"
+                                        data-code="{{ patient.medical_code }}"
+                                        title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -159,72 +146,21 @@
                 </tbody>
             </table>
         </div>
+        <!-- No-results row (hidden by default) -->
+        <div id="noResults" class="text-center py-4 text-muted d-none">
+            <i class="fas fa-search fa-2x mb-2 d-block" style="opacity:.3;"></i>
+            <small>No patients match your search.</small>
+        </div>
         {% else %}
         <div class="text-center py-5">
-            <i class="fas fa-cloud fa-3x text-muted mb-3"></i>
-            <h4>No Medical Records Found</h4>
-            <p class="text-muted">Add your first medical record to get started</p>
-            <div class="alert alert-info">
-                <i class="fas fa-info-circle me-2"></i>
-                Medical data is stored anonymously in Firebase cloud storage
-            </div>
+            <i class="fas fa-user-slash fa-3x text-muted mb-3 d-block"></i>
+            <h5>No Medical Records Yet</h5>
+            <p class="text-muted">Register your first patient to get started.</p>
             <a href="{{ url_for('add_patient') }}" class="btn btn-primary">
-                <i class="fas fa-user-plus me-2"></i>Add First Medical Record
+                <i class="fas fa-user-plus me-2"></i>Add First Patient
             </a>
         </div>
         {% endif %}
-    </div>
-</div>
-
-<!-- System Architecture Info -->
-<div class="card mt-4">
-    <div class="card-header bg-light">
-        <h6 class="mb-0"><i class="fas fa-archway me-2"></i>System Architecture</h6>
-    </div>
-    <div class="card-body">
-        <div class="row text-center">
-            <div class="col-md-4">
-                <div class="p-3 border rounded bg-light">
-                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                         style="width: 60px; height: 60px;">
-                        <i class="fas fa-laptop-house"></i>
-                    </div>
-                    <h6>Local Storage (SQLite)</h6>
-                    <ul class="list-unstyled small text-start mt-2">
-                        <li><i class="fas fa-user text-success me-1"></i>Personal data</li>
-                        <li><i class="fas fa-phone text-success me-1"></i>Contact info</li>
-                        <li><i class="fas fa-lock text-success me-1"></i>Not displayed</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-3">
-                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                         style="width: 60px; height: 60px;">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h6>UUID Linkage</h6>
-                    <small>Secure anonymous identifier</small>
-                    <div class="mt-2">
-                        <code style="font-size: 0.7rem;">xxxxxxxx-xxxx-xxxx-...</code>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-3 border rounded bg-light">
-                    <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                         style="width: 60px; height: 60px;">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h6>Cloud Storage (Firebase)</h6>
-                    <ul class="list-unstyled small text-start mt-2">
-                        <li><i class="fas fa-heartbeat text-info me-1"></i>Medical data</li>
-                        <li><i class="fas fa-chart-line text-info me-1"></i>Risk analysis</li>
-                        <li><i class="fas fa-eye text-info me-1"></i>Displayed here</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -237,20 +173,20 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete this medical record?</p>
+                <p>Delete all records for patient <strong id="deleteCodeLabel"></strong>?</p>
                 <div class="alert alert-warning">
                     <i class="fas fa-exclamation-circle me-1"></i>
-                    <strong>Note:</strong> This will delete:
+                    This will permanently remove:
                     <ul class="mb-0 mt-2">
                         <li>Anonymous medical data from Firebase</li>
-                        <li>Personal data from SQLite (not displayed)</li>
+                        <li>Personal data from local SQLite</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-danger" id="confirmDelete">
-                    <i class="fas fa-trash me-1"></i>Delete Medical Record
+                    <i class="fas fa-trash me-1"></i>Delete Record
                 </button>
             </div>
         </div>
@@ -260,61 +196,43 @@
 
 {% block scripts %}
 <script>
-// Search functionality for medical data
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('keyup', function() {
-            const searchTerm = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#medicalTable tbody tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(searchTerm) ? '' : 'none';
-            });
+// ── Live search ──────────────────────────────────────────────────────────────
+const searchInput = document.getElementById('patientSearch');
+if (searchInput) {
+    searchInput.addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+        const rows = document.querySelectorAll('#medicalTable tbody tr');
+        let visible = 0;
+        rows.forEach(row => {
+            const match = !term || row.textContent.toLowerCase().includes(term);
+            row.style.display = match ? '' : 'none';
+            if (match) visible++;
         });
-    }
-});
+        const noResults = document.getElementById('noResults');
+        if (noResults) noResults.classList.toggle('d-none', visible > 0 || !term);
+    });
+    searchInput.focus();
+}
 
-// Delete medical record functionality
+// ── Delete ───────────────────────────────────────────────────────────────────
 let recordToDelete = null;
-
-document.querySelectorAll('.delete-patient').forEach(button => {
-    button.addEventListener('click', function() {
+document.querySelectorAll('.delete-patient').forEach(btn => {
+    btn.addEventListener('click', function () {
         recordToDelete = this.dataset.uuid;
-        const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-        deleteModal.show();
+        document.getElementById('deleteCodeLabel').textContent = this.dataset.code;
+        new bootstrap.Modal(document.getElementById('deleteModal')).show();
     });
 });
 
-document.getElementById('confirmDelete').addEventListener('click', function() {
+document.getElementById('confirmDelete')?.addEventListener('click', function () {
     if (!recordToDelete) return;
-    
-    fetch(`/delete/${recordToDelete}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.reload();
-        } else {
-            alert('Error deleting medical record: ' + data.error);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error deleting medical record');
-    });
-});
-
-// Export medical data
-document.querySelector('a[href="/api/medical-data"]')?.addEventListener('click', function(e) {
-    if (!confirm('Download anonymous medical data as JSON?')) {
-        e.preventDefault();
-    }
+    fetch(`/delete/${recordToDelete}`, { method: 'POST' })
+        .then(r => r.json())
+        .then(data => {
+            if (data.success) window.location.reload();
+            else alert('Error: ' + data.error);
+        })
+        .catch(() => alert('Network error. Please try again.'));
 });
 </script>
 {% endblock %}
