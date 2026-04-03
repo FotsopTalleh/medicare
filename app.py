@@ -61,12 +61,12 @@ def validate_medical_code(code: str) -> bool:
 
 # ─── SQLite Initialisation ───────────────────────────────────────────────────
 def init_sqlite():
-    """Create all tables if they don't exist."""
-    conn = sqlite3.connect('db_local.sqlite')
+    """Create / migrate all SQLite tables."""
+    conn = sqlite3.connect(SQLITE_PATH if 'SQLITE_PATH' in dir() else 'db_local.sqlite')
     cursor = conn.cursor()
 
-    # Patients table — personal data only; medical_code is the human-visible key
-    cursor.execute('''
+    # Patients table (personal + medical code)
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS patients (
             id           INTEGER PRIMARY KEY AUTOINCREMENT,
             uuid         TEXT UNIQUE NOT NULL,
@@ -76,10 +76,22 @@ def init_sqlite():
             email        TEXT,
             created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
-    ''')
+    """)
 
-    # Application users table
-    cursor.execute('''
+    # ── Migration: add medical_code column if upgrading from old schema
+    cursor.execute("PRAGMA table_info(patients)")
+    existing_cols = [row[1] for row in cursor.fetchall()]
+    if 'medical_code' not in existing_cols:
+        try:
+            cursor.execute("ALTER TABLE patients ADD COLUMN medical_code TEXT")
+            logger.info("Migration: added medical_code column to patients table")
+        except Exception as e:
+            logger.warning(f"Migration note: {e}")
+    if 'email' in existing_cols:
+        pass  # email already exists
+
+    # Users table
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id            INTEGER PRIMARY KEY AUTOINCREMENT,
             name          TEXT NOT NULL,
@@ -88,10 +100,10 @@ def init_sqlite():
             role          TEXT NOT NULL DEFAULT 'Nurse',
             created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
-    ''')
+    """)
 
     # Referral messages table
-    cursor.execute('''
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS referral_messages (
             id           INTEGER PRIMARY KEY AUTOINCREMENT,
             sender_id    INTEGER NOT NULL,
@@ -103,13 +115,12 @@ def init_sqlite():
             FOREIGN KEY (sender_id)    REFERENCES users(id),
             FOREIGN KEY (recipient_id) REFERENCES users(id)
         )
-    ''')
+    """)
 
     conn.commit()
     conn.close()
-    logger.info("SQLite database initialised (patients + users + referral_messages)")
+    logger.info("SQLite database initialised / migrated OK")
 
-init_sqlite()
 
 # ─── Firebase ────────────────────────────────────────────────────────────────
 try:
@@ -188,8 +199,13 @@ def login_required(f):
 @app.context_processor
 def inject_user():
     """Inject current user and unread count into every template."""
-    user = get_current_user()
-    unread = get_unread_count(user['id'] if user else None)
+    try:
+        user = get_current_user()
+        unread = get_unread_count(user['id'] if user else None)
+    except Exception as e:
+        import logging as _l
+        _l.getLogger(__name__).error(f'Context processor error: {e}')
+        user, unread = None, 0
     return dict(current_user=user, unread_count=unread)
 
 # ─── Auth Routes ─────────────────────────────────────────────────────────────
@@ -931,6 +947,21 @@ def verify_separation():
 def api_unread_count():
     count = get_unread_count(session.get('user_id'))
     return jsonify({'unread_count': count})
+
+
+@app.route('/health')
+def health():
+    """Health check endpoint — returns JSON status for debugging."""
+    status = {'status': 'ok', 'firebase': db_firestore is not None, 'sqlite': False}
+    try:
+        conn = get_sqlite_connection()
+        conn.execute("SELECT 1")
+        conn.close()
+        status['sqlite'] = True
+    except Exception as e:
+        status['sqlite_error'] = str(e)
+    from flask import jsonify
+    return jsonify(status)
 
 
 # ─── Run ─────────────────────────────────────────────────────────────────────
