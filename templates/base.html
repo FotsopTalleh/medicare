@@ -1,121 +1,168 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediCare Dashboard - {% block title %}Patient Management{% endblock %}</title>
-    
-    <!-- Bootstrap 5 CSS -->
+    <title>MediCare Dashboard — {% block title %}Patient Management{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+
     {% block head_extra %}{% endblock %}
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
-                <div class="position-sticky">
-                    <div class="sidebar-logo">
-                        <i class="fas fa-heartbeat me-2"></i>
-                        <span class="fw-bold">MediCare</span>
-                    </div>
-                    
-                    <ul class="nav flex-column mt-4">
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" 
-                               href="{{ url_for('dashboard') }}">
-                                <i class="fas fa-users me-2"></i>
-                                Patients Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if 'patient_detail' in request.endpoint %}active{% endif %}" 
-                               href="#">
-                                <i class="fas fa-user-injured me-2"></i>
-                                Patient Details
-                                <small class="text-muted d-block">(View individual patient)</small>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if 'add_patient' in request.endpoint or 'edit_patient' in request.endpoint %}active{% endif %}" 
-                               href="{{ url_for('add_patient') }}">
-                                <i class="fas fa-user-plus me-2"></i>
-                                Add Patient
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <div class="sidebar-footer mt-5">
-                        <div class="alert alert-info small">
-                            <i class="fas fa-info-circle me-1"></i>
-                            <strong>Security Notice:</strong> Patient data is anonymized across separate databases for privacy protection.
-                        </div>
+
+<!-- ══ Notification Toast Container ══════════════════════════════════════ -->
+<div id="toast-container"></div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- ── Sidebar ──────────────────────────────────────────────────── -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div>
+
+                <!-- Logo -->
+                <div class="sidebar-logo">
+                    <i class="fas fa-heartbeat me-2"></i>
+                    <span>SaveTheMommy</span>
+                </div>
+
+                <!-- Current user panel -->
+                {% if current_user %}
+                <div class="sidebar-user">
+                    <div class="user-avatar">{{ current_user.name[0]|upper }}</div>
+                    <div class="user-info">
+                        <div class="user-name">{{ current_user.name }}</div>
+                        <div class="user-role">{{ current_user.role }}</div>
                     </div>
                 </div>
-            </nav>
-            
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">{% block page_title %}Patient Management{% endblock %}</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" id="sidebarToggle">
-                                <i class="fas fa-bars"></i>
-                            </button>
-                        </div>
+                {% endif %}
+
+                <!-- Nav links -->
+                <ul class="nav flex-column mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}"
+                           href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-users"></i> Patients Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'add_patient' %}active{% endif %}"
+                           href="{{ url_for('add_patient') }}">
+                            <i class="fas fa-user-plus"></i> Add Patient
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'messages' %}active{% endif %}"
+                           href="{{ url_for('messages') }}" id="messages-nav-link">
+                            <i class="fas fa-envelope"></i> Referral Messages
+                            {% if unread_count > 0 %}
+                            <span class="nav-badge" id="unread-badge">{{ unread_count }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Logout -->
+                {% if current_user %}
+                <div class="sidebar-footer">
+                    <a href="{{ url_for('logout') }}" class="btn-logout text-decoration-none">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sign Out</span>
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+        </nav><!-- /sidebar -->
+
+        <!-- ── Main Content ─────────────────────────────────────────────── -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <!-- Page header -->
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h4 mb-0">{% block page_title %}Patient Management{% endblock %}</h1>
+                <div class="btn-toolbar mb-md-0 gap-2">
+                    <!-- Quick messages icon -->
+                    <a href="{{ url_for('messages') }}" class="btn btn-sm btn-outline-secondary position-relative"
+                       title="Messages">
+                        <i class="fas fa-envelope"></i>
+                        {% if unread_count > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style="font-size:.6rem;">
+                            {{ unread_count }}
+                        </span>
+                        {% endif %}
+                    </a>
+                    <!-- Sidebar toggle (mobile) -->
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ 'danger' if category == 'error' else ('info' if category == 'message' else category) }} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-{{ 'check-circle' if category == 'success' else ('exclamation-circle' if category == 'error' else 'info-circle') }} me-2"></i>
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <!-- Page Content -->
+            {% block content %}{% endblock %}
+
+            <!-- Footer -->
+            <footer class="pt-3 mt-4 text-muted border-top">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small>MediCare Dashboard v2.0 | Medical Data Management System</small>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <small class="text-danger">
+                            <i class="fas fa-shield-alt me-1"></i>
+                            HIPAA Compliant · Data Anonymisation Active
+                        </small>
                     </div>
                 </div>
-                
-                <!-- Flash Messages -->
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                
-                <!-- Main Content Block -->
-                {% block content %}{% endblock %}
-                
-                <!-- Footer -->
-                <footer class="pt-3 mt-4 text-muted border-top">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <small>MediCare Dashboard v1.0 | Medical Data Management System</small>
-                        </div>
-                        <div class="col-md-6 text-md-end">
-                            <small class="text-danger">
-                                <i class="fas fa-shield-alt me-1"></i>
-                                HIPAA Compliant Architecture | Data Anonymization Active
-                            </small>
-                        </div>
-                    </div>
-                </footer>
-            </main>
-        </div>
+            </footer>
+        </main>
+
     </div>
-    
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
-    {% block scripts %}{% endblock %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<!-- ══ Notification system: fires on page load if unread messages exist ══ -->
+{% if unread_count > 0 and request.endpoint != 'messages' %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show toast notification for unread referrals
+    const count = {{ unread_count }};
+    showReferralToast(
+        'New Referral' + (count > 1 ? 's' : ''),
+        `You have <strong>${count}</strong> unread referral message${count > 1 ? 's' : ''}.`,
+        '{{ url_for("messages") }}'
+    );
+});
+</script>
+{% endif %}
+
+{% block scripts %}{% endblock %}
 </body>
 </html>
