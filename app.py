@@ -145,6 +145,15 @@ except Exception as e:
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 SQLITE_PATH = os.environ.get('SQLITE_PATH', 'db_local.sqlite')
+# Auto-create directory for SQLite (needed when using Render persistent disk)
+_sqlite_dir = os.path.dirname(os.path.abspath(SQLITE_PATH))
+if _sqlite_dir and not os.path.exists(_sqlite_dir):
+    try:
+        os.makedirs(_sqlite_dir, exist_ok=True)
+        logger.info(f'Created SQLite directory: {_sqlite_dir}')
+    except Exception as _e:
+        logger.warning(f'Cannot create SQLite dir {_sqlite_dir}: {_e} — falling back to local file')
+        SQLITE_PATH = 'db_local.sqlite'
 
 def get_sqlite_connection():
     return sqlite3.connect(SQLITE_PATH)
