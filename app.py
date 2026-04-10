@@ -39,10 +39,10 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
-# On Render (and other cloud platforms) write only to stdout;
+# On Railway (and other cloud platforms) write only to stdout;
 # locally also write to app.log for convenience.
 _log_handlers = [logging.StreamHandler()]
-if not os.environ.get('RENDER') and not os.environ.get('DYNO'):
+if not os.environ.get('RAILWAY_ENVIRONMENT'):
     _log_handlers.append(logging.FileHandler('app.log'))
 
 logging.basicConfig(
@@ -62,7 +62,7 @@ def validate_medical_code(code: str) -> bool:
 # ─── SQLite Initialisation ───────────────────────────────────────────────────
 def init_sqlite():
     """Create / migrate all SQLite tables."""
-    conn = sqlite3.connect(SQLITE_PATH if 'SQLITE_PATH' in dir() else 'db_local.sqlite')
+    conn = sqlite3.connect(SQLITE_PATH)
     cursor = conn.cursor()
 
     # Patients table (personal + medical code)
@@ -154,6 +154,9 @@ if _sqlite_dir and not os.path.exists(_sqlite_dir):
     except Exception as _e:
         logger.warning(f'Cannot create SQLite dir {_sqlite_dir}: {_e} — falling back to local file')
         SQLITE_PATH = 'db_local.sqlite'
+
+# Initialise tables on startup
+init_sqlite()
 
 def get_sqlite_connection():
     return sqlite3.connect(SQLITE_PATH)

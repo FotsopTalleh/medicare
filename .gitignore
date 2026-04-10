@@ -22,7 +22,7 @@ firebase_key.json
 *.env
 
 # ── Local database ────────────────────────────────────────────────────────────
-# SQLite is local-only; on Render it lives on the persistent disk
+# SQLite is local-only; on Railway it lives on a persistent Volume
 db_local.sqlite
 *.sqlite
 *.db
