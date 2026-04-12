@@ -14,6 +14,8 @@ import json
 import csv
 import io
 import bcrypt
+import threading
+import requests as http_requests
 from datetime import datetime
 from functools import wraps
 from flask import (Flask, render_template, request, redirect, url_for,
@@ -306,6 +308,37 @@ def get_sqlite_connection():
 def create_uuid():
     return str(uuid.uuid4())
 
+# ─── Risk-Score API Integration ──────────────────────────────────────────────
+RISK_API_URL = os.environ.get('RISK_API_URL', '').rstrip('/')
+
+def _call_risk_api(patient_uuid: str) -> None:
+    """
+    Background thread: call the hosted pregnancy-risk-model service to score a
+    newly registered patient.  Writes result back to risk_metrics in Firestore.
+    Runs in a daemon thread so it never blocks the HTTP response.
+    """
+    if not RISK_API_URL:
+        logger.warning("RISK_API_URL not set — skipping automatic risk scoring")
+        return
+    try:
+        url = f"{RISK_API_URL}/api/firestore/score-patient/{patient_uuid}"
+        resp = http_requests.post(url, timeout=30)
+        if resp.ok:
+            data = resp.json()
+            logger.info(
+                "Auto-scored patient %s → %.1f (%s)",
+                patient_uuid[:8], data.get('current_risk_score', 0), data.get('risk_level', '?')
+            )
+        else:
+            logger.warning("Risk API returned %s for patient %s", resp.status_code, patient_uuid[:8])
+    except Exception as exc:
+        logger.error("Risk API call failed for patient %s: %s", patient_uuid[:8], exc)
+
+def trigger_risk_score(patient_uuid: str) -> None:
+    """Spawn a daemon thread to score the patient without blocking the request."""
+    t = threading.Thread(target=_call_risk_api, args=(patient_uuid,), daemon=True)
+    t.start()
+
 def verify_no_personal_data(data_dict):
     personal_fields = ['full_name', 'name', 'phone', 'email', 'contact', 'address']
     for field in personal_fields:
@@ -583,6 +616,8 @@ def add_patient():
                         raise ValueError("SECURITY: Personal data detected in medical data")
                     db_firestore.collection('patients_medical').document(patient_uuid).set(medical_data)
                     logger.info(f"Clinical data stored anonymously in Firebase for UUID: {patient_uuid}")
+                    # ── Auto-score: call risk model API in background ──────────
+                    trigger_risk_score(patient_uuid)
                 except Exception as e:
                     logger.error(f"Firebase write error: {e}")
 
