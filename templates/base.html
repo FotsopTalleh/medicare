@@ -68,6 +68,12 @@
                             {% endif %}
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'partograph_page' %}active{% endif %}"
+                           href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-heartbeat"></i> Labour Monitoring
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Logout -->

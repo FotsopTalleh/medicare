@@ -1,0 +1,237 @@
+/* ═══════════════════════════════════════════════════════════
+   partograph.css — Digital Partograph Styles
+   SaveTheMommy MediCare
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Status Strip ─────────────────────────────────────────── */
+.parto-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 2px solid #e9ecef;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: .5px;
+    transition: background .4s;
+}
+.status-badge.normal  { background: #d4edda; color: #155724; border: 1.5px solid #28a745; }
+.status-badge.alert   { background: #fff3cd; color: #856404; border: 1.5px solid #ffc107; }
+.status-badge.action  { background: #f8d7da; color: #721c24; border: 1.5px solid #dc3545;
+                         animation: pulse-red 1.4s infinite; }
+
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220,53,69,.4); }
+    50%       { box-shadow: 0 0 0 8px rgba(220,53,69,0); }
+}
+
+/* ── Alert Banners ────────────────────────────────────────── */
+.parto-alert {
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: .88rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+.parto-alert.critical { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+.parto-alert.warning  { background: #fff3cd; color: #856404; border-left: 4px solid #ffc107; }
+.parto-alert.info     { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.parto-sidebar {
+    position: sticky;
+    top: 70px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+.parto-sidebar .card { border-radius: 12px; margin-bottom: 14px; border: none;
+                        box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+.parto-sidebar .card-header { font-size: .82rem; font-weight: 700;
+                               text-transform: uppercase; letter-spacing: .5px; }
+
+/* ── Section Accordions ───────────────────────────────────── */
+.parto-section {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.parto-section-header {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    padding: 14px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e9ecef;
+    user-select: none;
+    transition: background .2s;
+}
+.parto-section-header:hover { background: #eef2ff; }
+.parto-section-header h6 { margin: 0; font-weight: 700; font-size: .95rem;
+                            color: #2c3e50; display: flex; align-items: center; gap: 8px; }
+.parto-section-body { padding: 18px; }
+
+/* ── Chart containers ─────────────────────────────────────── */
+.chart-wrap-sm  { position: relative; height: 260px; margin-bottom: 16px; }
+.chart-wrap-md  { position: relative; height: 340px; margin-bottom: 16px; }
+.chart-wrap-lg  { position: relative; height: 420px; margin-bottom: 16px; }
+
+/* ── Timeline (amniotic fluid / moulding) ─────────────────── */
+.timeline-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 48px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 12px;
+}
+.timeline-box {
+    width: 52px;
+    height: 38px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s;
+    position: relative;
+}
+.timeline-box:hover { transform: scale(1.08); }
+.timeline-box .tl-time { font-size: .6rem; font-weight: 400; opacity: .7; }
+
+/* Amniotic fluid colours */
+.afl-intact   { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+.afl-clear    { background: #cce5ff; color: #004085; border: 1px solid #0d6efd; }
+.afl-green    { background: #fff3cd; color: #856404; border: 1px solid #fd7e14; }
+.afl-yellow   { background: #f8d7da; color: #721c24; border: 1px solid #dc3545; }
+.afl-ruptured { background: #e2e3e5; color: #383d41; border: 1px solid #6c757d; }
+
+/* Moulding colours */
+.mld-0   { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+.mld-1   { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+.mld-2   { background: #ffe5d0; color: #842029; border: 1px solid #fd7e14; }
+.mld-3   { background: #f8d7da; color: #721c24; border: 1px solid #dc3545; }
+
+/* ── Entry Form ───────────────────────────────────────────── */
+.entry-form {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 16px;
+}
+.entry-form label { font-size: .82rem; font-weight: 600; color: #495057; }
+.entry-form .form-control, .entry-form .form-select {
+    font-size: .88rem;
+    border-radius: 8px;
+}
+.entry-form .btn-record {
+    background: linear-gradient(135deg, #2C3E50, #3498db);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: .88rem;
+    padding: 8px 20px;
+    transition: opacity .2s, transform .1s;
+}
+.entry-form .btn-record:hover { opacity: .9; transform: translateY(-1px); }
+
+/* ── Data Tables ──────────────────────────────────────────── */
+.parto-table { font-size: .83rem; }
+.parto-table thead th { background: #2C3E50; color: white; font-weight: 600;
+                         font-size: .78rem; text-transform: uppercase; letter-spacing: .4px; }
+.parto-table tbody tr { cursor: pointer; transition: background .15s; }
+.parto-table tbody tr:hover { background: rgba(52,152,219,.07); }
+.parto-table .btn-edit   { padding: 2px 8px; font-size: .75rem; }
+.parto-table .btn-delete { padding: 2px 8px; font-size: .75rem; }
+
+/* ── Summary Stats (sidebar) ──────────────────────────────── */
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: .83rem;
+}
+.stat-item:last-child { border-bottom: none; }
+.stat-label { color: #6c757d; }
+.stat-value { font-weight: 700; color: #2c3e50; }
+
+/* ── Toast ────────────────────────────────────────────────── */
+.parto-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    min-width: 240px;
+    max-width: 340px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    animation: slide-in-right .3s ease;
+}
+@keyframes slide-in-right {
+    from { transform: translateX(120%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ── New case panel ───────────────────────────────────────── */
+.new-case-panel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 14px;
+    padding: 32px;
+    text-align: center;
+}
+.new-case-panel h4 { font-weight: 700; }
+.new-case-panel .form-control, .new-case-panel .form-label {
+    color: #fff;
+}
+.new-case-panel .form-control {
+    background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.4);
+    color: white;
+}
+.new-case-panel .form-control::placeholder { color: rgba(255,255,255,.6); }
+
+/* ── Print ────────────────────────────────────────────────── */
+@media print {
+    .parto-sidebar, .parto-header .btn, nav#sidebar,
+    .entry-form, .btn-record, .btn-edit, .btn-delete,
+    #sidebarToggle, footer, .no-print { display: none !important; }
+
+    .parto-section { break-inside: avoid; border: 1px solid #ccc; }
+    .parto-section-header { background: #f0f0f0 !important; }
+    .chart-wrap-sm, .chart-wrap-md, .chart-wrap-lg { height: 220px !important; }
+    body { font-size: 11px; }
+    .col-lg-9 { width: 100% !important; max-width: 100% !important; flex: 100% !important; }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+    .parto-sidebar { position: static; max-height: none; }
+    .chart-wrap-lg { height: 280px; }
+    .timeline-box { width: 44px; height: 34px; font-size: .65rem; }
+}

@@ -116,6 +116,148 @@ def init_sqlite():
             FOREIGN KEY (recipient_id) REFERENCES users(id)
         )
     """)
+    # ── Partograph: case sessions ──────────────────────────────────────────
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS partograph_cases (
+            id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+            patient_uuid          TEXT NOT NULL,
+            admission_date        TEXT NOT NULL,
+            admission_time        TEXT NOT NULL,
+            gravida               INTEGER,
+            para                  TEXT,
+            hospital_number       TEXT,
+            membranes_ruptured    TEXT DEFAULT 'intact',
+            membrane_rupture_time TEXT,
+            status                TEXT DEFAULT 'in_progress',
+            created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            created_by            INTEGER,
+            FOREIGN KEY (patient_uuid) REFERENCES patients(uuid)
+        )
+    """)
+    # ── Migrate existing partograph_cases tables that predate these columns ──
+    existing_cols = {row[1] for row in cursor.execute("PRAGMA table_info(partograph_cases)").fetchall()}
+    migrations = [
+        ("gravida",               "ALTER TABLE partograph_cases ADD COLUMN gravida INTEGER"),
+        ("para",                  "ALTER TABLE partograph_cases ADD COLUMN para TEXT"),
+        ("hospital_number",       "ALTER TABLE partograph_cases ADD COLUMN hospital_number TEXT"),
+        ("membranes_ruptured",    "ALTER TABLE partograph_cases ADD COLUMN membranes_ruptured TEXT DEFAULT 'intact'"),
+        ("membrane_rupture_time", "ALTER TABLE partograph_cases ADD COLUMN membrane_rupture_time TEXT"),
+    ]
+    for col, sql in migrations:
+        if col not in existing_cols:
+            cursor.execute(sql)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS fhr_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id    INTEGER NOT NULL,
+            time       TEXT NOT NULL,
+            fhr_value  INTEGER NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS cervix_entries (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id         INTEGER NOT NULL,
+            time            TEXT NOT NULL,
+            dilatation_cm   REAL NOT NULL,
+            created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS descent_entries (
+            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id        INTEGER NOT NULL,
+            time           TEXT NOT NULL,
+            descent_value  REAL NOT NULL,
+            created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS moulding_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id    INTEGER NOT NULL,
+            time       TEXT NOT NULL,
+            grade      TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS contraction_entries (
+            id               INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id          INTEGER NOT NULL,
+            time             TEXT NOT NULL,
+            frequency        INTEGER NOT NULL,
+            intensity        TEXT NOT NULL,
+            duration_seconds INTEGER NOT NULL,
+            created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS amniotic_fluid_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id    INTEGER NOT NULL,
+            time       TEXT NOT NULL,
+            status     TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS vital_sign_entries (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id      INTEGER NOT NULL,
+            time         TEXT NOT NULL,
+            systolic_bp  INTEGER,
+            diastolic_bp INTEGER,
+            pulse_bpm    INTEGER,
+            created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS temperature_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id    INTEGER NOT NULL,
+            time       TEXT NOT NULL,
+            celsius    REAL NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medication_entries (
+            id               INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id          INTEGER NOT NULL,
+            time             TEXT NOT NULL,
+            medication_type  TEXT NOT NULL,
+            medication_name  TEXT,
+            dose             TEXT NOT NULL,
+            route            TEXT NOT NULL,
+            notes            TEXT,
+            created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS urine_entries (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id    INTEGER NOT NULL,
+            time       TEXT NOT NULL,
+            protein    TEXT NOT NULL,
+            acetone    TEXT NOT NULL,
+            volume_ml  INTEGER,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (case_id) REFERENCES partograph_cases(id)
+        )
+    """)
 
     conn.commit()
     conn.close()
@@ -478,20 +620,39 @@ def patient_detail(uuid):
 
     conn = get_sqlite_connection()
     cursor = conn.cursor()
-    # Get this patient's medical_code
+    # Get this patient's medical_code — fall back to Firebase field if not in SQLite
     cursor.execute('SELECT medical_code FROM patients WHERE uuid = ?', (uuid,))
     row = cursor.fetchone()
-    medical_code = row[0] if row else '—'
+    if row:
+        medical_code = row[0]
+    elif medical_data and medical_data.get('medical_code'):
+        medical_code = medical_data['medical_code']
+    else:
+        medical_code = uuid[:8].upper()  # last-resort: show first 8 chars of UUID
+
     # Get all other users for referral dropdown
     cursor.execute('SELECT id, name, role FROM users WHERE id != ?', (session.get('user_id'),))
     all_users = [{'id': r[0], 'name': r[1], 'role': r[2]} for r in cursor.fetchall()]
+
+    # Load active partograph case for inline panel
+    cursor.execute(
+        'SELECT * FROM partograph_cases WHERE patient_uuid = ? ORDER BY created_at DESC LIMIT 1',
+        (uuid,)
+    )
+    pc_row = cursor.fetchone()
+    active_case = None
+    if pc_row:
+        cols = [d[0] for d in cursor.description]
+        active_case = dict(zip(cols, pc_row))
+
     conn.close()
 
     return render_template('patient_detail.html',
                            medical_data=medical_data,
                            patient_uuid=uuid,
                            medical_code=medical_code,
-                           all_users=all_users)
+                           all_users=all_users,
+                           active_case=active_case)
 
 
 @app.route('/edit/<uuid>', methods=['GET', 'POST'])
@@ -976,7 +1137,701 @@ def health():
     return jsonify(status)
 
 
-# ─── Run ─────────────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# ─── PARTOGRAPH MODULE ────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _case_belongs_to_user(case_id, user_id):
+    """Return case row if it exists (auth check placeholder — extend for RBAC)."""
+    conn = get_sqlite_connection()
+    c = conn.cursor()
+    c.execute('SELECT * FROM partograph_cases WHERE id = ?', (case_id,))
+    row = c.fetchone()
+    conn.close()
+    return row
+
+def _rows_to_dicts(cursor, rows):
+    cols = [d[0] for d in cursor.description]
+    return [dict(zip(cols, r)) for r in rows]
+
+def _hours_elapsed(admission_date, admission_time, event_time):
+    """Return decimal hours between admission datetime and HH:MM event_time (same day)."""
+    try:
+        from datetime import datetime as dt
+        adm = dt.strptime(f"{admission_date} {admission_time}", "%Y-%m-%d %H:%M")
+        evt = dt.strptime(f"{admission_date} {event_time}", "%Y-%m-%d %H:%M")
+        diff = (evt - adm).total_seconds() / 3600
+        return round(max(diff, 0), 2)
+    except Exception:
+        return 0
+
+# ── Page: open or create partograph for a patient ─────────────────────────────
+@app.route('/patient/<uuid>/partograph', methods=['GET', 'POST'])
+@login_required
+def partograph_page(uuid):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+
+    # Resolve medical_code — SQLite first, then Firebase, then UUID prefix
+    cur.execute('SELECT medical_code FROM patients WHERE uuid = ?', (uuid,))
+    row = cur.fetchone()
+    if row:
+        medical_code = row[0]
+    else:
+        # Try Firebase
+        medical_code = None
+        if db_firestore:
+            try:
+                doc = db_firestore.collection('patients_medical').document(uuid).get()
+                if doc.exists:
+                    medical_code = doc.to_dict().get('medical_code')
+            except Exception:
+                pass
+        if not medical_code:
+            medical_code = uuid[:8].upper()
+
+    if request.method == 'POST':
+        admission_date  = request.form.get('admission_date', '').strip()
+        admission_time  = request.form.get('admission_time', '').strip()
+        if not admission_date or not admission_time:
+            flash('Admission date and time are required.', 'error')
+            conn.close()
+            return redirect(url_for('partograph_page', uuid=uuid))
+        gravida       = request.form.get('gravida') or None
+        para          = request.form.get('para', '').strip() or None
+        hosp_num      = request.form.get('hospital_number', '').strip() or None
+        membranes     = request.form.get('membranes_ruptured', 'intact')
+        rupture_time  = request.form.get('membrane_rupture_time', '').strip() or None
+        cur.execute(
+            '''INSERT INTO partograph_cases
+               (patient_uuid, admission_date, admission_time,
+                gravida, para, hospital_number,
+                membranes_ruptured, membrane_rupture_time, created_by)
+               VALUES (?,?,?,?,?,?,?,?,?)''',
+            (uuid, admission_date, admission_time,
+             gravida, para, hosp_num,
+             membranes, rupture_time, session.get('user_id'))
+        )
+        conn.commit()
+        case_id = cur.lastrowid
+        conn.close()
+        return redirect(url_for('partograph_page', uuid=uuid) + f'?case_id={case_id}')
+
+
+    # Load existing cases
+    cur.execute('SELECT * FROM partograph_cases WHERE patient_uuid = ? ORDER BY created_at DESC', (uuid,))
+    cases = _rows_to_dicts(cur, cur.fetchall())
+
+    # Active case
+    case_id = request.args.get('case_id', type=int)
+    active_case = None
+    if case_id:
+        cur.execute('SELECT * FROM partograph_cases WHERE id = ? AND patient_uuid = ?', (case_id, uuid))
+        r = cur.fetchone()
+        if r:
+            active_case = dict(zip([d[0] for d in cur.description], r))
+    elif cases:
+        active_case = cases[0]
+
+    conn.close()
+    return render_template('partograph.html',
+                           patient_uuid=uuid,
+                           medical_code=medical_code,
+                           cases=cases,
+                           active_case=active_case)
+
+
+# ── Helper: get/create active case ────────────────────────────────────────────
+def _get_case_or_404(case_id):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM partograph_cases WHERE id = ?', (case_id,))
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        return None, None, None
+    case = dict(zip([d[0] for d in cur.description], row))
+    conn.close()
+    return case, get_sqlite_connection(), case
+
+
+# ─── Generic CRUD factory ─────────────────────────────────────────────────────
+def _parto_list(case_id, table, order_col='time'):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute(f'SELECT * FROM {table} WHERE case_id = ? ORDER BY {order_col}', (case_id,))
+    rows = _rows_to_dicts(cur, cur.fetchall())
+    conn.close()
+    return jsonify({'success': True, 'entries': rows})
+
+def _parto_delete(case_id, table, entry_id):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute(f'DELETE FROM {table} WHERE id = ? AND case_id = ?', (entry_id, case_id))
+    conn.commit()
+    conn.close()
+    return jsonify({'success': True})
+
+
+# ─── FHR ─────────────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/fhr', methods=['GET', 'POST'])
+@login_required
+def api_fhr(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'fhr_entries')
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), data.get('fhr_value')
+    if not t or val is None:
+        return jsonify({'success': False, 'error': 'time and fhr_value required'}), 400
+    val = int(val)
+    if not (80 <= val <= 200):
+        return jsonify({'success': False, 'error': 'FHR must be 80–200 bpm'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO fhr_entries (case_id, time, fhr_value) VALUES (?,?,?)', (case_id, t, val))
+    conn.commit()
+    entry_id = cur.lastrowid
+    conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'fhr_value': val}), 201
+
+@app.route('/api/partograph/<int:case_id>/fhr/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_fhr_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'fhr_entries', entry_id)
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), int(data.get('fhr_value', 0))
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE fhr_entries SET time=?, fhr_value=? WHERE id=? AND case_id=?', (t, val, entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Cervix ───────────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/cervix', methods=['GET', 'POST'])
+@login_required
+def api_cervix(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'cervix_entries')
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), data.get('dilatation_cm')
+    if not t or val is None:
+        return jsonify({'success': False, 'error': 'time and dilatation_cm required'}), 400
+    val = float(val)
+    if not (0 <= val <= 10):
+        return jsonify({'success': False, 'error': 'Dilatation must be 0–10 cm'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO cervix_entries (case_id, time, dilatation_cm) VALUES (?,?,?)', (case_id, t, val))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'dilatation_cm': val}), 201
+
+@app.route('/api/partograph/<int:case_id>/cervix/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_cervix_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'cervix_entries', entry_id)
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), float(data.get('dilatation_cm', 0))
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE cervix_entries SET time=?, dilatation_cm=? WHERE id=? AND case_id=?', (t, val, entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Descent ──────────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/descent', methods=['GET', 'POST'])
+@login_required
+def api_descent(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'descent_entries')
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), data.get('descent_value')
+    if not t or val is None:
+        return jsonify({'success': False, 'error': 'time and descent_value required'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO descent_entries (case_id, time, descent_value) VALUES (?,?,?)', (case_id, t, float(val)))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'descent_value': float(val)}), 201
+
+@app.route('/api/partograph/<int:case_id>/descent/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_descent_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'descent_entries', entry_id)
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), float(data.get('descent_value', 0))
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE descent_entries SET time=?, descent_value=? WHERE id=? AND case_id=?', (t, val, entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Moulding ─────────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/moulding', methods=['GET', 'POST'])
+@login_required
+def api_moulding(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'moulding_entries')
+    data = request.get_json(force=True)
+    t, grade = data.get('time','').strip(), data.get('grade','').strip()
+    if not t or grade not in ('0', '+', '++', '+++'):
+        return jsonify({'success': False, 'error': 'Valid grade required (0, +, ++, +++)'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO moulding_entries (case_id, time, grade) VALUES (?,?,?)', (case_id, t, grade))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'grade': grade}), 201
+
+@app.route('/api/partograph/<int:case_id>/moulding/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_moulding_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'moulding_entries', entry_id)
+    data = request.get_json(force=True)
+    t, grade = data.get('time','').strip(), data.get('grade','').strip()
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE moulding_entries SET time=?, grade=? WHERE id=? AND case_id=?', (t, grade, entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Contractions ─────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/contractions', methods=['GET', 'POST'])
+@login_required
+def api_contractions(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'contraction_entries')
+    data = request.get_json(force=True)
+    t = data.get('time','').strip()
+    freq = data.get('frequency')
+    intensity = data.get('intensity','').strip()
+    dur = data.get('duration_seconds')
+    if not t or freq is None or not intensity or dur is None:
+        return jsonify({'success': False, 'error': 'All fields required'}), 400
+    freq, dur = int(freq), int(dur)
+    if not (0 <= freq <= 5) or not (20 <= dur <= 90):
+        return jsonify({'success': False, 'error': 'Frequency 0–5, duration 20–90s'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO contraction_entries (case_id, time, frequency, intensity, duration_seconds) VALUES (?,?,?,?,?)',
+                (case_id, t, freq, intensity, dur))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id}), 201
+
+@app.route('/api/partograph/<int:case_id>/contractions/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_contractions_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'contraction_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE contraction_entries SET time=?, frequency=?, intensity=?, duration_seconds=? WHERE id=? AND case_id=?',
+                 (data.get('time'), data.get('frequency'), data.get('intensity'), data.get('duration_seconds'), entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Amniotic Fluid ───────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/amniotic-fluid', methods=['GET', 'POST'])
+@login_required
+def api_amniotic_fluid(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'amniotic_fluid_entries')
+    data = request.get_json(force=True)
+    t, status = data.get('time','').strip(), data.get('status','').strip()
+    valid = ('intact', 'clear', 'green', 'yellow', 'ruptured')
+    if not t or status not in valid:
+        return jsonify({'success': False, 'error': f'Status must be one of {valid}'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO amniotic_fluid_entries (case_id, time, status) VALUES (?,?,?)', (case_id, t, status))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'status': status}), 201
+
+@app.route('/api/partograph/<int:case_id>/amniotic-fluid/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_amniotic_fluid_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'amniotic_fluid_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE amniotic_fluid_entries SET time=?, status=? WHERE id=? AND case_id=?',
+                 (data.get('time'), data.get('status'), entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Vitals (BP + Pulse) ──────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/vitals', methods=['GET', 'POST'])
+@login_required
+def api_vitals(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'vital_sign_entries')
+    data = request.get_json(force=True)
+    t = data.get('time','').strip()
+    sys_bp = data.get('systolic_bp')
+    dia_bp = data.get('diastolic_bp')
+    pulse  = data.get('pulse_bpm')
+    if not t:
+        return jsonify({'success': False, 'error': 'time required'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO vital_sign_entries (case_id, time, systolic_bp, diastolic_bp, pulse_bpm) VALUES (?,?,?,?,?)',
+                (case_id, t,
+                 int(sys_bp) if sys_bp is not None else None,
+                 int(dia_bp) if dia_bp is not None else None,
+                 int(pulse)  if pulse  is not None else None))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id}), 201
+
+@app.route('/api/partograph/<int:case_id>/vitals/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_vitals_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'vital_sign_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE vital_sign_entries SET time=?, systolic_bp=?, diastolic_bp=?, pulse_bpm=? WHERE id=? AND case_id=?',
+                 (data.get('time'), data.get('systolic_bp'), data.get('diastolic_bp'), data.get('pulse_bpm'), entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Temperature ──────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/temperature', methods=['GET', 'POST'])
+@login_required
+def api_temperature(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'temperature_entries')
+    data = request.get_json(force=True)
+    t, val = data.get('time','').strip(), data.get('celsius')
+    if not t or val is None:
+        return jsonify({'success': False, 'error': 'time and celsius required'}), 400
+    val = float(val)
+    if not (34 <= val <= 41):
+        return jsonify({'success': False, 'error': 'Temperature 34–41°C'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO temperature_entries (case_id, time, celsius) VALUES (?,?,?)', (case_id, t, val))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id, 'time': t, 'celsius': val}), 201
+
+@app.route('/api/partograph/<int:case_id>/temperature/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_temperature_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'temperature_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE temperature_entries SET time=?, celsius=? WHERE id=? AND case_id=?',
+                 (data.get('time'), data.get('celsius'), entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Medications ──────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/medications', methods=['GET', 'POST'])
+@login_required
+def api_medications(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'medication_entries')
+    data = request.get_json(force=True)
+    t    = data.get('time','').strip()
+    mtype = data.get('medication_type','').strip()
+    dose  = data.get('dose','').strip()
+    route = data.get('route','').strip()
+    if not all([t, mtype, dose, route]):
+        return jsonify({'success': False, 'error': 'time, type, dose and route required'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute(
+        'INSERT INTO medication_entries (case_id, time, medication_type, medication_name, dose, route, notes) VALUES (?,?,?,?,?,?,?)',
+        (case_id, t, mtype, data.get('medication_name',''), dose, route, data.get('notes',''))
+    )
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id}), 201
+
+@app.route('/api/partograph/<int:case_id>/medications/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_medications_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'medication_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute(
+        'UPDATE medication_entries SET time=?, medication_type=?, medication_name=?, dose=?, route=?, notes=? WHERE id=? AND case_id=?',
+        (data.get('time'), data.get('medication_type'), data.get('medication_name'),
+         data.get('dose'), data.get('route'), data.get('notes'), entry_id, case_id)
+    )
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Urine ────────────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/urine', methods=['GET', 'POST'])
+@login_required
+def api_urine(case_id):
+    if request.method == 'GET':
+        return _parto_list(case_id, 'urine_entries')
+    data = request.get_json(force=True)
+    t       = data.get('time','').strip()
+    protein = data.get('protein','').strip()
+    acetone = data.get('acetone','').strip()
+    vol     = data.get('volume_ml')
+    if not all([t, protein, acetone]):
+        return jsonify({'success': False, 'error': 'time, protein and acetone required'}), 400
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO urine_entries (case_id, time, protein, acetone, volume_ml) VALUES (?,?,?,?,?)',
+                (case_id, t, protein, acetone, int(vol) if vol is not None else None))
+    conn.commit(); entry_id = cur.lastrowid; conn.close()
+    return jsonify({'success': True, 'id': entry_id}), 201
+
+@app.route('/api/partograph/<int:case_id>/urine/<int:entry_id>', methods=['PUT', 'DELETE'])
+@login_required
+def api_urine_entry(case_id, entry_id):
+    if request.method == 'DELETE':
+        return _parto_delete(case_id, 'urine_entries', entry_id)
+    data = request.get_json(force=True)
+    conn = get_sqlite_connection()
+    conn.execute('UPDATE urine_entries SET time=?, protein=?, acetone=?, volume_ml=? WHERE id=? AND case_id=?',
+                 (data.get('time'), data.get('protein'), data.get('acetone'), data.get('volume_ml'), entry_id, case_id))
+    conn.commit(); conn.close()
+    return jsonify({'success': True})
+
+
+# ─── Alerts helper ────────────────────────────────────────────────────────────
+def _build_alerts(case_id, case, cur):
+    """Return a list of {level, message} dicts for the given case."""
+    alerts = []
+    # FHR
+    cur.execute('SELECT fhr_value FROM fhr_entries WHERE case_id=? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r:
+        if r[0] > 160: alerts.append({'level':'warning', 'message': f'Fetal tachycardia: {r[0]} bpm (>160)'})
+        elif r[0] < 120: alerts.append({'level':'danger',  'message': f'Fetal bradycardia: {r[0]} bpm (<120)'})
+    # Vitals
+    cur.execute('SELECT systolic_bp, diastolic_bp, pulse_bpm FROM vital_sign_entries WHERE case_id=? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r:
+        sys_bp, dia_bp, pulse = r
+        if sys_bp and sys_bp >= 160: alerts.append({'level':'danger',  'message': f'Severe hypertension: BP {sys_bp}/{dia_bp}'})
+        elif sys_bp and sys_bp >= 140: alerts.append({'level':'warning', 'message': f'Hypertension: BP {sys_bp}/{dia_bp}'})
+        if pulse and pulse > 100: alerts.append({'level':'warning', 'message': f'Maternal tachycardia: {pulse} bpm'})
+    # Amniotic fluid
+    cur.execute("SELECT status FROM amniotic_fluid_entries WHERE case_id=? ORDER BY time DESC LIMIT 1", (case_id,))
+    r = cur.fetchone()
+    if r and r[0] in ('green', 'yellow'):
+        alerts.append({'level':'warning', 'message': 'Meconium staining detected — increase fetal monitoring'})
+    return alerts
+
+# ─── Summary + Alerts ─────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/summary')
+@login_required
+def api_partograph_summary(case_id):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM partograph_cases WHERE id = ?', (case_id,))
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        return jsonify({'error': 'Case not found'}), 404
+    case = dict(zip([d[0] for d in cur.description], row))
+
+    from datetime import datetime as dt
+    adm_dt = dt.strptime(f"{case['admission_date']} {case['admission_time']}", "%Y-%m-%d %H:%M")
+    time_in_labor_h = round((dt.now() - adm_dt).total_seconds() / 3600, 2)
+
+    def latest(table, col):
+        cur.execute(f'SELECT {col} FROM {table} WHERE case_id = ? ORDER BY time DESC LIMIT 1', (case_id,))
+        r = cur.fetchone()
+        return r[0] if r else None
+
+    latest_fhr   = latest('fhr_entries', 'fhr_value')
+    latest_cervix = latest('cervix_entries', 'dilatation_cm')
+    latest_pulse = latest('vital_sign_entries', 'pulse_bpm')
+    latest_sys   = latest('vital_sign_entries', 'systolic_bp')
+    latest_dia   = latest('vital_sign_entries', 'diastolic_bp')
+    latest_temp  = latest('temperature_entries', 'celsius')
+
+    # Cervical change rate
+    cur.execute('SELECT dilatation_cm, time FROM cervix_entries WHERE case_id = ? ORDER BY time', (case_id,))
+    cx_rows = cur.fetchall()
+    rate = None
+    if len(cx_rows) >= 2:
+        try:
+            t1 = dt.strptime(f"{case['admission_date']} {cx_rows[-2][1]}", "%Y-%m-%d %H:%M")
+            t2 = dt.strptime(f"{case['admission_date']} {cx_rows[-1][1]}", "%Y-%m-%d %H:%M")
+            diff_h = (t2 - t1).total_seconds() / 3600
+            if diff_h > 0:
+                rate = round((cx_rows[-1][0] - cx_rows[-2][0]) / diff_h, 2)
+        except Exception:
+            pass
+
+    # Status badge
+    badge = 'normal'
+    if latest_cervix is not None:
+        hrs = _hours_elapsed(case['admission_date'], case['admission_time'],
+                             cx_rows[-1][1] if cx_rows else case['admission_time'])
+        alert_line = 4 + 0.5 * hrs
+        action_line = alert_line + 1
+        if latest_cervix >= action_line:
+            badge = 'action'
+        elif latest_cervix >= alert_line:
+            badge = 'alert'
+
+    conn.close()
+    return jsonify({
+        'success': True,
+        'time_in_labor_hours': time_in_labor_h,
+        'latest_fhr': latest_fhr,
+        'latest_cervical_dilatation': latest_cervix,
+        'cervical_change_rate': rate,
+        'latest_systolic_bp': latest_sys,
+        'latest_diastolic_bp': latest_dia,
+        'latest_pulse': latest_pulse,
+        'latest_temperature': latest_temp,
+        'status_badge': badge,
+        # ── extra fields used by inline patient-detail panel ──
+        'status':         case['status'],
+        'duration_hours': time_in_labor_h,
+        'fhr_count':      cur.execute('SELECT COUNT(*) FROM fhr_entries WHERE case_id=?',(case_id,)).fetchone()[0],
+        'cervix_count':   cur.execute('SELECT COUNT(*) FROM cervix_entries WHERE case_id=?',(case_id,)).fetchone()[0],
+        'vitals_count':   cur.execute('SELECT COUNT(*) FROM vital_sign_entries WHERE case_id=?',(case_id,)).fetchone()[0],
+        'alerts':         _build_alerts(case_id, case, cur),
+    })
+
+
+@app.route('/api/partograph/<int:case_id>/alerts')
+@login_required
+def api_partograph_alerts(case_id):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM partograph_cases WHERE id = ?', (case_id,))
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        return jsonify({'error': 'Case not found'}), 404
+    case = dict(zip([d[0] for d in cur.description], row))
+
+    alerts = {'critical': [], 'warning': [], 'info': []}
+
+    def add(level, msg):
+        alerts[level].append({'message': msg})
+
+    # FHR
+    cur.execute('SELECT fhr_value FROM fhr_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r:
+        if r[0] > 160: add('warning', f'⚠️ Fetal tachycardia: {r[0]} bpm (>160)')
+        elif r[0] < 120: add('warning', f'⚠️ Fetal bradycardia: {r[0]} bpm (<120)')
+
+    # Amniotic fluid
+    cur.execute("SELECT status FROM amniotic_fluid_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1", (case_id,))
+    r = cur.fetchone()
+    if r and r[0] in ('green', 'yellow'):
+        add('warning', '⚠️ Meconium staining detected. Increase fetal monitoring.')
+
+    # Vitals
+    cur.execute('SELECT systolic_bp, diastolic_bp, pulse_bpm FROM vital_sign_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r:
+        sys_bp, dia_bp, pulse = r
+        if sys_bp and dia_bp:
+            if sys_bp > 160 or dia_bp > 110:
+                add('critical', f'🔴 SEVERE HYPERTENSION {sys_bp}/{dia_bp}. Risk of eclampsia.')
+            elif sys_bp < 90 or dia_bp < 60:
+                add('warning', f'⚠️ Hypotension {sys_bp}/{dia_bp}. Check for bleeding.')
+        if pulse and pulse > 110:
+            add('warning', f'⚠️ Maternal tachycardia: {pulse} bpm.')
+
+    # Temperature
+    cur.execute('SELECT celsius FROM temperature_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r and r[0] > 38.0:
+        add('warning', f'⚠️ FEVER: {r[0]}°C. Assess for chorioamnionitis.')
+
+    # Contractions
+    cur.execute('SELECT frequency, intensity FROM contraction_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1', (case_id,))
+    r = cur.fetchone()
+    if r:
+        if r[0] < 2: add('warning', '⚠️ Inadequate contractions (<2/10 min). Consider oxytocin.')
+
+    # Urine
+    cur.execute("SELECT protein FROM urine_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1", (case_id,))
+    r = cur.fetchone()
+    if r and r[0] in ('++', '+++'):
+        add('warning', f'⚠️ Significant proteinuria ({r[0]}). Monitor for preeclampsia.')
+
+    # Moulding + cervix
+    cur.execute("SELECT grade FROM moulding_entries WHERE case_id = ? ORDER BY time DESC LIMIT 1", (case_id,))
+    mr = cur.fetchone()
+    cur.execute('SELECT dilatation_cm, time FROM cervix_entries WHERE case_id = ? ORDER BY time', (case_id,))
+    cx = cur.fetchall()
+    if mr and mr[0] == '+++' and len(cx) >= 2:
+        add('critical', '🔴 SEVERE MOULDING + SLOW PROGRESS. High risk of CPD.')
+
+    if not alerts['critical'] and not alerts['warning']:
+        add('info', '✅ No active alerts. Labor appears to be progressing normally.')
+
+    conn.close()
+    return jsonify({'success': True, 'alerts': alerts})
+
+
+# ─── CSV Export ───────────────────────────────────────────────────────────────
+@app.route('/api/partograph/<int:case_id>/export/csv')
+@login_required
+def api_partograph_export_csv(case_id):
+    conn = get_sqlite_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM partograph_cases WHERE id = ?', (case_id,))
+    row = cur.fetchone()
+    if not row:
+        conn.close()
+        return jsonify({'error': 'Not found'}), 404
+    case = dict(zip([d[0] for d in cur.description], row))
+
+    output = io.StringIO()
+    w = csv.writer(output)
+    w.writerow(['SaveTheMommy — Partograph Export'])
+    w.writerow(['Patient UUID', case['patient_uuid']])
+    w.writerow(['Admission Date', case['admission_date']])
+    w.writerow(['Admission Time', case['admission_time']])
+    w.writerow([])
+
+    for table, label, cols in [
+        ('fhr_entries', 'FHR', ['time','fhr_value']),
+        ('cervix_entries', 'Cervical Dilatation', ['time','dilatation_cm']),
+        ('descent_entries', 'Head Descent', ['time','descent_value']),
+        ('moulding_entries', 'Moulding', ['time','grade']),
+        ('contraction_entries', 'Contractions', ['time','frequency','intensity','duration_seconds']),
+        ('amniotic_fluid_entries', 'Amniotic Fluid', ['time','status']),
+        ('vital_sign_entries', 'Vital Signs', ['time','systolic_bp','diastolic_bp','pulse_bpm']),
+        ('temperature_entries', 'Temperature', ['time','celsius']),
+        ('medication_entries', 'Medications', ['time','medication_type','medication_name','dose','route']),
+        ('urine_entries', 'Urine', ['time','protein','acetone','volume_ml']),
+    ]:
+        cur.execute(f'SELECT {",".join(cols)} FROM {table} WHERE case_id = ? ORDER BY time', (case_id,))
+        rows = cur.fetchall()
+        w.writerow([label])
+        w.writerow(cols)
+        for r in rows:
+            w.writerow(r)
+        w.writerow([])
+
+    conn.close()
+    output.seek(0)
+    return send_file(
+        io.BytesIO(output.getvalue().encode('utf-8')),
+        mimetype='text/csv',
+        as_attachment=True,
+        download_name=f'partograph_{case_id}_{case["admission_date"]}.csv'
+    )
+
+
+
 if __name__ == '__main__':
     logger.info("=" * 60)
     logger.info("Starting SaveTheMommy MediCare - MVP 1")

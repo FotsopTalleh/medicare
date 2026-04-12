@@ -1,0 +1,637 @@
+{% extends "base.html" %}
+{% block title %}Labor Monitoring — Partograph{% endblock %}
+{% block page_title %}
+<i class="fas fa-heartbeat me-2 text-danger"></i>Digital Partograph
+{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/partograph.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{# ── No case yet: show start panel ────────────────────────── #}
+{% if not active_case %}
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+    <div class="new-case-panel">
+      <i class="fas fa-baby fa-3x mb-3 opacity-75"></i>
+      <h4>Start Labor Monitoring</h4>
+      <p class="opacity-75 mb-4">Patient: <strong>{{ medical_code }}</strong></p>
+      <form method="POST">
+        <div class="row g-3 text-start">
+          <div class="col-6">
+            <label class="form-label fw-600">Admission Date</label>
+            <input type="date" name="admission_date" class="form-control" required
+                   value="{{ now_date if now_date else '' }}">
+          </div>
+          <div class="col-6">
+            <label class="form-label fw-600">Admission Time</label>
+            <input type="time" name="admission_time" class="form-control" required
+                   value="{{ now_time if now_time else '' }}">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-light fw-700 mt-4 px-5">
+          <i class="fas fa-play me-2"></i>Begin Partograph
+        </button>
+      </form>
+    </div>
+
+    {% if cases %}
+    <div class="card mt-4">
+      <div class="card-header bg-light"><i class="fas fa-history me-2"></i>Previous Labor Sessions</div>
+      <div class="list-group list-group-flush">
+        {% for c in cases %}
+        <a href="{{ url_for('partograph_page', uuid=patient_uuid) }}?case_id={{ c.id }}"
+           class="list-group-item list-group-item-action">
+          <div class="d-flex justify-content-between">
+            <span><i class="fas fa-calendar me-2 text-muted"></i>{{ c.admission_date }} {{ c.admission_time }}</span>
+            <span class="badge bg-{{ 'success' if c.status == 'completed' else 'primary' }}">{{ c.status }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% else %}
+{# ═══════════════════════════════════════════════════════════ #}
+{#  ACTIVE PARTOGRAPH                                          #}
+{# ═══════════════════════════════════════════════════════════ #}
+
+{# ── Sticky header strip ─────────────────────────────────── #}
+<div class="parto-header mb-3 no-print">
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 px-2">
+    <!-- Patient info -->
+    <div>
+      <span class="fw-700 me-2" style="font-size:.95rem;">
+        <i class="fas fa-id-card me-1 text-muted"></i>{{ medical_code }}
+      </span>
+      <small class="text-muted">Admitted: {{ active_case.admission_date }} {{ active_case.admission_time }}</small>
+    </div>
+    <!-- Status badge -->
+    <div id="statusBadge" class="status-badge normal">
+      <i class="fas fa-circle-dot"></i>
+      <span id="statusText">Loading…</span>
+    </div>
+    <!-- Actions -->
+    <div class="d-flex gap-2 flex-wrap">
+      <span id="autoSaveIndicator" class="text-muted align-self-center" style="font-size:.78rem;"></span>
+      <button onclick="window.print()" class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-print me-1"></i>Print
+      </button>
+      <a href="/api/partograph/{{ active_case.id }}/export/csv" class="btn btn-sm btn-outline-success">
+        <i class="fas fa-file-csv me-1"></i>CSV
+      </a>
+      <a href="{{ url_for('patient_detail', uuid=patient_uuid) }}" class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Back
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+
+  {# ── LEFT: Main content ───────────────────────────────────── #}
+  <div class="col-lg-9">
+
+    {# ════ 1. FETAL HEART RATE ════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('fhrSection')">
+        <h6><i class="fas fa-heartbeat text-danger"></i>1. Fetal Heart Rate</h6>
+        <i class="fas fa-chevron-down" id="fhrSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="fhrSection">
+        <div id="fhrAlerts"></div>
+        <!-- Entry form -->
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-4">
+              <label>Time (HH:MM)</label>
+              <input type="time" id="fhrTime" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label>FHR (bpm)</label>
+              <input type="number" id="fhrValue" class="form-control" placeholder="80–200" min="80" max="200">
+            </div>
+            <div class="col-sm-4">
+              <button class="btn-record w-100" onclick="submitEntry('fhr')">
+                <i class="fas fa-plus me-1"></i><span id="fhrBtnLabel">Record FHR</span>
+              </button>
+              <input type="hidden" id="fhrEditId" value="">
+            </div>
+          </div>
+          <div id="fhrError" class="text-danger mt-1" style="font-size:.8rem;"></div>
+        </div>
+        <!-- Chart -->
+        <div class="chart-wrap-sm"><canvas id="fhrChart"></canvas></div>
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>FHR (bpm)</th><th>Status</th><th class="no-print">Actions</th></tr></thead>
+            <tbody id="fhrTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 2. AMNIOTIC FLUID ══════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('aflSection')">
+        <h6><i class="fas fa-tint text-info"></i>2. Amniotic Fluid Status</h6>
+        <i class="fas fa-chevron-down" id="aflSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="aflSection">
+        <div id="aflAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-4">
+              <label>Time</label>
+              <input type="time" id="aflTime" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label>Status</label>
+              <select id="aflStatus" class="form-select">
+                <option value="intact">I — Intact (membranes intact)</option>
+                <option value="clear">C — Clear (ruptured, clear)</option>
+                <option value="green">G — Green (meconium)</option>
+                <option value="yellow">Y — Yellow (old meconium)</option>
+                <option value="ruptured">R — Ruptured (unknown)</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <button class="btn-record w-100" onclick="submitEntry('amniotic-fluid')">
+                <i class="fas fa-plus me-1"></i><span id="aflBtnLabel">Record Status</span>
+              </button>
+              <input type="hidden" id="aflEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="timeline-row" id="aflTimeline"></div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Status</th><th class="no-print">Actions</th></tr></thead>
+            <tbody id="aflTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 3. CERVIX & HEAD DESCENT ═══════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('cervixSection')">
+        <h6><i class="fas fa-chart-line text-primary"></i>3. Cervical Dilatation &amp; Head Descent</h6>
+        <i class="fas fa-chevron-down" id="cervixSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="cervixSection">
+        <div id="cervixAlerts"></div>
+        <div class="row g-3">
+          <!-- Cervix form -->
+          <div class="col-md-6">
+            <div class="entry-form">
+              <div class="fw-700 mb-2" style="font-size:.85rem;">Cervical Dilatation (X)</div>
+              <div class="row g-2 align-items-end">
+                <div class="col-6">
+                  <label>Time</label>
+                  <input type="time" id="cervixTime" class="form-control">
+                </div>
+                <div class="col-6">
+                  <label>Dilatation (cm)</label>
+                  <input type="number" id="cervixValue" class="form-control" placeholder="0–10" min="0" max="10" step="0.5">
+                </div>
+                <div class="col-12 mt-1">
+                  <button class="btn-record w-100" onclick="submitEntry('cervix')">
+                    <i class="fas fa-plus me-1"></i><span id="cervixBtnLabel">Record Cervix</span>
+                  </button>
+                  <input type="hidden" id="cervixEditId" value="">
+                </div>
+              </div>
+              <div id="cervixError" class="text-danger mt-1" style="font-size:.8rem;"></div>
+            </div>
+          </div>
+          <!-- Descent form -->
+          <div class="col-md-6">
+            <div class="entry-form">
+              <div class="fw-700 mb-2" style="font-size:.85rem;">Head Descent (O) — Fingers above spines: -5 to 0; below: +1 to +5</div>
+              <div class="row g-2 align-items-end">
+                <div class="col-6">
+                  <label>Time</label>
+                  <input type="time" id="descentTime" class="form-control">
+                </div>
+                <div class="col-6">
+                  <label>Descent</label>
+                  <input type="number" id="descentValue" class="form-control" placeholder="-5 to +5" min="-5" max="5" step="1">
+                </div>
+                <div class="col-12 mt-1">
+                  <button class="btn-record w-100" onclick="submitEntry('descent')">
+                    <i class="fas fa-plus me-1"></i><span id="descentBtnLabel">Record Descent</span>
+                  </button>
+                  <input type="hidden" id="descentEditId" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main chart -->
+        <div class="chart-wrap-lg"><canvas id="cervixChart"></canvas></div>
+        <!-- Progress panels -->
+        <div class="row g-2 mb-3" id="cervixProgress"></div>
+        <!-- Tables -->
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="table-responsive">
+              <table class="table parto-table table-hover table-sm">
+                <thead><tr><th>Time</th><th>Cervix (cm)</th><th>Zone</th><th class="no-print">Act</th></tr></thead>
+                <tbody id="cervixTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="table-responsive">
+              <table class="table parto-table table-hover table-sm">
+                <thead><tr><th>Time</th><th>Descent</th><th class="no-print">Act</th></tr></thead>
+                <tbody id="descentTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 4. HEAD MOULDING ═══════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('mouldSection')">
+        <h6><i class="fas fa-circle-dot text-warning"></i>4. Head Moulding</h6>
+        <i class="fas fa-chevron-down" id="mouldSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="mouldSection">
+        <div id="mouldAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-4">
+              <label>Time</label>
+              <input type="time" id="mouldTime" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label>Grade
+                <i class="fas fa-circle-info text-muted ms-1"
+                   title="0=None | +=Mild | ++=Moderate | +++=Severe (cannot separate sutures)"></i>
+              </label>
+              <select id="mouldGrade" class="form-select">
+                <option value="0">0 — No moulding</option>
+                <option value="+">+ — Mild</option>
+                <option value="++">++ — Moderate</option>
+                <option value="+++">+++ — Severe (CPD risk)</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <button class="btn-record w-100" onclick="submitEntry('moulding')">
+                <i class="fas fa-plus me-1"></i><span id="mouldBtnLabel">Record Moulding</span>
+              </button>
+              <input type="hidden" id="mouldEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="timeline-row" id="mouldTimeline"></div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Grade</th><th class="no-print">Actions</th></tr></thead>
+            <tbody id="mouldTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 5. CONTRACTIONS ════════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('contrSection')">
+        <h6><i class="fas fa-wave-square text-warning"></i>5. Uterine Contractions</h6>
+        <i class="fas fa-chevron-down" id="contrSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="contrSection">
+        <div id="contrAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-3">
+              <label>Time</label>
+              <input type="time" id="contrTime" class="form-control">
+            </div>
+            <div class="col-sm-2">
+              <label>Freq/10 min</label>
+              <input type="number" id="contrFreq" class="form-control" placeholder="0–5" min="0" max="5">
+            </div>
+            <div class="col-sm-3">
+              <label>Intensity</label>
+              <select id="contrIntensity" class="form-select">
+                <option value="mild">Mild</option>
+                <option value="moderate">Moderate</option>
+                <option value="severe">Severe</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label>Duration (s)</label>
+              <input type="number" id="contrDur" class="form-control" placeholder="20–90" min="20" max="90">
+            </div>
+            <div class="col-sm-2">
+              <button class="btn-record w-100" onclick="submitEntry('contractions')">
+                <i class="fas fa-plus me-1"></i><span id="contrBtnLabel">Record</span>
+              </button>
+              <input type="hidden" id="contrEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap-sm"><canvas id="contrChart"></canvas></div>
+        <div id="contrSummary" class="mb-2"></div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Freq/10min</th><th>Intensity</th><th>Duration(s)</th><th class="no-print">Act</th></tr></thead>
+            <tbody id="contrTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 6. VITAL SIGNS ════════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('vitalsSection')">
+        <h6><i class="fas fa-stethoscope text-success"></i>6. Blood Pressure &amp; Pulse</h6>
+        <i class="fas fa-chevron-down" id="vitalsSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="vitalsSection">
+        <div id="vitalsAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-2">
+              <label>Time</label>
+              <input type="time" id="vitalsTime" class="form-control">
+            </div>
+            <div class="col-sm-2">
+              <label>Systolic BP</label>
+              <input type="number" id="vitalsSys" class="form-control" placeholder="mmHg" min="70" max="200">
+            </div>
+            <div class="col-sm-2">
+              <label>Diastolic BP</label>
+              <input type="number" id="vitalsDia" class="form-control" placeholder="mmHg" min="40" max="120">
+            </div>
+            <div class="col-sm-2">
+              <label>Pulse (bpm)</label>
+              <input type="number" id="vitalsPulse" class="form-control" placeholder="bpm" min="40" max="140">
+            </div>
+            <div class="col-sm-4">
+              <button class="btn-record w-100" onclick="submitEntry('vitals')">
+                <i class="fas fa-plus me-1"></i><span id="vitalsBtnLabel">Record Vitals</span>
+              </button>
+              <input type="hidden" id="vitalsEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-7">
+            <div style="font-size:.8rem;font-weight:700;color:#6c757d;margin-bottom:4px;">Blood Pressure</div>
+            <div class="chart-wrap-sm"><canvas id="bpChart"></canvas></div>
+          </div>
+          <div class="col-md-5">
+            <div style="font-size:.8rem;font-weight:700;color:#6c757d;margin-bottom:4px;">Pulse</div>
+            <div class="chart-wrap-sm"><canvas id="pulseChart"></canvas></div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Systolic</th><th>Diastolic</th><th>Pulse</th><th>Status</th><th class="no-print">Act</th></tr></thead>
+            <tbody id="vitalsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 7. TEMPERATURE ════════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('tempSection')">
+        <h6><i class="fas fa-thermometer-half text-danger"></i>7. Temperature</h6>
+        <i class="fas fa-chevron-down" id="tempSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="tempSection">
+        <div id="tempAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-4">
+              <label>Time</label>
+              <input type="time" id="tempTime" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label>Temperature (°C)</label>
+              <input type="number" id="tempValue" class="form-control" placeholder="34–41" min="34" max="41" step="0.1">
+            </div>
+            <div class="col-sm-4">
+              <button class="btn-record w-100" onclick="submitEntry('temperature')">
+                <i class="fas fa-plus me-1"></i><span id="tempBtnLabel">Record Temp</span>
+              </button>
+              <input type="hidden" id="tempEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap-sm"><canvas id="tempChart"></canvas></div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Temp (°C)</th><th>Status</th><th class="no-print">Act</th></tr></thead>
+            <tbody id="tempTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 8. MEDICATIONS ════════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('medsSection')">
+        <h6><i class="fas fa-pills text-secondary"></i>8. Medications &amp; IV Fluids</h6>
+        <i class="fas fa-chevron-down" id="medsSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="medsSection">
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-2">
+              <label>Time</label>
+              <input type="time" id="medsTime" class="form-control">
+            </div>
+            <div class="col-sm-2">
+              <label>Type</label>
+              <select id="medsType" class="form-select">
+                <option value="Oxytocin">Oxytocin</option>
+                <option value="Antibiotic">Antibiotic</option>
+                <option value="Analgesic">Analgesic</option>
+                <option value="Anesthesia">Anesthesia</option>
+                <option value="IV Fluid">IV Fluid</option>
+                <option value="Ergot alkaloid">Ergot alkaloid</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label>Name</label>
+              <input type="text" id="medsName" class="form-control" placeholder="e.g. Ampicillin">
+            </div>
+            <div class="col-sm-2">
+              <label>Dose</label>
+              <input type="text" id="medsDose" class="form-control" placeholder="e.g. 500mg">
+            </div>
+            <div class="col-sm-2">
+              <label>Route</label>
+              <select id="medsRoute" class="form-select">
+                <option value="IV">IV</option>
+                <option value="IM">IM</option>
+                <option value="PO">PO</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn-record w-100" onclick="submitEntry('medications')">
+                <i class="fas fa-plus me-1"></i><span id="medsBtnLabel">Record</span>
+              </button>
+              <input type="hidden" id="medsEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Type</th><th>Name</th><th>Dose</th><th>Route</th><th class="no-print">Act</th></tr></thead>
+            <tbody id="medsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {# ════ 9. URINE ANALYSIS ══════════════════════════════════ #}
+    <div class="parto-section">
+      <div class="parto-section-header" onclick="toggleSection('urineSection')">
+        <h6><i class="fas fa-flask text-warning"></i>9. Urine Analysis</h6>
+        <i class="fas fa-chevron-down" id="urineSection-icon"></i>
+      </div>
+      <div class="parto-section-body" id="urineSection">
+        <div id="urineAlerts"></div>
+        <div class="entry-form">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-2">
+              <label>Time</label>
+              <input type="time" id="urineTime" class="form-control">
+            </div>
+            <div class="col-sm-3">
+              <label>Protein</label>
+              <select id="urineProtein" class="form-select">
+                <option value="absent">Absent</option>
+                <option value="trace">Trace</option>
+                <option value="+">+ (1+)</option>
+                <option value="++">++ (2+)</option>
+                <option value="+++">+++ (3+)</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label>Acetone</label>
+              <select id="urineAcetone" class="form-select">
+                <option value="absent">Absent</option>
+                <option value="trace">Trace</option>
+                <option value="present">Present</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label>Volume (mL)</label>
+              <input type="number" id="urineVolume" class="form-control" placeholder="0–500" min="0" max="500">
+            </div>
+            <div class="col-sm-2">
+              <button class="btn-record w-100" onclick="submitEntry('urine')">
+                <i class="fas fa-plus me-1"></i><span id="urineBtnLabel">Record</span>
+              </button>
+              <input type="hidden" id="urineEditId" value="">
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table parto-table table-hover table-sm">
+            <thead><tr><th>Time</th><th>Protein</th><th>Acetone</th><th>Volume (mL)</th><th class="no-print">Act</th></tr></thead>
+            <tbody id="urineTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>{# /col-lg-9 #}
+
+  {# ── RIGHT SIDEBAR ─────────────────────────────────────────── #}
+  <div class="col-lg-3">
+    <div class="parto-sidebar">
+
+      <!-- Status summary -->
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <i class="fas fa-gauge-high me-2"></i>Current Status
+        </div>
+        <div class="card-body p-3" id="summaryPanel">
+          <div class="text-center text-muted py-3">
+            <i class="fas fa-spinner fa-spin"></i> Loading…
+          </div>
+        </div>
+      </div>
+
+      <!-- Active alerts -->
+      <div class="card">
+        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+          <span><i class="fas fa-bell me-2"></i>Active Alerts</span>
+          <span class="badge bg-white text-danger" id="alertCount">0</span>
+        </div>
+        <div class="card-body p-3" id="alertsPanel">
+          <div class="text-center text-muted py-2" style="font-size:.82rem;">No alerts</div>
+        </div>
+      </div>
+
+      <!-- Normal ranges reference -->
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <i class="fas fa-book-medical me-2"></i>Normal Ranges
+        </div>
+        <div class="card-body p-3">
+          <div class="stat-item"><span class="stat-label">FHR</span><span class="stat-value">120–160 bpm</span></div>
+          <div class="stat-item"><span class="stat-label">BP</span><span class="stat-value">&lt;140/90</span></div>
+          <div class="stat-item"><span class="stat-label">Pulse</span><span class="stat-value">60–100 bpm</span></div>
+          <div class="stat-item"><span class="stat-label">Temp</span><span class="stat-value">≤37.5°C</span></div>
+          <div class="stat-item"><span class="stat-label">Contractions</span><span class="stat-value">≥3/10 min</span></div>
+          <div class="stat-item"><span class="stat-label">Cervix rate</span><span class="stat-value">≥1.0 cm/hr</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>{# /row #}
+
+{# Delete confirmation modal #}
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h6 class="modal-title"><i class="fas fa-trash me-2"></i>Delete Entry</h6>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">Are you sure? This cannot be undone.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger btn-sm" id="confirmDelete">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}{# /active_case #}
+
+{% endblock %}
+
+{% block scripts %}
+{% if active_case %}
+<script>
+  const CASE_ID        = {{ active_case.id }};
+  const ADMISSION_DATE = "{{ active_case.admission_date }}";
+  const ADMISSION_TIME = "{{ active_case.admission_time }}";
+</script>
+<script src="{{ url_for('static', filename='js/partograph.js') }}"></script>
+{% endif %}
+{% endblock %}

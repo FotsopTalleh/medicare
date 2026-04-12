@@ -181,6 +181,9 @@
                 {% endif %}
 
                 <div class="d-grid gap-2 mt-3">
+                    <a href="{{ url_for('partograph_page', uuid=patient_uuid) }}" class="btn btn-danger">
+                        <i class="fas fa-heartbeat me-2"></i>Labour Monitoring (Partograph)
+                    </a>
                     <button type="button" class="btn btn-referral" data-bs-toggle="modal" data-bs-target="#referralModal">
                         <i class="fas fa-share-square me-2"></i>Refer Patient
                     </button>
@@ -235,172 +238,327 @@
         </div>
     </div>
     
-    <!-- Risk Analysis Section -->
+    <!-- ══ Inline Partograph Panel ══════════════════════════════════════════ -->
     <div class="col-md-8">
-        <div class="card mb-4">
-            <div class="card-header bg-warning">
-                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Pregnancy Risk Analysis</h5>
-            </div>
-            <div class="card-body">
-                <!-- Risk Summary -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card bg-light">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Current Risk Score</h6>
-                                <h2 class="display-6 text-primary">24%</h2>
-                                <small class="text-muted">Based on anonymous medical data</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h6>Risk Level Indicator</h6>
-                        <div class="risk-indicator"></div>
-                        <div class="d-flex justify-content-between">
-                            <small class="text-success">Low</small>
-                            <small class="text-warning">Medium</small>
-                            <small class="text-danger">High</small>
-                        </div>
-                        <div class="alert alert-info mt-3">
-                            <i class="fas fa-info-circle me-2"></i>
-                            <strong>Note:</strong> Risk assessment based on anonymous medical parameters only.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Charts -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <h6>Risk Score Trend (Based on Medical Data)</h6>
-                        <div class="chart-container">
-                            <canvas id="riskChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <h6>Blood Pressure Monitoring</h6>
-                        <div class="chart-container">
-                            <canvas id="bpChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>Glucose Levels Monitoring</h6>
-                        <div class="chart-container">
-                            <canvas id="glucoseChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+      {% if not active_case %}
+      <!-- ── No case yet: start form ───────────────────────────────────── -->
+      <div class="card mb-4" style="border-radius:14px;overflow:hidden;border:none;
+           box-shadow:0 4px 24px rgba(220,53,69,.15);">
+        <div class="card-header text-white py-3"
+             style="background:linear-gradient(135deg,#c0392b,#e74c3c);">
+          <h5 class="mb-0">
+            <i class="fas fa-heartbeat me-2"></i>Labour Monitoring – Partograph
+          </h5>
         </div>
-        
-        <!-- Data Architecture Info -->
-        <div class="card mb-4">
-            <div class="card-header bg-light">
-                <h6 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Data Privacy Architecture</h6>
+        <div class="card-body p-4">
+          <i class="fas fa-baby fa-2x text-danger mb-3 opacity-50 d-block text-center"></i>
+          <p class="text-muted text-center mb-4">Start a partograph session to begin real-time
+             monitoring of fetal heart rate, cervical dilatation, contractions and more.</p>
+          <form method="POST" action="{{ url_for('partograph_page', uuid=patient_uuid) }}">
+
+            <div class="row g-2 mb-2">
+              <!-- Admission date / time -->
+              <div class="col-sm-4">
+                <label class="form-label fw-600">Admission Date <span class="text-danger">*</span></label>
+                <input type="date" name="admission_date" class="form-control" required>
+              </div>
+              <div class="col-sm-3">
+                <label class="form-label fw-600">Admission Time <span class="text-danger">*</span></label>
+                <input type="time" name="admission_time" class="form-control" required>
+              </div>
+              <div class="col-sm-2">
+                <label class="form-label fw-600">Gravida</label>
+                <input type="number" name="gravida" class="form-control" min="1" max="20" placeholder="e.g. 3">
+              </div>
+              <div class="col-sm-2">
+                <label class="form-label fw-600">Para
+                  <small class="text-muted fw-normal">(TPAL)</small>
+                </label>
+                <input type="text" name="para" class="form-control"
+                       maxlength="4" pattern="[0-9]{4}"
+                       placeholder="e.g. 1011"
+                       title="4 digits: Term Preterm Abortion Living">
+              </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card border-success mb-3">
-                            <div class="card-header bg-success text-white">
-                                <i class="fas fa-laptop-house me-2"></i>Local Storage (Not Displayed)
-                            </div>
-                            <div class="card-body">
-                                <h6>Personal Data - SQLite</h6>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <i class="fas fa-user text-success me-2"></i>
-                                        <strong>Patient Name:</strong> <em>Not displayed</em>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <i class="fas fa-phone text-success me-2"></i>
-                                        <strong>Contact Info:</strong> <em>Not displayed</em>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <i class="fas fa-envelope text-success me-2"></i>
-                                        <strong>Email:</strong> <em>Not displayed</em>
-                                    </li>
-                                </ul>
-                                <div class="alert alert-success mt-2 mb-0">
-                                    <i class="fas fa-lock me-1"></i>
-                                    <small>Personal data stored locally for privacy</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="card border-info mb-3">
-                            <div class="card-header bg-info text-white">
-                                <i class="fas fa-cloud me-2"></i>Cloud Storage (Displayed Here)
-                            </div>
-                            <div class="card-body">
-                                <h6>Medical Data - Firebase</h6>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <i class="fas fa-heartbeat text-info me-2"></i>
-                                        <strong>Medical Parameters:</strong> Displayed
-                                    </li>
-                                    <li class="list-group-item">
-                                        <i class="fas fa-chart-line text-info me-2"></i>
-                                        <strong>Risk Analysis:</strong> Displayed
-                                    </li>
-                                    <li class="list-group-item">
-                                        <i class="fas fa-user-secret text-info me-2"></i>
-                                        <strong>Patient Identity:</strong> Anonymous
-                                    </li>
-                                </ul>
-                                <div class="alert alert-info mt-2 mb-0">
-                                    <i class="fas fa-user-secret me-1"></i>
-                                    <small>Anonymous medical data for analysis</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-3">
-                    <div class="d-inline-block p-3 border rounded bg-light">
-                        <i class="fas fa-id-card fa-2x text-primary mb-2"></i>
-                        <h6>Patient Medical Code</h6>
-                        <p class="mb-0 small">
-                            <code style="font-size:1rem;font-weight:700;letter-spacing:1px;">{{ medical_code }}</code><br>
-                            <span class="text-muted">Clinic identifier — no personal data visible</span>
-                        </p>
-                    </div>
-                </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-sm-4">
+                <label class="form-label fw-600">Hospital Number</label>
+                <input type="text" name="hospital_number" class="form-control"
+                       placeholder="e.g. HN-00123">
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label fw-600">Membranes</label>
+                <select name="membranes_ruptured" class="form-select" id="pMembranesSelect"
+                        onchange="toggleRuptureField()">
+                  <option value="intact" selected>Intact</option>
+                  <option value="ruptured">Ruptured (SROM)</option>
+                  <option value="artificial">Ruptured (AROM)</option>
+                </select>
+              </div>
+              <div class="col-sm-4" id="pRuptureDurField" style="display:none;">
+                <label class="form-label fw-600">Time of Membrane Rupture</label>
+                <input type="time" name="membrane_rupture_time" class="form-control">
+                <small class="text-muted">Time ROM occurred (HH:MM)</small>
+              </div>
             </div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-danger px-4 fw-600">
+                <i class="fas fa-play me-1"></i>Begin Labour Monitoring
+              </button>
+            </div>
+          </form>
         </div>
-        
-        <!-- Coming Soon: ML Predictions -->
-        <div class="card">
-            <div class="card-header" style="background-color: #2C3E50; color: white;">
-                <h5 class="mb-0"><i class="fas fa-robot me-2"></i>AI/ML Pregnancy Risk Predictions</h5>
-            </div>
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center">
-                        <i class="fas fa-cogs fa-4x text-muted mb-3"></i>
-                    </div>
-                    <div class="col-md-9">
-                        <h4>Coming Soon</h4>
-                        <p>Advanced machine learning models for pregnancy risk prediction are currently in development. These will analyze anonymous medical data to provide predictive insights.</p>
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            <strong>Medical Disclaimer:</strong> Current risk assessments are based on demonstration data only. Always consult with healthcare professionals for medical decisions.
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                                 style="width: 65%">Development: 65%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+
+      <script>
+      function toggleRuptureField() {
+          const sel = document.getElementById('pMembranesSelect');
+          const field = document.getElementById('pRuptureDurField');
+          if (field) field.style.display = sel.value !== 'intact' ? '' : 'none';
+      }
+      </script>
+
+      {% else %}
+      <!-- ── Active partograph panel ────────────────────────────────────── -->
+
+      <!-- Partograph Header Info + Status strip -->
+      <div class="card mb-3" style="border-radius:12px;border:none;
+           box-shadow:0 2px 10px rgba(0,0,0,.07);">
+        <div class="card-header py-2"
+             style="background:linear-gradient(135deg,#c0392b,#e74c3c);color:white;">
+          <span class="fw-700"><i class="fas fa-heartbeat me-2"></i>Labour Monitoring – Partograph</span>
         </div>
-    </div>
-</div>
+        <div class="card-body py-2 px-3">
+
+          <!-- Header fields row -->
+          <div class="row g-2 mb-2 border-bottom pb-2">
+            <div class="col-auto">
+              <small class="text-muted d-block" style="font-size:.72rem;">Admitted</small>
+              <strong style="font-size:.85rem;">{{ active_case.admission_date }} {{ active_case.admission_time }}</strong>
+            </div>
+            {% if active_case.gravida %}
+            <div class="col-auto border-start ps-2">
+              <small class="text-muted d-block" style="font-size:.72rem;">Gravida</small>
+              <strong style="font-size:.85rem;">G{{ active_case.gravida }}</strong>
+            </div>
+            {% endif %}
+            {% if active_case.para %}
+            <div class="col-auto border-start ps-2">
+              <small class="text-muted d-block" style="font-size:.72rem;">Para (TPAL)</small>
+              <strong style="font-size:.85rem;">{{ active_case.para }}</strong>
+            </div>
+            {% endif %}
+            {% if active_case.hospital_number %}
+            <div class="col-auto border-start ps-2">
+              <small class="text-muted d-block" style="font-size:.72rem;">Hospital No.</small>
+              <strong style="font-size:.85rem;">{{ active_case.hospital_number }}</strong>
+            </div>
+            {% endif %}
+            <div class="col-auto border-start ps-2">
+              <small class="text-muted d-block" style="font-size:.72rem;">Membranes</small>
+              <strong style="font-size:.85rem;">
+                {% if active_case.membranes_ruptured == 'ruptured' %}
+                  <span class="badge bg-warning text-dark">Ruptured (SROM)</span>
+                {% elif active_case.membranes_ruptured == 'artificial' %}
+                  <span class="badge bg-info text-dark">Ruptured (AROM)</span>
+                {% else %}
+                  <span class="badge bg-success">Intact</span>
+                {% endif %}
+              </strong>
+            </div>
+            {% if active_case.membrane_rupture_time %}
+            <div class="col-auto border-start ps-2">
+              <small class="text-muted d-block" style="font-size:.72rem;">ROM Time</small>
+              <strong style="font-size:.85rem;">{{ active_case.membrane_rupture_time }}</strong>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Status + action buttons -->
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+              <span id="pInlineStatusBadge" class="badge bg-success fs-6 py-2 px-3">
+                <i class="fas fa-circle me-1"></i><span id="pInlineStatusText">Loading…</span>
+              </span>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="/api/partograph/{{ active_case.id }}/export/csv"
+                 class="btn btn-sm btn-outline-success">
+                <i class="fas fa-file-csv me-1"></i>Export CSV
+              </a>
+              <a href="{{ url_for('partograph_page', uuid=patient_uuid) }}?case_id={{ active_case.id }}"
+                 class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-expand me-1"></i>Full Partograph
+              </a>
+              <button type="button" class="btn btn-sm btn-outline-danger"
+                      onclick="newPartographCase()">
+                <i class="fas fa-plus me-1"></i>New Case
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row g-3">
+
+        <!-- LEFT: FHR + Cervix charts with entry forms -->
+        <div class="col-lg-8">
+
+          <!-- ── FHR ───────────────────────────────────────────────── -->
+          <div class="card mb-3" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(0,0,0,.07);">
+            <div class="card-header bg-danger text-white py-2">
+              <span class="fw-700"><i class="fas fa-heartbeat me-2"></i>Fetal Heart Rate</span>
+              <span id="pFhrLatest" class="float-end badge bg-white text-danger fs-6"></span>
+            </div>
+            <div class="card-body p-2">
+              <div id="pFhrAlerts"></div>
+              <!-- Quick entry -->
+              <div class="d-flex gap-2 mb-2 align-items-end px-1">
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Time</label>
+                  <input type="time" id="pFhrTime" class="form-control form-control-sm">
+                </div>
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">FHR (bpm)</label>
+                  <input type="number" id="pFhrVal" class="form-control form-control-sm"
+                         placeholder="80–200" min="80" max="200" style="width:90px;">
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="pRecordFhr()">
+                  <i class="fas fa-plus"></i> Record
+                </button>
+                <span id="pFhrErr" class="text-danger align-self-center"
+                      style="font-size:.75rem;"></span>
+              </div>
+              <div style="height:190px;"><canvas id="pFhrChart"></canvas></div>
+            </div>
+          </div>
+
+          <!-- ── Cervical Dilatation ───────────────────────────────── -->
+          <div class="card mb-3" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(0,0,0,.07);">
+            <div class="card-header bg-primary text-white py-2">
+              <span class="fw-700"><i class="fas fa-chart-line me-2"></i>Cervical Dilatation</span>
+              <span id="pCervixLatest" class="float-end badge bg-white text-primary fs-6"></span>
+            </div>
+            <div class="card-body p-2">
+              <div id="pCervixAlerts"></div>
+              <div class="d-flex gap-2 mb-2 align-items-end px-1 flex-wrap">
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Time</label>
+                  <input type="time" id="pCxTime" class="form-control form-control-sm">
+                </div>
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Dilatation (cm)</label>
+                  <input type="number" id="pCxVal" class="form-control form-control-sm"
+                         placeholder="0–10" min="0" max="10" step="0.5" style="width:90px;">
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="pRecordCervix()">
+                  <i class="fas fa-plus"></i> Record
+                </button>
+              </div>
+              <div style="height:210px;"><canvas id="pCxChart"></canvas></div>
+              <div id="pCxZone" class="mt-1"></div>
+            </div>
+          </div>
+
+          <!-- ── Vitals quick entry ───────────────────────────────── -->
+          <div class="card mb-3" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(0,0,0,.07);">
+            <div class="card-header bg-success text-white py-2">
+              <span class="fw-700"><i class="fas fa-stethoscope me-2"></i>Vitals (BP &amp; Pulse)</span>
+            </div>
+            <div class="card-body p-2">
+              <div id="pVitalsAlerts"></div>
+              <div class="d-flex gap-2 align-items-end px-1 flex-wrap">
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Time</label>
+                  <input type="time" id="pVtTime" class="form-control form-control-sm">
+                </div>
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Systolic</label>
+                  <input type="number" id="pVtSys" class="form-control form-control-sm"
+                         placeholder="mmHg" style="width:80px;">
+                </div>
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Diastolic</label>
+                  <input type="number" id="pVtDia" class="form-control form-control-sm"
+                         placeholder="mmHg" style="width:80px;">
+                </div>
+                <div>
+                  <label class="form-label mb-1" style="font-size:.75rem;font-weight:700;">Pulse</label>
+                  <input type="number" id="pVtPulse" class="form-control form-control-sm"
+                         placeholder="bpm" style="width:75px;">
+                </div>
+                <button class="btn btn-success btn-sm" onclick="pRecordVitals()">
+                  <i class="fas fa-plus"></i> Record
+                </button>
+              </div>
+              <div id="pVitalsLatest" class="mt-2 px-1"></div>
+            </div>
+          </div>
+
+        </div><!-- /col-lg-8 -->
+
+        <!-- RIGHT: Alerts + Summary -->
+        <div class="col-lg-4">
+
+          <!-- Status summary -->
+          <div class="card mb-3" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(0,0,0,.07);">
+            <div class="card-header py-2" style="background:#2C3E50;color:white;">
+              <span class="fw-700"><i class="fas fa-gauge-high me-2"></i>Status</span>
+            </div>
+            <div class="card-body p-2" id="pInlineSummaryPanel">
+              <div class="text-center text-muted py-2" style="font-size:.8rem;">
+                <i class="fas fa-spinner fa-spin"></i> Loading…
+              </div>
+            </div>
+          </div>
+
+          <!-- Active alerts -->
+          <div class="card mb-3" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(220,53,69,.15);">
+            <div class="card-header bg-danger text-white py-2 d-flex justify-content-between">
+              <span class="fw-700"><i class="fas fa-bell me-2"></i>Alerts</span>
+              <span class="badge bg-white text-danger" id="pInlineAlertCount">0</span>
+            </div>
+            <div class="card-body p-2" id="pInlineAlertsPanel">
+              <div class="text-center text-muted py-2" style="font-size:.8rem;">No alerts</div>
+            </div>
+          </div>
+
+          <!-- Normal ranges reference -->
+          <div class="card" style="border-radius:12px;border:none;
+               box-shadow:0 2px 10px rgba(0,0,0,.07);">
+            <div class="card-header bg-success text-white py-2">
+              <span class="fw-700"><i class="fas fa-book-medical me-2"></i>Normal Ranges</span>
+            </div>
+            <div class="card-body p-2">
+              {% for label, val in [
+                ('FHR','120–160 bpm'),('BP','<140/90'),
+                ('Pulse','60–100'),('Temp','≤37.5°C'),
+                ('Contractions','≥3/10 min'),('Cervix rate','≥1.0 cm/hr')
+              ] %}
+              <div class="d-flex justify-content-between py-1 border-bottom"
+                   style="font-size:.78rem;">
+                <span class="text-muted">{{ label }}</span>
+                <strong>{{ val }}</strong>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div><!-- /col-lg-4 -->
+
+      </div><!-- /row -->
+      {% endif %}{# active_case #}
+
+    </div><!-- /col-md-8 -->
 
 <!-- ══ Referral Modal ══════════════════════════════════════════════════ -->
 <div class="modal fade" id="referralModal" tabindex="-1" aria-labelledby="referralModalLabel" aria-hidden="true">
@@ -721,4 +879,294 @@ if (referralForm) {
     });
 }
 </script>
+
+{% if active_case %}
+<script>
+// ── Inline Partograph Engine ─────────────────────────────────────────────────
+const CASE_ID = {{ active_case.id }};
+const PATIENT_UUID = "{{ patient_uuid }}";
+const ADMISSION_TIME = "{{ active_case.admission_time }}";
+
+// Set default time inputs to now
+(function setNow() {
+    const now = new Date().toTimeString().slice(0,5);
+    ['pFhrTime','pCxTime','pVtTime'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = now;
+    });
+})();
+
+// ── Chart helpers ────────────────────────────────────────────────────────────
+function makeChart(id, label, color, yMin, yMax, extraDatasets=[]) {
+    const ctx = document.getElementById(id);
+    if (!ctx) return null;
+    return new Chart(ctx.getContext('2d'), {
+        type: 'line',
+        data: { labels: [], datasets: [{
+            label, data: [], borderColor: color,
+            backgroundColor: color.replace('rgb','rgba').replace(')',',0.1)'),
+            tension: 0.3, fill: true, pointRadius: 4
+        }, ...extraDatasets] },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            animation: { duration: 400 },
+            scales: {
+                x: { ticks: { font: { size: 10 } } },
+                y: { min: yMin, max: yMax, ticks: { font: { size: 10 } } }
+            },
+            plugins: { legend: { display: extraDatasets.length > 0 } }
+        }
+    });
+}
+
+const fhrChart = makeChart('pFhrChart', 'FHR (bpm)', 'rgb(220,53,69)', 60, 200);
+
+// Cervix chart — WHO scatter with alert/action lines
+let cxChart = null;
+(function initCxChart() {
+    const ctx = document.getElementById('pCxChart');
+    if (!ctx) return;
+    // Build WHO reference lines (1hr intervals)
+    const alertPts  = [];
+    const actionPts = [];
+    for (let h = 0; h <= 10; h++) {
+        if (h <= 6) alertPts.push({ x: h, y: 4 + h });
+        if (h >= 4) actionPts.push({ x: h, y: 4 + (h - 4) });
+    }
+    cxChart = new Chart(ctx.getContext('2d'), {
+        type: 'scatter',
+        data: {
+            datasets: [
+                { label: 'Cervix (cm)', data: [], borderColor: '#0d6efd',
+                  backgroundColor: '#0d6efd', pointRadius: 5, showLine: true, tension: 0 },
+                { label: 'Alert line',  data: alertPts,  borderColor: 'orange',
+                  backgroundColor: 'transparent', borderDash: [5,5], pointRadius: 0, showLine: true },
+                { label: 'Action line', data: actionPts, borderColor: 'crimson',
+                  backgroundColor: 'transparent', borderDash: [5,5], pointRadius: 0, showLine: true }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            animation: { duration: 400 },
+            plugins: { legend: { display: true, labels: { font: { size: 10 } } } },
+            scales: {
+                x: { type: 'linear', min: 0, max: 12,
+                     title: { display: true, text: 'Hours in labour' },
+                     ticks: { stepSize: 1, font: { size: 10 } } },
+                y: { min: 0, max: 10,
+                     title: { display: true, text: 'Dilatation (cm)' },
+                     ticks: { stepSize: 1, font: { size: 10 } } }
+            }
+        }
+    });
+})();
+
+// ── Load FHR data ────────────────────────────────────────────────────────────
+async function loadFhr() {
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/fhr`);
+        const d = await r.json();
+        if (!fhrChart) return;
+        fhrChart.data.labels         = d.entries.map(e => e.time);
+        fhrChart.data.datasets[0].data = d.entries.map(e => e.fhr_value);
+        fhrChart.update();
+        if (d.entries.length) {
+            const last = d.entries[d.entries.length-1].fhr_value;
+            const el = document.getElementById('pFhrLatest');
+            if (el) el.textContent = last + ' bpm';
+            // Alert check
+            const alertEl = document.getElementById('pFhrAlerts');
+            if (alertEl) {
+                if (last < 120 || last > 160) {
+                    alertEl.innerHTML = `<div class="alert alert-danger py-1 mb-2" style="font-size:.8rem;">
+                        <i class="fas fa-exclamation-triangle me-1"></i>
+                        FHR ${last < 120 ? 'bradycardia' : 'tachycardia'}: ${last} bpm</div>`;
+                } else { alertEl.innerHTML = ''; }
+            }
+        }
+    } catch(e) { console.error('FHR load error', e); }
+}
+
+// ── Load Cervix data (WHO standard) ──────────────────────────────────────────
+function toHoursElapsed(time) {
+    // Returns hours from ADMISSION_TIME to time string HH:MM
+    try {
+        const [ah, am] = ADMISSION_TIME.split(':').map(Number);
+        const [eh, em] = time.split(':').map(Number);
+        return Math.max(0, (eh * 60 + em - (ah * 60 + am)) / 60);
+    } catch(e) { return 0; }
+}
+
+async function loadCervix() {
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/cervix`);
+        const d = await r.json();
+        if (!cxChart) return;
+        // Map entries to scatter points {x: hoursElapsed, y: dilatation_cm}
+        const pts = d.entries.map(e => ({ x: toHoursElapsed(e.time), y: e.dilatation_cm }));
+        cxChart.data.datasets[0].data = pts;
+        cxChart.update();
+        if (d.entries.length) {
+            const last = d.entries[d.entries.length-1].dilatation_cm;
+            const lastH = toHoursElapsed(d.entries[d.entries.length-1].time);
+            const el = document.getElementById('pCervixLatest');
+            if (el) el.textContent = last + ' cm';
+            // Alert/zone check using WHO formulas
+            const alertVal  = lastH <= 6  ? 4 + lastH       : null;
+            const actionVal = lastH >= 4 && lastH <= 10 ? 4 + (lastH - 4) : null;
+            const zoneEl = document.getElementById('pCxZone');
+            const alertEl = document.getElementById('pCervixAlerts');
+            if (actionVal !== null && last < actionVal) {
+                if (zoneEl) zoneEl.innerHTML = '<span class="badge bg-danger">Action Zone</span>';
+                if (alertEl) alertEl.innerHTML = `<div class="alert alert-danger py-1 mb-2" style="font-size:.8rem;">
+                    <i class="fas fa-exclamation-triangle me-1"></i>ACTION ZONE — cervical progress has crossed action line</div>`;
+            } else if (alertVal !== null && last < alertVal) {
+                if (zoneEl) zoneEl.innerHTML = '<span class="badge bg-warning text-dark">Alert Zone</span>';
+                if (alertEl) alertEl.innerHTML = `<div class="alert alert-warning py-1 mb-2" style="font-size:.8rem;">
+                    <i class="fas fa-exclamation-triangle me-1"></i>Alert Zone — labour progress slower than expected</div>`;
+            } else {
+                if (zoneEl) {
+                    if (last >= 10) zoneEl.innerHTML = '<span class="badge bg-success">Fully dilated</span>';
+                    else if (last >= 4) zoneEl.innerHTML = '<span class="badge bg-primary">Active phase — Normal</span>';
+                    else zoneEl.innerHTML = '<span class="badge bg-secondary">Latent phase</span>';
+                }
+                if (alertEl) alertEl.innerHTML = '';
+            }
+        }
+    } catch(e) { console.error('Cervix load error', e); }
+}
+
+// ── Load Vitals ──────────────────────────────────────────────────────────────
+async function loadVitals() {
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/vital-signs`);
+        const d = await r.json();
+        if (!d.entries.length) return;
+        const last = d.entries[d.entries.length-1];
+        const el = document.getElementById('pVitalsLatest');
+        if (el) {
+            let html = `<small class="text-muted">Latest vitals @ <strong>${last.time}</strong>: `;
+            if (last.systolic_bp) html += `BP ${last.systolic_bp}/${last.diastolic_bp} mmHg · `;
+            if (last.pulse_bpm)   html += `Pulse ${last.pulse_bpm} bpm`;
+            html += '</small>';
+            el.innerHTML = html;
+            // Alert check
+            const alertEl = document.getElementById('pVitalsAlerts');
+            if (alertEl && last.systolic_bp >= 140) {
+                alertEl.innerHTML = `<div class="alert alert-danger py-1 mb-2" style="font-size:.8rem;">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    Hypertension: BP ${last.systolic_bp}/${last.diastolic_bp}</div>`;
+            } else if (alertEl) { alertEl.innerHTML = ''; }
+        }
+    } catch(e) { console.error('Vitals load error', e); }
+}
+
+// ── Load Summary ─────────────────────────────────────────────────────────────
+async function loadSummary() {
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/summary`);
+        const d = await r.json();
+        // Status badge
+        const badge = document.getElementById('pInlineStatusBadge');
+        const txt   = document.getElementById('pInlineStatusText');
+        if (txt) txt.textContent = d.status === 'in_progress' ? 'In Progress' : 'Completed';
+        if (badge) badge.className = `badge fs-6 py-2 px-3 ${d.status === 'in_progress' ? 'bg-success' : 'bg-secondary'}`;
+        // Alerts panel
+        const alertPanel = document.getElementById('pInlineAlertsPanel');
+        const alertCount = document.getElementById('pInlineAlertCount');
+        if (d.alerts && d.alerts.length) {
+            if (alertCount) alertCount.textContent = d.alerts.length;
+            if (alertPanel) alertPanel.innerHTML = d.alerts.map(a =>
+                `<div class="alert alert-${a.level === 'danger' ? 'danger' : 'warning'} py-1 mb-1" style="font-size:.78rem;">
+                    <i class="fas fa-exclamation-triangle me-1"></i>${a.message}</div>`
+            ).join('');
+        } else {
+            if (alertCount) alertCount.textContent = '0';
+            if (alertPanel) alertPanel.innerHTML = '<div class="text-center text-muted py-2" style="font-size:.8rem;"><i class="fas fa-check-circle text-success me-1"></i>No active alerts</div>';
+        }
+        // Summary panel
+        const sumPanel = document.getElementById('pInlineSummaryPanel');
+        if (sumPanel) {
+            const items = [
+                ['FHR Entries', d.fhr_count ?? 0],
+                ['Cervix Entries', d.cervix_count ?? 0],
+                ['Vitals Entries', d.vitals_count ?? 0],
+                ['Duration', d.duration_hours ? d.duration_hours.toFixed(1) + ' hrs' : '—']
+            ];
+            sumPanel.innerHTML = items.map(([k,v]) =>
+                `<div class="d-flex justify-content-between py-1 border-bottom" style="font-size:.8rem;">
+                    <span class="text-muted">${k}</span><strong>${v}</strong></div>`
+            ).join('');
+        }
+    } catch(e) { console.error('Summary load error', e); }
+}
+
+// ── Record helpers ───────────────────────────────────────────────────────────
+async function pRecordFhr() {
+    const time = document.getElementById('pFhrTime').value;
+    const val  = document.getElementById('pFhrVal').value;
+    const errEl = document.getElementById('pFhrErr');
+    if (!time || !val) { if(errEl) errEl.textContent='Time & FHR required'; return; }
+    if(errEl) errEl.textContent='';
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/fhr`, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ time, fhr_value: parseInt(val) })
+        });
+        if (r.ok) { await loadFhr(); await loadSummary(); }
+        else { const e = await r.json(); if(errEl) errEl.textContent = e.error || 'Error'; }
+    } catch(e) { if(errEl) errEl.textContent='Network error'; }
+}
+
+async function pRecordCervix() {
+    const time = document.getElementById('pCxTime').value;
+    const val  = document.getElementById('pCxVal').value;
+    if (!time || !val) return;
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/cervix`, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ time, dilatation_cm: parseFloat(val) })
+        });
+        if (r.ok) { await loadCervix(); await loadSummary(); }
+    } catch(e) { console.error(e); }
+}
+
+async function pRecordVitals() {
+    const time  = document.getElementById('pVtTime').value;
+    const sys   = document.getElementById('pVtSys').value;
+    const dia   = document.getElementById('pVtDia').value;
+    const pulse = document.getElementById('pVtPulse').value;
+    if (!time) return;
+    try {
+        const r = await fetch(`/api/partograph/${CASE_ID}/vital-signs`, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ time, systolic_bp: sys||null, diastolic_bp: dia||null, pulse_bpm: pulse||null })
+        });
+        if (r.ok) { await loadVitals(); await loadSummary(); }
+    } catch(e) { console.error(e); }
+}
+
+function newPartographCase() {
+    const d = new Date().toISOString().split('T')[0];
+    const t = new Date().toTimeString().slice(0,5);
+    if (confirm('Start a new labour session for this patient?')) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/patient/${PATIENT_UUID}/partograph`;
+        form.innerHTML = `<input name="admission_date" value="${d}">
+                          <input name="admission_time" value="${t}">`;
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+
+// ── Initial load + 60s auto-refresh ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    loadFhr(); loadCervix(); loadVitals(); loadSummary();
+    setInterval(() => { loadFhr(); loadCervix(); loadVitals(); loadSummary(); }, 60000);
+});
+</script>
+{% endif %}
+
 {% endblock %}
+
